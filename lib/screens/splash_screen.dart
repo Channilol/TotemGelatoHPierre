@@ -6,6 +6,8 @@ import 'package:totem/components/back_popup.dart';
 import 'package:totem/components/category_icon.dart';
 import 'package:totem/components/header.dart';
 import 'package:totem/models/order_item.dart';
+import 'package:totem/providers/category_provider.dart';
+import 'package:totem/providers/inactivity_timer_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/screens/order_screen.dart';
 import 'package:totem/services/inactivity_timer_service.dart';
@@ -22,18 +24,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        InactivityTimerService.startInactivityTimer(
-            inactivityCallback: () {
-              ref.read(orderProvider.notifier).setOrder(OrderItem(rows: []));
-              Navigator.popUntil(context, ModalRoute.withName("/"));
-            },
-            warningCallback: () => showDialog(
-                context: context, builder: (_) => const BackPopup()));
+        ref.read(inactivityTimerProvider).resetInactivityTimer(context);
         Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const OrderScreen()))
-            .then((_) {
-          ref.read(orderProvider.notifier).setOrder(OrderItem(rows: []));
-          InactivityTimerService.cancel();
+            .then((value) {
+          ref.read(inactivityTimerProvider).cancelTimer();
         });
       },
       child: Scaffold(
