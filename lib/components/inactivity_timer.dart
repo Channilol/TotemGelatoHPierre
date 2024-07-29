@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:totem/components/back_popup.dart';
-import 'package:totem/services/inactivity_timer_service.dart';
+import 'package:totem/providers/inactivity_timer_provider.dart';
 
-class InactivityTimer extends ConsumerStatefulWidget {
+class InactivityTimer extends ConsumerWidget {
+  final Widget child;
+  const InactivityTimer({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final timerNotifier = ref.read(inactivityTimerProvider);
+
+    return GestureDetector(
+      onTap: () => timerNotifier.resetInactivityTimer(context),
+      onPanDown: (_) => timerNotifier.resetInactivityTimer(context),
+      child: child,
+    );
+  }
+}
+
+
+/* class InactivityTimer extends ConsumerStatefulWidget {
   final Widget child;
   const InactivityTimer({super.key, required this.child});
 
@@ -38,3 +54,4 @@ class _InactivityTimerState extends ConsumerState<InactivityTimer> {
     );
   }
 }
+ */
