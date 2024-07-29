@@ -7,8 +7,8 @@ class InactivityTimerService {
   static Timer? _warningTimer;
 
   static void startInactivityTimer({
-    Duration inactivityDuration = const Duration(seconds: 10),
-    Duration warningDuration = const Duration(seconds: 6),
+    Duration inactivityDuration = const Duration(seconds: 100000),
+    Duration warningDuration = const Duration(seconds: 99990),
     required void Function() inactivityCallback,
     required void Function() warningCallback,
   }) {

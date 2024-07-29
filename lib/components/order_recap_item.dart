@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:totem/components/delete_popup.dart';
 import 'package:totem/components/extra_popup.dart';
-import 'package:totem/components/remove_list_popup.dart';
+import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/order_provider.dart';
 
@@ -16,6 +17,21 @@ class OrderRecapItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final orderNotifier = ref.read(orderProvider.notifier);
     final order = ref.watch(orderProvider);
+    var orderRows = ref.watch(orderProvider)?.rows;
+    bool doExtraExist = false;
+    var itemQty =
+        ref.watch(orderProvider.notifier).getItemRowsCount(product.productId);
+    List<OrderRowItem>? orderItemsByProduct = ref
+        .watch(orderProvider)
+        ?.rows
+        .where((e) => e.productId == product.productId)
+        .toList();
+    for (var i = 0; i < orderItemsByProduct!.length; i++) {
+      if (orderItemsByProduct[i].extras!.isNotEmpty) {
+        doExtraExist = true;
+      }
+    }
+
     return badges.Badge(
       badgeAnimation: const badges.BadgeAnimation.rotation(),
       position: badges.BadgePosition.topEnd(end: 0, top: -15),
@@ -122,10 +138,18 @@ class OrderRecapItem extends ConsumerWidget {
                                     backgroundColor: const Color(0x55C3ABA4),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15, vertical: 10)),
-                                onPressed: () => showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        RemoveListPopup(product: product)),
+                                onPressed: doExtraExist == true
+                                    ? () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              DeletePopup(product: product),
+                                        );
+                                      }
+                                    : () {
+                                        orderNotifier
+                                            .removeItem(product.productId);
+                                      },
                                 child: const FaIcon(FontAwesomeIcons.trash,
                                     size: 15, color: Color(0xFF907676))),
                           ],
