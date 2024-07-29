@@ -1,8 +1,9 @@
-import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:totem/components/add_button.dart';
+import 'package:totem/components/delete_button.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/product_item.dart';
@@ -97,69 +98,12 @@ class ProductCard extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         if (productCount > 0)
-                          Transform.translate(
-                            offset: const Offset(5, 0),
-                            child: InactivityTimer(
-                              child: FilledButton(
-                                  style: FilledButton.styleFrom(
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(5),
-                                              topLeft: Radius.circular(20))),
-                                      backgroundColor: const Color(0xAAC3ABA4),
-                                      padding: const EdgeInsets.all(10)),
-                                  onPressed: () {
-                                    orderNotifier.removeItem(product.productId);
-                                  },
-                                  child: Text("CANCELLA",
-                                      style: TextStyle(
-                                          fontFamily:
-                                              GoogleFonts.nunito().fontFamily,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color(0xFF907676),
-                                          fontSize: 10))),
-                            ),
-                          ),
-                        badges.Badge(
-                          badgeAnimation: const badges.BadgeAnimation.rotation(
-                              animationDuration: Duration(milliseconds: 200)),
-                          badgeStyle: const badges.BadgeStyle(
-                              badgeColor: Colors.green,
-                              borderSide: BorderSide(color: Colors.white)),
-                          badgeContent: Text(
-                            productCount.toString(),
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          showBadge: productCount > 0,
-                          child: FilledButton(
-                              style: FilledButton.styleFrom(
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(20),
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(5))),
-                                  backgroundColor: const Color(0xFF907676),
-                                  padding: const EdgeInsets.all(15)),
-                              onPressed: () =>
-                                  orderNotifier.addItem(product.productId),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "€ ${product.price.toStringAsFixed(2)}",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                  const Text(
-                                    "AGGIUNGI",
-                                    style: TextStyle(color: Colors.white),
-                                  )
-                                ],
-                              )),
-                        ),
+                          DeleteButton(
+                              orderNotifier: orderNotifier, product: product),
+                        AddButton(
+                            productCount: productCount,
+                            orderNotifier: orderNotifier,
+                            product: product),
                       ],
                     ),
                   )

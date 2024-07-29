@@ -48,6 +48,27 @@ class OrderProvider extends StateNotifier<OrderItem> {
     }
     state = OrderItem(rows: rows);
   }
+
+  //METODI IMPLEMENTATI DA FRANCESCO CANNIZZO
+
+  int getItemRowsCount(String productId) {
+    return state!.rows
+            .where((element) => element.productId == productId)
+            .length ??
+        0;
+  }
+
+  void removeOrder(String rowId) {
+    var tempOrder = state?.clone() ?? OrderItem(rows: []);
+    if (tempOrder.rows.isNotEmpty) {
+      var itemToRemove =
+          tempOrder.rows.where((e) => e.rowId == rowId).firstOrNull;
+      if (itemToRemove != null) {
+        tempOrder.rows.remove(itemToRemove);
+      }
+    }
+    state = tempOrder;
+  }
 }
 
 final orderProvider = StateNotifierProvider<OrderProvider, OrderItem>((ref) {
