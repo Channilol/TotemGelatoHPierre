@@ -1,0 +1,320 @@
+[
+  {
+    "productId": "001",
+    "name": "Selezione Lorelay",
+    "description": "I nostri grandi classici con Crema, Nocciola, Cioccolato, Pistacchio Puro",
+    "price": 3.0,
+    "categoryId": "C01",
+    "image": "assets/images/selezione-lorelay.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "002",
+    "name": "Fragolosa",
+    "description": "Fragole fresche, gelato fiordilatte e di fragole, panna montata e salsa di fragole",
+    "price": 4.0,
+    "categoryId": "C01",
+    "image": "assets/images/fragolosa.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "003",
+    "name": "Millefoglie di Fragole",
+    "description": "Fragole fresche, crema al mascarpone, millefoglie, gelato di crema.",
+    "price": 4.5,
+    "categoryId": "C01",
+    "image": "assets/images/millefoglie-fragola.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "004",
+    "name": "Pesca e amaretto",
+    "description": "Amaretti sbriciolati, pesche, liquore Amaretto, gelato di crema e panna montata.",
+    "price": 3.0,
+    "categoryId": "C02",
+    "image": "assets/images/pesca-e-amaretto.jpg",
+    "extras": [
+      {
+        "extraId": "E02",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      }
+    ]
+  },
+  {
+    "productId": "005",
+    "name": "Mangia e Bevi",
+    "description": "Macedonia di frutta fresca, gelato di fiordilatte, di fragole e di crema. Panna montata, frutta intagliata e succo di frutta.",
+    "price": 4.0,
+    "categoryId": "C02",
+    "image": "assets/images/mangia-e-bevi.jpg",
+    "extras": [
+      {
+        "extraId": "E02",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      }
+    ]
+  },
+  {
+    "productId": "006",
+    "name": "Cioccolandia",
+    "description": "Salsa di cioccolato, gelato di fiordilatte e di cioccolato con panna montata e ventaglio di cioccolato.",
+    "price": 4.5,
+    "categoryId": "C02",
+    "image": "assets/images/cioccolandia.jpg",
+    "extras": [
+      {
+        "extraId": "E02",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      }
+    ]
+  },
+  {
+    "productId": "007",
+    "name": "Coppa melone",
+    "description": "Melone fresco, gelato di melone, fragola e fiordilatte, panna montata e frutta intagliata.",
+    "price": 5.0,
+    "categoryId": "C03",
+    "image": "assets/images/coppa-melone.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "008",
+    "name": "Cheesecake",
+    "description": "Salsa ai frutti di bosco, biscotti Digestive, gelato di crema e panna montata.",
+    "price": 8.5,
+    "categoryId": "C03",
+    "image": "assets/images/cheesecake.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "009",
+    "name": "Lorelay",
+    "description": "Babà al rum, salsa allo zabaione, gelato di crema e cioccolato, granella di mandorle pralinate, panna montata.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/lorelay.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "010",
+    "name": "Cioccobanana",
+    "description": "Banane fresche, salsa e scaglie di cioccolato, gelato di fiordilatte e cioccolato, panna montata, decoro in cioccolato.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/cioccobanana.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "011",
+    "name": "Pralinone",
+    "description": "Frutta secca mista, salsa al caramello, gelato di nocciola e bacio con panna montata, lingue di gatto.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/pralinone.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "012",
+    "name": "Coppa Reale",
+    "description": "Pralina, salsa di cioccolato e zabaione, granella di frutta secca, gelato di nocciola e cioccolato, panna montata e decoro in cioccolato.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/coppa-reale.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "013",
+    "name": "Fior di Bosco",
+    "description": "Gelato di crema, salsa di fragole, cocco in scaglie, granella di nocciole e panna montata.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/coppa-fior-di-bosco.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "014",
+    "name": "Baciami",
+    "description": "Frutta secca mista, salsa al cioccolato, gelato di nocciola e bacio con salsa di zabaione, panna montata e decoro in cioccolato.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/baciami.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "015",
+    "name": "Spaghetti",
+    "description": "Gelato di crema, salsa di fragole, cocco in scaglie, granella di nocciole e panna montata.",
+    "price": 10.0,
+    "categoryId": "C03",
+    "image": "assets/images/spaghetti.jpg",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E04",
+        "order": 2
+      },
+      {
+        "extraId": "E05",
+        "order": 3
+      }
+    ]
+  }
+]

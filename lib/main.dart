@@ -1,0 +1,36 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:json_theme/json_theme.dart';
+import 'package:totem/screens/splash_screen.dart';
+import 'package:totem/services/utils.dart';
+
+late ThemeData theme;
+// C3ABA4
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  final stringa = await rootBundle.loadString("assets/appainter_theme.json");
+  final jsonCode = jsonDecode(stringa);
+  theme = ThemeDecoder.decodeThemeData(jsonCode) ?? ThemeData();
+
+  await Utils.init();
+
+  runApp(const ProviderScope(child: TotemApp()));
+}
+
+class TotemApp extends StatelessWidget {
+  const TotemApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Totem app',
+      theme: theme,
+      home: const SplashScreen(),
+    );
+  }
+}

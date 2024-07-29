@@ -1,0 +1,17 @@
+[
+  {
+    "categoryId": "C01",
+    "name": "I Gourmet",
+    "image": "assets/images/gourmet.svg"
+  },
+  {
+    "categoryId": "C02",
+    "name": "I Classici",
+    "image": "assets/images/classici.svg"
+  },
+  {
+    "categoryId": "C03",
+    "name": "Lactose Free",
+    "image": "assets/images/lactose-free.svg"
+  }
+]
