@@ -4,8 +4,10 @@ import 'package:totem/components/delete_popup_item.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/utils.dart';
 
 class DeletePopup extends ConsumerStatefulWidget {
   const DeletePopup({super.key, required this.product});
@@ -18,9 +20,10 @@ class DeletePopup extends ConsumerStatefulWidget {
 class _DeletePopupState extends ConsumerState<DeletePopup> {
   @override
   Widget build(BuildContext context) {
-    var orderRows = ref.watch(orderProvider)?.rows;
+    final language = Utils.languages[ref.watch(languageProvider)];
+    var orderRows = ref.watch(orderProvider).rows;
     List<OrderRowItem> filteredOrdersByProduct = [];
-    if (orderRows!.isNotEmpty) {
+    if (orderRows.isNotEmpty) {
       filteredOrdersByProduct = orderRows
           .where((e) => e.productId == widget.product.productId)
           .toList();
@@ -32,11 +35,18 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
             product: widget.product, orderRow: filteredOrdersByProduct[i]),
       );
     }
-    ref.listen(orderProvider, (prev, next) {
-      if (next.rows.isEmpty) {
-        Navigator.pop(context);
-      }
-    });
+    bool doItemExist = true;
+    var itemQty = ref
+        .watch(orderProvider.notifier)
+        .getItemRowsCount(widget.product.productId);
+    if (itemQty < 1) {
+      setState(() {
+        doItemExist = false;
+      });
+    }
+    if (doItemExist == false) {
+      Navigator.pop(context);
+    }
 
     return InactivityTimer(
       child: Dialog(
@@ -56,8 +66,8 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text(
-                      'Quale gelato vuoi cancellare?',
+                    Text(
+                      language['orderRecapScreen']['removeItemDialogTitle'],
                       style: TextStyle(
                         color: MyColors.colorText,
                         fontSize: 25.0,

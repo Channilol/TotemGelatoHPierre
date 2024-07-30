@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:totem/models/product_item.dart';
-import 'package:totem/providers/order_provider.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/language_provider.dart';
+import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/utils.dart';
 
-class AddButton extends StatelessWidget {
+class AddButton extends ConsumerWidget {
   const AddButton({
     super.key,
     required this.productCount,
@@ -17,7 +19,8 @@ class AddButton extends StatelessWidget {
   final ProductItem product;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = Utils.languages[ref.watch(languageProvider)];
     return badges.Badge(
       badgeAnimation: const badges.BadgeAnimation.rotation(
           animationDuration: Duration(milliseconds: 200)),
@@ -48,8 +51,8 @@ class AddButton extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.white),
               ),
-              const Text(
-                "AGGIUNGI",
+              Text(
+                language['orderScreen']['Product_button_text_add'],
                 style: TextStyle(color: Colors.white),
               )
             ],

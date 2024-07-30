@@ -11,6 +11,7 @@ class InactivityTimer extends ConsumerWidget {
     final timerNotifier = ref.read(inactivityTimerProvider);
 
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () => timerNotifier.resetInactivityTimer(context),
       onPanDown: (_) => timerNotifier.resetInactivityTimer(context),
       child: child,
