@@ -11,7 +11,7 @@ class LanguagePopup extends ConsumerWidget {
     final languageNotifier = ref.read(languageProvider.notifier);
     final languageIndex = ref.watch(languageProvider);
     return DropdownButton<int>(
-      isExpanded: true,
+      isExpanded: false,
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(5),
         bottomRight: Radius.circular(20),
@@ -33,7 +33,8 @@ class LanguagePopup extends ConsumerWidget {
         for (int i = 0; i < Utils.languages.length; i++)
           DropdownMenuItem<int>(
               alignment: Alignment.center,
-              value: i, child: Text(Utils.languages[i]['name']))
+              value: i,
+              child: Text(Utils.languages[i]['name']))
       ],
     );
   }
