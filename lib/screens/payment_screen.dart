@@ -7,6 +7,7 @@ import 'package:totem/components/header.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/semicircle.dart';
 import 'package:totem/providers/accessibility_provider.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
@@ -23,6 +24,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
   Widget build(BuildContext context) {
     final order = ref.watch(orderProvider);
     final isAccessibility = ref.watch(accessibilityProvider);
+    final languageIndex = ref.watch(languageProvider);
     return Scaffold(
       body: Column(
         children: [
@@ -33,7 +35,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           isAccessibility ? Expanded(child: Container()) : Container(),
           const SizedBox(height: 20),
           Text(
-            "Totale ordine",
+            Utils.languages[languageIndex]['paymentScreen']['title'],
             style: TextStyle(
                 fontFamily: GoogleFonts.courgette().fontFamily,
                 fontSize: 50,
@@ -53,7 +55,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             height: isAccessibility ? 10 : 45,
           ),
           Text(
-            "Dove vuoi pagare?",
+            Utils.languages[languageIndex]['paymentScreen']['subtitle'],
             style: const TextStyle(
                 fontSize: 40,
                 color: Color(0xFF907676),
@@ -138,10 +140,10 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                         FaIcon(FontAwesomeIcons.universalAccess),
                         SizedBox(
                           width: 7.5,
-
                         ),
                         Text(
-                          "Accessibilità",
+                          Utils.languages[languageIndex]['paymentScreen']
+                              ['button'],
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,

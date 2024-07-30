@@ -38,6 +38,11 @@
           "confirm": "Conferma"
         },
         "removeItemDialogTitle": "Quale gelato vuoi cancellare?"
+      },
+      "paymentScreen": {
+        "title": "Totale ordine",
+        "subtitle": "Dove vuoi pagare",
+        "button": "Accessibilità"
       }
     },
     {
@@ -78,6 +83,11 @@
           "confirm": "Confirmer"
         },
         "removeItemDialogTitle": "Quelle glace voulez-vous supprimer?"
+      },
+      "paymentScreen": {
+        "title": "Total de la commande",
+        "subtitle": "Où voulez-vous payer",
+        "button": "Accessibilité"
       }
     },
     {
@@ -118,6 +128,11 @@
           "confirm": "Confirm"
         },
         "removeItemDialogTitle": "Which ice cream do you want to remove?"
+      },
+      "paymentScreen": {
+        "title": "Order Total",
+        "subtitle": "Where do you want to pay",
+        "button": "Accessibility"
       }
     }
   ]
