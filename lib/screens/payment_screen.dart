@@ -120,9 +120,15 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   : Colors.transparent,
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                isAccessibility ? BackButton() : Container(),
+                isAccessibility
+                    ? Expanded(
+                        child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: BackButton(),
+                      ))
+                    : Container(),
                 ElevatedButton(
                   onPressed: () {
                     ref
@@ -153,7 +159,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     ),
                   ),
                 ),
-                isAccessibility ? LanguagePopup() : Container(),
+                isAccessibility
+                    ? Expanded(child: Center(child: LanguagePopup()))
+                    : Container(),
               ],
             ),
           ),

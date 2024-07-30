@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/components/delete_popup.dart';
+import 'package:totem/components/dialog_wrapper.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
@@ -119,19 +120,39 @@ class OrderRecapItem extends ConsumerWidget {
                                     backgroundColor: const Color(0xCCC3ABA4),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5, vertical: 5)),
-                                onPressed: () => showDialog(
+                                onPressed: () {
+                                  if (ref.read(accessibilityProvider)) {
+                                    showModalBottomSheet(
                                         context: context,
                                         builder: (context) => ExtraPopup(
-                                            rows: ref.read(orderProvider).rows,
-                                            startIndex: order.rows.indexWhere(
-                                                (element) =>
+                                            rows: order.rows
+                                                .where((element) =>
                                                     element.productId ==
-                                                    product.productId))).then(
+                                                    product.productId)
+                                                .toList())).then(
                                       (value) {
                                         if (value == null) return;
                                         orderNotifier.updateVariant(value);
                                       },
-                                    ),
+                                    );
+                                    return;
+                                  }
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => DialogWrapper(
+                                            child: ExtraPopup(
+                                                rows: order.rows
+                                                    .where((element) =>
+                                                        element.productId ==
+                                                        product.productId)
+                                                    .toList()),
+                                          )).then(
+                                      (value) {
+                                        if (value == null) return;
+                                        orderNotifier.updateVariant(value);
+                                      },
+                                  );
+                                },
                                 child: const FaIcon(FontAwesomeIcons.pen,
                                     size: 15, color: Color(0xFF907676))),
                             FilledButton(
