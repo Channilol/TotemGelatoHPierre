@@ -97,4 +97,15 @@ class Utils {
     final jsonData = json.decode(data) as Map<String, dynamic>;
     languages = jsonData['languages'] as List<dynamic>;
   }
+
+  // static List<T> filteredProducts(List<T> list, dynamic object) {
+  //   if (list.isNotEmpty) {
+  //     if (list is List<OrderRowItem> && object is ProductItem) {
+  //       List<ProductItem> filteredProducts = [];
+  //       filteredProducts = list.where((element) => element.productId == object.productId).toList();
+  //     } else if (list is List<OrderExtraItem> && object is ExtraItem) {
+  //       list.where((element) => element.extraId == object.extraId,);
+  //     }
+  //   }
+  // }
 }
