@@ -6,6 +6,7 @@ import 'package:totem/components/header.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/product_list.dart';
 import 'package:totem/providers/language_provider.dart';
+
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/screens/order_recap_screen.dart';
 import 'package:totem/services/utils.dart';

@@ -7,9 +7,11 @@ import 'package:totem/components/clear_order_popup.dart';
 import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/order_recap_item.dart';
+import 'package:totem/components/semicircle.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/screens/payment_screen.dart';
 import 'package:totem/services/utils.dart';
 
 class OrderRecapScreen extends ConsumerWidget {
@@ -185,6 +187,7 @@ class OrderRecapScreen extends ConsumerWidget {
           const SizedBox(height: 20),
         ]);
       })),
+
     );
   }
 }

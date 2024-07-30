@@ -25,8 +25,8 @@ class ClearOrderPopup extends StatelessWidget {
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(5))),
                     backgroundColor: const Color(0x66C3ABA4),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 10)),
                 onPressed: () => Navigator.pop(context),
                 child: const Text("ANNULLA")),
             FilledButton(
@@ -38,11 +38,10 @@ class ClearOrderPopup extends StatelessWidget {
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(5))),
                     backgroundColor: const Color(0xFF907676),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 10)),
                 onPressed: () => Navigator.pop(context, true),
-                child:
-                    const Text("SICURO", style: TextStyle(color: Colors.white))),
+                child: const Text("SI", style: TextStyle(color: Colors.white))),
           ]),
     );
   }
