@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:totem/components/back_popup.dart';
 import 'package:totem/components/category_icon.dart';
 import 'package:totem/components/header.dart';
-import 'package:totem/models/order_item.dart';
-import 'package:totem/providers/category_provider.dart';
 import 'package:totem/providers/inactivity_timer_provider.dart';
-import 'package:totem/providers/order_provider.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/screens/order_screen.dart';
-import 'package:totem/services/inactivity_timer_service.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/utils.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -23,6 +20,10 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
+    var language = Utils.languages[ref.read(languageProvider)];
+    if (language.isEmpty) {
+      language = ref.watch(languageProvider);
+    }
     return GestureDetector(
       onTap: () {
         ref.read(inactivityTimerProvider).resetInactivityTimer(context);
@@ -44,8 +45,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 SizedBox(
                   width: 140,
                   child: CategoryIcon(
-                      label: "I Gourmet",
-                      icon: SvgPicture.asset("assets/images/gourmet.svg")),
+                      label: Utils.categories[0].name,
+                      icon: SvgPicture.asset(Utils.categories[1].image!)),
                 ),
                 Transform.translate(
                   offset: const Offset(0, -10),
@@ -59,15 +60,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                 bottom: Radius.circular(500)))),
                     const SizedBox(height: 10),
                     CategoryIcon(
-                        label: "I Classici",
-                        icon: SvgPicture.asset("assets/images/classici.svg")),
+                        label: Utils.categories[1].name,
+                        icon: SvgPicture.asset(Utils.categories[1].image!)),
                   ]),
                 ),
                 SizedBox(
                   width: 140,
                   child: CategoryIcon(
-                      label: "Lactore Free",
-                      icon: SvgPicture.asset("assets/images/lactose-free.svg")),
+                      label: Utils.categories[2].name,
+                      icon: SvgPicture.asset(
+                        Utils.categories[2].image!,
+                      )),
                 ),
               ],
             ),
@@ -79,7 +82,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     height: 20,
                   ),
                   Text(
-                    "Scopri le linee e prova",
+                    language['splashScreen']['title'][0].toString(),
                     style: GoogleFonts.hankenGrotesk(
                       color: MyColors.colorText,
                       fontSize: 26.0,
@@ -90,7 +93,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "un' ",
+                        language['splashScreen']['title'][1],
                         style: GoogleFonts.hankenGrotesk(
                           color: MyColors.colorText,
                           height: 0,
@@ -99,7 +102,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         ),
                       ),
                       Text(
-                        "esperienza unica",
+                        language['splashScreen']['title'][2],
                         style: GoogleFonts.courgette(
                           color: MyColors.colorText,
                           height: 0,
@@ -134,7 +137,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Tocca lo schermo",
+                                    language['splashScreen']['callToAction'][0],
                                     style: GoogleFonts.hankenGrotesk(
                                       color: MyColors.colorText,
                                       height: 0,
@@ -143,7 +146,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                     ),
                                   ),
                                   Text(
-                                    "per ordinare",
+                                    language['splashScreen']['callToAction'][0],
                                     style: GoogleFonts.courgette(
                                       height: 0,
                                       color: MyColors.colorText,

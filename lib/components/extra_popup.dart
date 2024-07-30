@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/utils.dart';
 
-class ExtraPopup extends StatefulWidget {
+class ExtraPopup extends ConsumerStatefulWidget {
   final int startIndex;
   final List<OrderRowItem> rows;
   const ExtraPopup({super.key, required this.rows, this.startIndex = 0});
 
   @override
-  State<ExtraPopup> createState() => _ExtraPopupState();
+  ConsumerState<ExtraPopup> createState() => _ExtraPopupState();
 }
 
-class _ExtraPopupState extends State<ExtraPopup> {
+class _ExtraPopupState extends ConsumerState<ExtraPopup> {
   int currentItem = 0;
   List<OrderRowItem> rows = [];
 
@@ -28,6 +30,7 @@ class _ExtraPopupState extends State<ExtraPopup> {
 
   @override
   Widget build(BuildContext context) {
+    final language = Utils.languages[ref.watch(languageProvider)];
     final currentProduct = Utils.products.firstWhere(
         (element) => element.productId == rows[currentItem].productId);
     return InactivityTimer(
@@ -105,8 +108,8 @@ class _ExtraPopupState extends State<ExtraPopup> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10)),
                       onPressed: () => Navigator.pop(context),
-                      child: const Text(
-                        "ANNULLA",
+                      child: Text(
+                        language['orderScreen']['modal_button_remove'],
                         style:
                             TextStyle(fontSize: 12, color: Color(0xFF907676)),
                       )),
@@ -123,8 +126,8 @@ class _ExtraPopupState extends State<ExtraPopup> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10)),
                       onPressed: () => Navigator.pop(context, rows),
-                      child: const Text(
-                        "AGGIUNGI",
+                      child: Text(
+                        language['orderScreen']['modal_button_add'],
                         style: TextStyle(fontSize: 12, color: Colors.white),
                       )),
                 ],
