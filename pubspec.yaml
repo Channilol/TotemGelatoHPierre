@@ -42,6 +42,7 @@ dependencies:
   uuid: ^4.4.2
   font_awesome_flutter: ^10.7.0
   badges: ^3.1.2
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
     - assets/appainter_theme.json
     - assets/images/
     - assets/data/
+    - assets/languages.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -11,7 +11,7 @@ late ThemeData theme;
 // C3ABA4
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   final stringa = await rootBundle.loadString("assets/appainter_theme.json");
   final jsonCode = jsonDecode(stringa);
   theme = ThemeDecoder.decodeThemeData(jsonCode) ?? ThemeData();
@@ -21,11 +21,11 @@ void main() async {
   runApp(const ProviderScope(child: TotemApp()));
 }
 
-class TotemApp extends StatelessWidget {
+class TotemApp extends ConsumerWidget {
   const TotemApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Totem app',

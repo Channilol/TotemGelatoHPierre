@@ -7,7 +7,9 @@ import 'package:totem/components/delete_popup.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/utils.dart';
 
 class OrderRecapItem extends ConsumerWidget {
   final ProductItem product;
@@ -17,16 +19,17 @@ class OrderRecapItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final orderNotifier = ref.read(orderProvider.notifier);
     final order = ref.watch(orderProvider);
-    var orderRows = ref.watch(orderProvider)?.rows;
+    final language = Utils.languages[ref.watch(languageProvider)];
+    var orderRows = ref.watch(orderProvider).rows;
     bool doExtraExist = false;
     var itemQty =
         ref.watch(orderProvider.notifier).getItemRowsCount(product.productId);
     List<OrderRowItem>? orderItemsByProduct = ref
         .watch(orderProvider)
-        ?.rows
+        .rows
         .where((e) => e.productId == product.productId)
         .toList();
-    for (var i = 0; i < orderItemsByProduct!.length; i++) {
+    for (var i = 0; i < orderItemsByProduct.length; i++) {
       if (orderItemsByProduct[i].extras!.isNotEmpty) {
         doExtraExist = true;
       }
@@ -95,8 +98,8 @@ class OrderRecapItem extends ConsumerWidget {
                                       horizontal: 20, vertical: 10)),
                               onPressed: () =>
                                   orderNotifier.addItem(product.productId),
-                              child: const Text(
-                                "AGGIUNGI",
+                              child: Text(
+                                language['orderRecapScreen']['card']['add'],
                                 style: TextStyle(
                                     fontSize: 12, color: Colors.white),
                               )),
