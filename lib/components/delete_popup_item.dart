@@ -51,40 +51,38 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
             topLeft: Radius.circular(16),
           ),
         ),
-        child: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${widget.product.name}',
-                    style: TextStyle(fontSize: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${widget.product.name}',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                Text(
+                    'Extra: ${widget.orderRow.extras!.isEmpty ? 'No' : extrasString}'),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    ref
+                        .read(orderProvider.notifier)
+                        .removeOrder(widget.orderRow.rowId);
+                  },
+                  icon: const Icon(
+                    FontAwesomeIcons.trash,
+                    color: MyColors.colorText,
                   ),
-                  Text(
-                      'Extra: ${widget.orderRow.extras!.isEmpty ? 'No' : extrasString}'),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      ref
-                          .read(orderProvider.notifier)
-                          .removeOrder(widget.orderRow.rowId);
-                    },
-                    icon: const Icon(
-                      FontAwesomeIcons.trash,
-                      color: MyColors.colorText,
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
