@@ -56,6 +56,7 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             onPressed: doExtraExist == true
                 ? () {
                     showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (context) =>
                           DeletePopup(product: widget.product),

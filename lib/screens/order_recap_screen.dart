@@ -35,30 +35,31 @@ class OrderRecapScreen extends ConsumerWidget {
             leading: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: FilledButton(
-                  style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(5),
-                              bottomRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(5))),
-                      backgroundColor: Colors.white),
-                  onPressed: () => Navigator.pop(context),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: Color(0xFF907676),
-                        size: 18,
-                      ),
-                      Text(language['orderRecapScreen']['back'],
-                          style: TextStyle(
-                              color: const Color(0xFF907676),
-                              fontFamily: GoogleFonts.nunito().fontFamily,
-                              fontSize: 14))
-                    ],
-                  )),
+                style: FilledButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(5),
+                            bottomRight: Radius.circular(20),
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(5))),
+                    backgroundColor: Colors.white),
+                onPressed: () => Navigator.pop(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Color(0xFF907676),
+                      size: 18,
+                    ),
+                    Text(language['orderRecapScreen']['back'],
+                        style: TextStyle(
+                            color: const Color(0xFF907676),
+                            fontFamily: GoogleFonts.nunito().fontFamily,
+                            fontSize: 14))
+                  ],
+                ),
+              ),
             ),
             trailing: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -74,6 +75,7 @@ class OrderRecapScreen extends ConsumerWidget {
                   ),
                   onPressed: () {
                     showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (context) => const ClearOrderPopup())
                         .then((value) {
@@ -181,13 +183,16 @@ class OrderRecapScreen extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
                   backgroundColor: const Color(0xFF907676)),
-              onPressed: () => Navigator.pop(context),
+              onPressed: order.rows.isNotEmpty
+                  ? () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PaymentScreen(),
+                      ))
+                  : null,
               child: Text(language['orderRecapScreen']['payment'],
                   style: TextStyle(color: Colors.white, fontSize: 25))),
           const SizedBox(height: 20),
         ]);
       })),
-
     );
   }
 }
