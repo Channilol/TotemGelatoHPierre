@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_theme/json_theme.dart';
 import 'package:totem/screens/splash_screen.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 late ThemeData theme;
@@ -19,6 +20,7 @@ void main() async {
   theme = ThemeDecoder.decodeThemeData(jsonCode) ?? ThemeData();
 
   await Utils.init();
+  await MyColors.initColors();
 
   runApp(const ProviderScope(child: TotemApp()));
 }
