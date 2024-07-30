@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +30,16 @@ class TotemApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      scrollBehavior: kIsWeb
+          ? MaterialScrollBehavior().copyWith(
+              dragDevices: {
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.touch,
+                PointerDeviceKind.stylus,
+                PointerDeviceKind.unknown
+              },
+            )
+          : null,
       title: 'Totem app',
       theme: theme,
       home: const SplashScreen(),

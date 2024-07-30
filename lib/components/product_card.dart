@@ -7,6 +7,7 @@ import 'package:totem/components/delete_button.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 
 class ProductCard extends ConsumerWidget {
@@ -21,16 +22,21 @@ class ProductCard extends ConsumerWidget {
     final productCount = order.rows
         .where((element) => element.productId == product.productId)
         .length;
+    final isAccessibilityOn = ref.watch(accessibilityProvider);
+
     return Container(
         height: cardHeight,
-        margin: const EdgeInsets.only(bottom: 10),
+        width: isAccessibilityOn ? 400 : double.infinity,
+        margin: isAccessibilityOn
+            ? EdgeInsets.only(right: 10, bottom: 10)
+            : EdgeInsets.only(bottom: 10),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
           color: Color(0xFFF1EAE2),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            width: 100,
+            width: 150,
             child: ClipRRect(
                 borderRadius:
                     const BorderRadius.horizontal(left: Radius.circular(20)),
