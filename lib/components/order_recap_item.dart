@@ -7,6 +7,7 @@ import 'package:totem/components/delete_popup.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/utils.dart';
@@ -17,6 +18,7 @@ class OrderRecapItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isAccessibilityOn = ref.watch(accessibilityProvider);
     final orderNotifier = ref.read(orderProvider.notifier);
     final order = ref.watch(orderProvider);
     final language = Utils.languages[ref.watch(languageProvider)];
@@ -143,11 +145,20 @@ class OrderRecapItem extends ConsumerWidget {
                                         horizontal: 15, vertical: 10)),
                                 onPressed: doExtraExist == true
                                     ? () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              DeletePopup(product: product),
-                                        );
+                                        if (isAccessibilityOn) {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) =>
+                                                DeletePopup(product: product),
+                                          );
+                                        } else {
+                                          showDialog(
+                                            barrierDismissible: false,
+                                            context: context,
+                                            builder: (context) =>
+                                                DeletePopup(product: product),
+                                          );
+                                        }
                                       }
                                     : () {
                                         orderNotifier

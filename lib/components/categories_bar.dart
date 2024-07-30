@@ -101,15 +101,34 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                       .read(accessibilityProvider.notifier)
                       .changeAccessibility(isAccessibilityOn ? false : true);
                 },
-                child: Column(
-                  children: [
-                    const FaIcon(FontAwesomeIcons.universalAccess,
-                        color: Color(0xFF907676)),
-                    Text(
-                      language['orderScreen']['accessibility_text'],
-                      style: TextStyle(color: Color(0xFF907676), fontSize: 12),
-                    ),
-                  ],
+                child: Container(
+                  padding: isAccessibilityOn
+                      ? EdgeInsets.all(6.0)
+                      : EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                    color: isAccessibilityOn
+                        ? MyColors.colorText
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(9),
+                  ),
+                  child: Column(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.universalAccess,
+                        color: isAccessibilityOn
+                            ? Colors.white
+                            : Color(0xFF907676),
+                      ),
+                      Text(
+                        language['orderScreen']['accessibility_text'],
+                        style: TextStyle(
+                            color: isAccessibilityOn
+                                ? Colors.white
+                                : Color(0xFF907676),
+                            fontSize: isAccessibilityOn ? 10 : 12),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               isAccessibilityOn ? SizedBox() : const SizedBox(height: 20),
