@@ -140,14 +140,14 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       FaIcon(FontAwesomeIcons.universalAccess),
                       SizedBox(
                         width: 7.5,
                       ),
                       Text(
                         "Accessibilità",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                         ),
