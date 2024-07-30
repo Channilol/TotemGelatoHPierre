@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/components/add_button.dart';
 import 'package:totem/components/delete_button.dart';
+import 'package:totem/components/dialog_wrapper.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/product_item.dart';
@@ -68,19 +69,39 @@ class ProductCard extends ConsumerWidget {
                       InactivityTimer(
                         child: IconButton(
                             onPressed: productCount > 0
-                                ? () => showDialog(
+                                ? () {
+                                    if (isAccessibilityOn) {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) => ExtraPopup(
+                                              rows: order.rows
+                                                  .where((element) =>
+                                                      element.productId ==
+                                                      product.productId)
+                                                  .toList())).then(
+                                        (value) {
+                                          if (value == null) return;
+                                          orderNotifier.updateVariant(value);
+                                        },
+                                      );
+                                      return;
+                                    }
+                                    showDialog(
                                         context: context,
-                                        builder: (context) => ExtraPopup(
-                                            rows: order.rows
-                                                .where((element) =>
-                                                    element.productId ==
-                                                    product.productId)
-                                                .toList())).then(
+                                        builder: (context) => DialogWrapper(
+                                              child: ExtraPopup(
+                                                  rows: order.rows
+                                                      .where((element) =>
+                                                          element.productId ==
+                                                          product.productId)
+                                                      .toList()),
+                                            )).then(
                                       (value) {
                                         if (value == null) return;
                                         orderNotifier.updateVariant(value);
                                       },
-                                    )
+                                    );
+                                  }
                                 : null,
                             icon: FaIcon(FontAwesomeIcons.pen,
                                 size: 15,
