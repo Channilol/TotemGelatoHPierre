@@ -26,10 +26,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       onTap: () {
         ref.read(inactivityTimerProvider).resetInactivityTimer(context);
         Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const OrderScreen()))
-            .then((value) {
-          ref.read(inactivityTimerProvider).cancelTimer();
-        });
+            MaterialPageRoute(builder: (context) => const OrderScreen())).then(
+          (value) {
+            ref.read(inactivityTimerProvider).cancelTimer();
+          },
+        );
       },
       child: Scaffold(
         body: Column(
