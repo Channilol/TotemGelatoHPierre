@@ -98,14 +98,20 @@ class Utils {
     languages = jsonData['languages'] as List<dynamic>;
   }
 
-  // static List<T> filteredProducts(List<T> list, dynamic object) {
-  //   if (list.isNotEmpty) {
-  //     if (list is List<OrderRowItem> && object is ProductItem) {
-  //       List<ProductItem> filteredProducts = [];
-  //       filteredProducts = list.where((element) => element.productId == object.productId).toList();
-  //     } else if (list is List<OrderExtraItem> && object is ExtraItem) {
-  //       list.where((element) => element.extraId == object.extraId,);
-  //     }
-  //   }
-  // }
+  static List<T> filteredProducts<T>(List<T> list, String id) {
+    if (list.isEmpty) {
+      return [];
+    }
+    List<T> filteredProducts = [];
+    if (T == OrderRowItem) {
+      filteredProducts = list
+          .where((element) => (element as OrderRowItem).productId == id)
+          .toList();
+    } else if (T == OrderExtraItem) {
+      filteredProducts = list
+          .where((element) => (element as OrderExtraItem).extraId == id)
+          .toList();
+    }
+    return filteredProducts;
+  }
 }
