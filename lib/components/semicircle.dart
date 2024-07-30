@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/components/language_popup.dart';
@@ -19,15 +20,25 @@ class Semicircle extends ConsumerWidget {
       children: [
         const Spacer(),
         Transform.translate(
-          offset: const Offset(0, -10),
+          offset: const Offset(0, -100),
           child: Column(children: [
             Container(
-              width: 120,
-              height: 60,
+              width: 140,
+              height: 140,
               decoration: const BoxDecoration(
                 color: Color(0xFFF1EAE2),
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(500),
+                  top: Radius.circular(500),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: SvgPicture.asset(
+                  "assets/images/logo.svg",
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
