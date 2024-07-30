@@ -33,9 +33,6 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
       }
       extrasString = extraString.substring(0, extraString.length - 2);
     }
-    var itemQty = ref
-        .watch(orderProvider.notifier)
-        .getItemRowsCount(widget.product.productId);
 
     return InactivityTimer(
       child: Container(
