@@ -7,6 +7,7 @@ import 'package:totem/components/clear_order_popup.dart';
 import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/order_recap_item.dart';
+import 'package:totem/components/semicircle.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/screens/payment_screen.dart';
@@ -101,26 +102,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         )),
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Transform.translate(
-                      offset: const Offset(0, -10),
-                      child: Column(children: [
-                        Container(
-                            width: 120,
-                            height: 60,
-                            decoration: const BoxDecoration(
-                                color: Color(0xFFF1EAE2),
-                                borderRadius: BorderRadius.vertical(
-                                    bottom: Radius.circular(500)))),
-                      ]),
-                    ),
-                    const Spacer()
-                  ],
-                ),
+                Semicircle(),
                 const SizedBox(height: 20),
                 Text(
                   "Riepilogo acquisti",
@@ -181,10 +163,12 @@ class OrderRecapScreen extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 40, vertical: 25),
                         backgroundColor: const Color(0xFF907676)),
-                    onPressed: () => /*Navigator.pop(context)*/
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const PaymentScreen(),
-                        )),
+                    onPressed: order.rows.isNotEmpty
+                        ? () => /*Navigator.pop(context)*/
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const PaymentScreen(),
+                            ))
+                        : null,
                     child: const Text("PAGA ORA",
                         style: TextStyle(color: Colors.white, fontSize: 25))),
                 const SizedBox(height: 20),
