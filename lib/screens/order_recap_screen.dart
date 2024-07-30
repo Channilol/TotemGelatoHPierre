@@ -75,6 +75,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         ),
                         onPressed: () {
                           showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (context) => const ClearOrderPopup())
                               .then((value) {

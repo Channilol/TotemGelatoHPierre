@@ -22,8 +22,10 @@ class AddButton extends StatelessWidget {
       badgeAnimation: const badges.BadgeAnimation.rotation(
           animationDuration: Duration(milliseconds: 200)),
       badgeStyle: const badges.BadgeStyle(
-          badgeColor: Colors.green,
-          borderSide: BorderSide(color: Colors.white)),
+        padding: EdgeInsets.all(7),
+        borderSide: BorderSide(color: Colors.white, width: 2),
+        badgeColor: Color.fromARGB(255, 0, 178, 6),
+      ),
       badgeContent: Text(
         productCount.toString(),
         style:
