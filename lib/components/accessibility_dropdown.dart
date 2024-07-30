@@ -8,7 +8,7 @@ class AccessibilityDropdown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final accessibility = ref.watch(accessbilityProvider);
+    final accessibility = ref.watch(accessibilityProvider);
     return DropdownButton<bool>(
       value: accessibility,
       icon: const Icon(Icons.arrow_downward),
@@ -19,7 +19,7 @@ class AccessibilityDropdown extends ConsumerWidget {
       ),
       onChanged: (bool? value) {
         if (value == null) return;
-        ref.read(accessbilityProvider.notifier).changeCategory(value);
+        ref.read(accessibilityProvider.notifier).changeAccessibility(value);
       },
       items: const [
         DropdownMenuItem<bool>(
