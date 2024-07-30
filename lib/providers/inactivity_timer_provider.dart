@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/components/back_popup.dart';
 import 'package:totem/models/order_item.dart';
+import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 
 final inactivityTimerProvider = Provider<InactivityTimerNotifier>((ref) {
@@ -36,6 +37,7 @@ class InactivityTimerNotifier {
 
   _goBack(BuildContext context) {
     ref.read(orderProvider.notifier).setOrder(OrderItem(rows: []));
+    ref.read(accessibilityProvider.notifier).changeAccessibility(false);
     Navigator.popUntil(context, ModalRoute.withName('/'));
   }
 

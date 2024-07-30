@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/components/delete_popup.dart';
+import 'package:totem/components/dialog_wrapper.dart';
 import 'package:totem/components/extra_popup.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
