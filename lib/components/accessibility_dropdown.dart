@@ -13,7 +13,7 @@ class AccessibilityDropdown extends ConsumerWidget {
       value: accessibility,
       icon: const Icon(Icons.arrow_downward),
       elevation: 16,
-      style: const TextStyle(color: MyColors.colorText),
+      style: TextStyle(color: MyColors.colorText),
       underline: Container(
         height: 2,
       ),

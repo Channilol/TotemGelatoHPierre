@@ -29,7 +29,7 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
       for (var i = 0; i < widget.orderRow.extras!.length; i++) {
         var extra = extraItemsList
             .firstWhere((e) => e.extraId == widget.orderRow.extras![i].extraId);
-        extraString += extra.description + ", ";
+        extraString += "${extra.description}, ";
       }
       extrasString = extraString.substring(0, extraString.length - 2);
     }
@@ -41,7 +41,7 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
           horizontal: 30.0,
         ),
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: MyColors.colorContainer,
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(16),
@@ -56,7 +56,7 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${widget.product.name}',
+                  widget.product.name,
                   style: TextStyle(fontSize: 20.0),
                 ),
                 Text(
@@ -72,7 +72,7 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
                         .read(orderProvider.notifier)
                         .removeOrder(widget.orderRow.rowId);
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     FontAwesomeIcons.trash,
                     color: MyColors.colorText,
                   ),
