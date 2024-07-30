@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class AccessibilityProvider extends StateNotifier<bool> {
   AccessibilityProvider() : super(false);
 
-  void changeCategory(bool newParam) => state = newParam;
+  void changeAccessibility(bool newParam) => state = newParam;
 }
 
-final accessbilityProvider =
+final accessibilityProvider =
     StateNotifierProvider<AccessibilityProvider, bool>((ref) {
   return AccessibilityProvider();
 });
