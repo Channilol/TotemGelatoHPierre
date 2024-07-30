@@ -6,6 +6,7 @@ import 'package:totem/components/animated_filp_number.dart';
 import 'package:totem/components/categories_bar.dart';
 import 'package:totem/components/header.dart';
 import 'package:totem/components/product_list.dart';
+import 'package:totem/components/semicircle.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/screens/order_recap_screen.dart';
 import 'package:totem/services/utils.dart';
@@ -92,43 +93,7 @@ class OrderScreen extends ConsumerWidget {
                   )),
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Transform.translate(
-                offset: const Offset(0, -10),
-                child: Column(children: [
-                  Container(
-                      width: 120,
-                      height: 60,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFFF1EAE2),
-                          borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(500)))),
-                ]),
-              ),
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "English",
-                      style: TextStyle(
-                          fontFamily: GoogleFonts.courgette().fontFamily,
-                          fontSize: 20,
-                          color: const Color(0xFFC3ABA4)),
-                    ),
-                    const SizedBox(width: 10),
-                    const FaIcon(FontAwesomeIcons.flagUsa),
-                  ],
-                ),
-              ))
-            ],
-          ),
+          Semicircle(),
           const Expanded(
             child: Row(
               children: [
