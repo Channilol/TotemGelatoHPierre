@@ -138,6 +138,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                         FaIcon(FontAwesomeIcons.universalAccess),
                         SizedBox(
                           width: 7.5,
+
                         ),
                         Text(
                           "Accessibilità",
