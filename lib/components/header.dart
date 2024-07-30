@@ -27,8 +27,6 @@ class Header extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(width: maxWidth, child: leading),
-                SvgPicture.asset("assets/images/logo.svg",
-                    width: 60, height: 60),
                 SizedBox(width: maxWidth, child: trailing),
               ],
             ),
