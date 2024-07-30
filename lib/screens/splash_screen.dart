@@ -11,6 +11,7 @@ import 'package:totem/providers/inactivity_timer_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/screens/order_screen.dart';
 import 'package:totem/services/inactivity_timer_service.dart';
+import 'package:totem/services/my_colors.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -70,82 +71,100 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 ),
               ],
             ),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
                     "Scopri le linee e prova",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF907676)),
+                    style: GoogleFonts.hankenGrotesk(
+                      color: MyColors.colorText,
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("un'",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF907676))),
+                      Text(
+                        "un' ",
+                        style: GoogleFonts.hankenGrotesk(
+                          color: MyColors.colorText,
+                          height: 0,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       Text(
                         "esperienza unica",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationThickness: 1,
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xFF907676),
-                            fontFamily: GoogleFonts.courgette().fontFamily),
+                        style: GoogleFonts.courgette(
+                          color: MyColors.colorText,
+                          height: 0,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                          decorationColor: MyColors.colorText,
+                          decorationThickness: 1.0,
+                        ),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/splash_image.png',
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.15,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Tocca lo schermo",
+                                    style: GoogleFonts.hankenGrotesk(
+                                      color: MyColors.colorText,
+                                      height: 0,
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    "per ordinare",
+                                    style: GoogleFonts.courgette(
+                                      height: 0,
+                                      color: MyColors.colorText,
+                                      fontSize: 27.0,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: MyColors.colorText,
+                                      decorationThickness: 1.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            Expanded(
-                child: Stack(
-              children: [
-                Center(
-                  child: Image.asset(
-                    'assets/images/gelato.png',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
-                ),
-                Positioned(
-                  right: MediaQuery.of(context).size.width * .05,
-                  top: MediaQuery.of(context).size.height * .10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Tocca lo schermo',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF907676),
-                        ),
-                      ),
-                      Text(
-                        'per ordinare',
-                        style: TextStyle(
-                          fontSize: 30,
-                          decoration: TextDecoration.underline,
-                          fontFamily: GoogleFonts.courgette().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF907676),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ))
           ],
         ),
       ),
