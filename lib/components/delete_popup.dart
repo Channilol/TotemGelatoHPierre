@@ -32,6 +32,11 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
             product: widget.product, orderRow: filteredOrdersByProduct[i]),
       );
     }
+    ref.listen(orderProvider, (prev, next) {
+      if (next.rows.isEmpty) {
+        Navigator.pop(context);
+      }
+    });
 
     return InactivityTimer(
       child: Dialog(
