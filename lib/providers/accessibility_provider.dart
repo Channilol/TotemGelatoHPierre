@@ -6,7 +6,7 @@ class AccessibilityProvider extends StateNotifier<bool> {
   void changeCategory(bool newParam) => state = newParam;
 }
 
-final categoryProvider =
+final accessibilityProvider =
     StateNotifierProvider<AccessibilityProvider, bool>((ref) {
   return AccessibilityProvider();
 });
