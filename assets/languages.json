@@ -1,0 +1,124 @@
+{
+  "languages": [
+    {
+      "name": "Italiano",
+      "splashScreen": {
+        "title": ["Scopri le linee e prova", "un'", "esperienza"],
+        "callToAction": ["Tocca lo schermo", "per ordinare"]
+      },
+      "orderScreen": {
+        "button_top_left": "Selezionati",
+        "button_top_right_1": "Concludi ordine",
+        "button_top_right_2": "Vai alla cassa",
+        "sidebar_title": ["Le nostre", "linee"],
+        "icon_text_1": "I Gourmet",
+        "icon_text_2": "I Classici",
+        "icon_text_3": "Lactose Free",
+        "accessibility_text": "Accessibilità",
+        "Product_button_text_add": "Aggiungi",
+        "Product_button_text_remove": "Cancella",
+        "modal_button_add": "Aggiungi",
+        "modal_button_remove": "Annnullla"
+      },
+      "orderRecapScreen": {
+        "back": "INDIETRO",
+        "clear": "SVUOTA",
+        "title": "Riepilogo acquisti",
+        "description": "Hai scelto {} gelati",
+        "total": "Totale ordine",
+        "payment": "PAGA ORA",
+        "card": {
+          "add": "Aggiungi",
+          "cancel": "Annulla"
+        },
+        "cancelDialog": {
+          "title": "Sei sicuro?",
+          "description": "Sei sicuro di voler annullare l'ordine?",
+          "cancel": "Annulla",
+          "confirm": "Conferma"
+        },
+        "removeItemDialogTitle": "Quale gelato vuoi cancellare?"
+      }
+    },
+    {
+      "name": "Français",
+      "splashScreen": {
+        "title": ["Découvrez les gammes et essayez", "une'", "expérience"],
+        "callToAction": ["Touchez l'écran", "pour commander"]
+      },
+      "orderScreen": {
+        "button_top_left": "Sélectionnés",
+        "button_top_right_1": "Terminer la commande",
+        "button_top_right_2": "Aller au paiement",
+        "sidebar_title": ["Nos", "gammes"],
+        "icon_text_1": "Les Gourmets",
+        "icon_text_2": "Les Classiques",
+        "icon_text_3": "Sans Lactose",
+        "accessibility_text": "Accessibilité",
+        "Product_button_text_add": "Ajouter",
+        "Product_button_text_remove": "Supprimer",
+        "modal_button_add": "Ajouter",
+        "modal_button_remove": "Annuler"
+      },
+      "orderRecapScreen": {
+        "back": "RETOUR",
+        "clear": "VIDER",
+        "title": "Résumé de l'achat",
+        "description": "Vous avez choisi {} glaces",
+        "total": "Total de la commande",
+        "payment": "PAYER MAINTENANT",
+        "card": {
+          "add": "Ajouter",
+          "cancel": "Annuler"
+        },
+        "cancelDialog": {
+          "title": "Êtes-vous sûr?",
+          "description": "Êtes-vous sûr de vouloir annuler la commande?",
+          "cancel": "Annuler",
+          "confirm": "Confirmer"
+        },
+        "removeItemDialogTitle": "Quelle glace voulez-vous supprimer?"
+      }
+    },
+    {
+      "name": "English",
+      "splashScreen": {
+        "title": ["Discover the lines and try", "an ", "Experience"],
+        "callToAction": ["Tap the screen", "to order"]
+      },
+      "orderScreen": {
+        "button_top_left": "Selected",
+        "button_top_right_1": "Complete Order",
+        "button_top_right_2": "Go to Checkout",
+        "sidebar_title": ["Our", "Lines"],
+        "icon_text_1": "The Gourmet",
+        "icon_text_2": "The Classics",
+        "icon_text_3": "Lactose Free",
+        "accessibility_text": "Accessibility",
+        "Product_button_text_add": "Add",
+        "Product_button_text_remove": "Remove",
+        "modal_button_add": "Add",
+        "modal_button_remove": "Cancel"
+      },
+      "orderRecapScreen": {
+        "back": "BACK",
+        "clear": "CLEAR",
+        "title": "Purchase Summary",
+        "description": "You have chosen {} ice creams",
+        "total": "Order Total",
+        "payment": "PAY NOW",
+        "card": {
+          "add": "Add",
+          "cancel": "Cancel"
+        },
+        "cancelDialog": {
+          "title": "Are you sure?",
+          "description": "Are you sure you want to cancel the order?",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "removeItemDialogTitle": "Which ice cream do you want to remove?"
+      }
+    }
+  ]
+}

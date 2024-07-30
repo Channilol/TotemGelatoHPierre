@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/providers/category_provider.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/utils.dart';
 
 class CategoriesBar extends ConsumerStatefulWidget {
@@ -17,6 +18,7 @@ class CategoriesBar extends ConsumerStatefulWidget {
 class _CategoriesBarState extends ConsumerState<CategoriesBar> {
   @override
   Widget build(BuildContext context) {
+    final language = Utils.languages[ref.watch(languageProvider)];
     final currentCategory = ref.watch(categoryProvider);
     return Container(
         decoration: const BoxDecoration(
@@ -29,15 +31,15 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const Text(
-                "Le nostre",
+              Text(
+                language['orderScreen']['sidebar_title'][0],
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color(0xFFC3ABA4),),
               ),
               const SizedBox(height: 10),
               Text(
-                "Linee",
+                language['orderScreen']['sidebar_title'][1],
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
@@ -80,8 +82,8 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
               ),
               const FaIcon(FontAwesomeIcons.universalAccess,
                   color: Color(0xFF907676)),
-              const Text(
-                "Accessibilità",
+              Text(
+                language['orderScreen']['accessibility_text'],
                 style: TextStyle(
                     color: Color(0xFF907676),
                     fontSize: 12),

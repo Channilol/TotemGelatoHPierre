@@ -5,7 +5,9 @@ import 'package:totem/components/delete_popup.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/utils.dart';
 
 class DeleteButton extends ConsumerStatefulWidget {
   const DeleteButton({
@@ -24,17 +26,17 @@ class DeleteButton extends ConsumerStatefulWidget {
 class _DeleteButtonState extends ConsumerState<DeleteButton> {
   @override
   Widget build(BuildContext context) {
-    var orderRows = ref.watch(orderProvider)?.rows;
+    // var orderRows = ref.watch(orderProvider).rows;
     bool doExtraExist = false;
-    var itemQty = ref
-        .watch(orderProvider.notifier)
-        .getItemRowsCount(widget.product.productId);
+    // var itemQty = ref
+    //     .watch(orderProvider.notifier)
+    //     .getItemRowsCount(widget.product.productId);
     List<OrderRowItem>? orderItemsByProduct = ref
         .watch(orderProvider)
-        ?.rows
+        .rows
         .where((e) => e.productId == widget.product.productId)
         .toList();
-    for (var i = 0; i < orderItemsByProduct!.length; i++) {
+    for (var i = 0; i < orderItemsByProduct.length; i++) {
       if (orderItemsByProduct[i].extras!.isNotEmpty) {
         doExtraExist = true;
       }
@@ -62,7 +64,9 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
                 : () {
                     widget.orderNotifier.removeItem(widget.product.productId);
                   },
-            child: Text("CANCELLA",
+            child: Text(
+                Utils.languages[ref.watch(languageProvider)]['orderScreen']
+                    ['Product_button_text_remove'],
                 style: TextStyle(
                     fontFamily: GoogleFonts.nunito().fontFamily,
                     fontWeight: FontWeight.bold,

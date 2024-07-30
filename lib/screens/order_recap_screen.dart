@@ -8,6 +8,7 @@ import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/order_recap_item.dart';
 import 'package:totem/models/order_item.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/utils.dart';
 
@@ -18,6 +19,7 @@ class OrderRecapScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final order = ref.watch(orderProvider);
     final totalProducts = Utils.getTotalProduct(order);
+    final language = Utils.languages[ref.watch(languageProvider)];
     ref.listen(orderProvider, (prev, next) {
       if (next.rows.isEmpty) {
         Navigator.pop(context);
@@ -48,7 +50,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         color: Color(0xFF907676),
                         size: 18,
                       ),
-                      Text("BACK",
+                      Text(language['orderRecapScreen']['back'],
                           style: TextStyle(
                               color: const Color(0xFF907676),
                               fontFamily: GoogleFonts.nunito().fontFamily,
@@ -88,7 +90,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         color: Colors.white,
                         size: 18,
                       ),
-                      Text("CANCEL",
+                      Text(language['orderRecapScreen']['clear'],
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: GoogleFonts.nunito().fontFamily,
@@ -119,7 +121,7 @@ class OrderRecapScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            "Riepilogo acquisti",
+            language['orderRecapScreen']['title'],
             style: TextStyle(
                 fontFamily: GoogleFonts.courgette().fontFamily,
                 fontSize: 25,
@@ -127,7 +129,8 @@ class OrderRecapScreen extends ConsumerWidget {
                 fontWeight: FontWeight.bold),
           ),
           Text(
-            "Hai scelto ${order.rows.length} ${order.rows.length == 1 ? "Gelato" : "Gelati"}",
+            (language['orderRecapScreen']['description'] as String)
+                .replaceAll("{}", order.rows.length.toString()),
             style: const TextStyle(
                 fontSize: 30,
                 color: Color(0xFF907676),
@@ -149,7 +152,7 @@ class OrderRecapScreen extends ConsumerWidget {
             ),
           ),
           Text(
-            "Totale ordine",
+            language['orderRecapScreen']['total'],
             style: TextStyle(
                 fontFamily: GoogleFonts.courgette().fontFamily,
                 fontSize: 25,
@@ -177,7 +180,7 @@ class OrderRecapScreen extends ConsumerWidget {
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
                   backgroundColor: const Color(0xFF907676)),
               onPressed: () => Navigator.pop(context),
-              child: const Text("PAGA ORA",
+              child: Text(language['orderRecapScreen']['payment'],
                   style: TextStyle(color: Colors.white, fontSize: 25))),
           const SizedBox(height: 20),
         ]);

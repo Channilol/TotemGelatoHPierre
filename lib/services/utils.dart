@@ -11,6 +11,8 @@ class Utils {
   static List<CategoryItem> categories = [];
   static List<ExtraItem> extras = [];
   static List<ProductItem> products = [];
+  static List<dynamic> languages = [];
+
   static Future<void> initCategories() async {
     final data = await rootBundle.loadString("assets/data/categorie.json");
     final jsonData = json.decode(data) as List<dynamic>;
@@ -33,6 +35,7 @@ class Utils {
     await initCategories();
     await initExtras();
     await initProducts();
+    await initLanguage();
   }
 
   static String getUUID() => const Uuid().v8();
@@ -56,7 +59,8 @@ class Utils {
       )) {
         continue;
       }
-      orderProducts.add(products.firstWhere((element) => element.productId == order.rows[i].productId));
+      orderProducts.add(products.firstWhere(
+          (element) => element.productId == order.rows[i].productId));
     }
     return orderProducts;
   }
@@ -86,5 +90,11 @@ class Utils {
       }
     }
     return totalPrice;
+  }
+
+  static Future<void> initLanguage() async {
+    final data = await rootBundle.loadString("assets/languages.json");
+    final jsonData = json.decode(data) as Map<String, dynamic>;
+    languages = jsonData['languages'] as List<dynamic>;
   }
 }
