@@ -35,16 +35,10 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
             product: widget.product, orderRow: filteredOrdersByProduct[i]),
       );
     }
-    bool doItemExist = true;
     var itemQty = ref
         .watch(orderProvider.notifier)
         .getItemRowsCount(widget.product.productId);
     if (itemQty < 1) {
-      setState(() {
-        doItemExist = false;
-      });
-    }
-    if (doItemExist == false) {
       Navigator.pop(context);
     }
 

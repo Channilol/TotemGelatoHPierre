@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/category_provider.dart';
 import 'package:totem/providers/language_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class CategoriesBar extends ConsumerStatefulWidget {
