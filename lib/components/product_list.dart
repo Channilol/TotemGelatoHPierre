@@ -54,7 +54,7 @@ class ProductList extends ConsumerWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Colors.black,
+                              Color.fromARGB(0, 255, 255, 255),
                               MyColors.colorBackground, // Colore di sfondo
                             ],
                           ),
