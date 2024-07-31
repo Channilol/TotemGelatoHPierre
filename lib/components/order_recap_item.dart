@@ -37,20 +37,22 @@ class OrderRecapItem extends ConsumerWidget {
       }
     }
 
-    return badges.Badge(
-      badgeAnimation: const badges.BadgeAnimation.rotation(),
-      position: badges.BadgePosition.topEnd(end: 0, top: -15),
-      badgeStyle: const badges.BadgeStyle(
-          badgeColor: Colors.green,
-          borderSide: BorderSide(color: Colors.white)),
-      badgeContent: Text(
-          orderNotifier.getItemCount(product.productId).toString(),
-          style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
-      child: LayoutBuilder(builder: (context, constraint) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: badges.Badge(
+        badgeAnimation: const badges.BadgeAnimation.rotation(),
+        position: badges.BadgePosition.topEnd(end: 0, top: -15),
+        badgeStyle: const badges.BadgeStyle(
+            badgeColor: Colors.green,
+            borderSide: BorderSide(color: Colors.white)),
+        badgeContent: Text(
+            orderNotifier.getItemCount(product.productId).toString(),
+            style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18)),
+        child: LayoutBuilder(builder: (context, constraint) {
+          return Container(
             height: constraint.maxHeight,
             width: isAccessibilityOn ? 500 : constraint.maxWidth,
             decoration: BoxDecoration(
@@ -167,9 +169,9 @@ class OrderRecapItem extends ConsumerWidget {
                     ))
               ],
             ),
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 }

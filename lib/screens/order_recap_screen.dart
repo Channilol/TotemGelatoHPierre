@@ -57,12 +57,12 @@ class OrderRecapScreen extends ConsumerWidget {
                               children: [
                                 const Icon(
                                   Icons.arrow_back_ios_new_rounded,
-                                  color: Color(0xFF907676),
+                                  color: MyColors.colorText,
                                   size: 18,
                                 ),
                                 Text(language['orderRecapScreen']['back'],
                                     style: TextStyle(
-                                        color: const Color(0xFF907676),
+                                        color: MyColors.colorText,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
                                         fontSize: 14))
@@ -80,7 +80,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                         bottomRight: Radius.circular(20),
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(5))),
-                                backgroundColor: const Color(0xFF907676),
+                                backgroundColor: MyColors.colorText,
                               ),
                               onPressed: () {
                                 showDialog(
@@ -115,26 +115,27 @@ class OrderRecapScreen extends ConsumerWidget {
                         ),
                       )
                     : Header(),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Transform.translate(
-                      offset: const Offset(0, -10),
-                      child: Column(children: [
-                        Container(
-                            width: 120,
-                            height: 60,
-                            decoration: const BoxDecoration(
-                                color: Color(0xFFF1EAE2),
-                                borderRadius: BorderRadius.vertical(
-                                    bottom: Radius.circular(500)))),
-                      ]),
-                    ),
-                    const Spacer()
-                  ],
-                ),
+                Semicircle(),
+                // Row(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     const Spacer(),
+                //     Transform.translate(
+                //       offset: const Offset(0, -10),
+                //       child: Column(children: [
+                //         Container(
+                //             width: 120,
+                //             height: 60,
+                //             decoration: const BoxDecoration(
+                //                 color: Color(0xFFF1EAE2),
+                //                 borderRadius: BorderRadius.vertical(
+                //                     bottom: Radius.circular(500)))),
+                //       ]),
+                //     ),
+                //     const Spacer()
+                //   ],
+                // ),
                 if (!accessibility) ...[
                   const SizedBox(height: 20),
                   Text(
@@ -142,7 +143,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
                         fontSize: 25,
-                        color: const Color(0xFFC3ABA4),
+                        color: MyColors.colorContainer,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -150,7 +151,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         .replaceAll("{}", order.rows.length.toString()),
                     style: const TextStyle(
                         fontSize: 30,
-                        color: Color(0xFF907676),
+                        color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
@@ -174,7 +175,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
                         fontSize: 25,
-                        color: const Color(0xFFC3ABA4),
+                        color: MyColors.colorContainer,
                         fontWeight: FontWeight.bold),
                   ),
                   AnimatedFlipCounter(
@@ -183,7 +184,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     value: Utils.getTotalPrice(order.rows),
                     textStyle: const TextStyle(
                         fontSize: 30,
-                        color: Color(0xFF907676),
+                        color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
                   Row(
@@ -216,7 +217,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                       topRight: Radius.circular(10))),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 40, vertical: 25),
-                              backgroundColor: const Color(0xFF907676)),
+                              backgroundColor: MyColors.colorText),
                           onPressed: order.rows.isNotEmpty
                               ? () =>
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -225,16 +226,44 @@ class OrderRecapScreen extends ConsumerWidget {
                               : null,
                           child: Text(language['orderRecapScreen']['payment'],
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 25))),
+                                  color: Colors.white, fontSize: 30))),
                       LanguagePopup(),
                     ],
                   ),
                   const SizedBox(height: 20),
                 ] else ...[
-                  Expanded(flex: 2, child: SizedBox()),
+                  Expanded(
+                    flex: 2,
+                    child: SizedBox(),
+                  ),
+                  Text(
+                    (language['orderRecapScreen']['description'] as String)
+                        .replaceAll("{}", order.rows.length.toString()),
+                    style: const TextStyle(
+                        fontSize: 30,
+                        color: MyColors.colorText,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    language['orderRecapScreen']['total'],
+                    style: TextStyle(
+                        fontFamily: GoogleFonts.courgette().fontFamily,
+                        fontSize: 25,
+                        color: MyColors.colorContainer,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  AnimatedFlipCounter(
+                    prefix: "€ ",
+                    fractionDigits: 2,
+                    value: Utils.getTotalPrice(order.rows),
+                    textStyle: const TextStyle(
+                        fontSize: 30,
+                        color: MyColors.colorText,
+                        fontWeight: FontWeight.bold),
+                  ),
                   Expanded(
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.45,
                       width: MediaQuery.of(context).size.width,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -277,7 +306,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                     topRight: Radius.circular(10))),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 25),
-                            backgroundColor: const Color(0xFF907676)),
+                            backgroundColor: MyColors.colorText),
                         onPressed: order.rows.isNotEmpty
                             ? () =>
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -300,7 +329,7 @@ class OrderRecapScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
                           child: FilledButton(
                             style: FilledButton.styleFrom(
                                 shape: const RoundedRectangleBorder(
@@ -316,21 +345,21 @@ class OrderRecapScreen extends ConsumerWidget {
                               children: [
                                 const Icon(
                                   Icons.arrow_back_ios_new_rounded,
-                                  color: Color(0xFF907676),
+                                  color: MyColors.colorText,
                                   size: 18,
                                 ),
                                 Text(language['orderRecapScreen']['back'],
                                     style: TextStyle(
-                                        color: const Color(0xFF907676),
+                                        color: MyColors.colorText,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
-                                        fontSize: 14))
+                                        fontSize: 25))
                               ],
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
                           child: FilledButton(
                             style: FilledButton.styleFrom(
                               shape: const RoundedRectangleBorder(
@@ -339,7 +368,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                       bottomRight: Radius.circular(20),
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(5))),
-                              backgroundColor: const Color(0xFF907676),
+                              backgroundColor: MyColors.colorText,
                             ),
                             onPressed: () {
                               showDialog(
@@ -367,7 +396,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                         color: Colors.white,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
-                                        fontSize: 14))
+                                        fontSize: 25))
                               ],
                             ),
                           ),
