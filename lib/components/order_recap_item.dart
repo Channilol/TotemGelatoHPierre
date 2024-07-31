@@ -53,7 +53,7 @@ class OrderRecapItem extends ConsumerWidget {
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: ResponsiveText.huge(context))),
+                fontSize: ResponsiveText.medium(context))),
         child: LayoutBuilder(builder: (context, raint) {
           return Container(
             height: raint.maxHeight,
@@ -112,7 +112,7 @@ class OrderRecapItem extends ConsumerWidget {
                                 child: Text(
                                   language['orderRecapScreen']['card']['add'],
                                   style: TextStyle(
-                                      fontSize: ResponsiveText.huge(context),
+                                      fontSize: ResponsiveText.large(context),
                                       color: Colors.white),
                                 )),
                           ),
