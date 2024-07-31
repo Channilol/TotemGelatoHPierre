@@ -72,7 +72,7 @@
         "title": "Résumé de l'achat",
         "description": "Vous avez choisi {} glaces",
         "total": "Total de la commande",
-        "payment": "PAYER MAINTENANT",
+        "payment": "PAYER",
         "card": {
           "add": "Ajouter",
           "cancel": "Annuler"
