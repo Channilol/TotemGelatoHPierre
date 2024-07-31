@@ -29,17 +29,21 @@ class ProductCard extends ConsumerWidget {
 
     return Container(
         height: cardHeight,
-        width: isAccessibilityOn ? 400 : double.infinity,
+        width: isAccessibilityOn
+            ? MediaQuery.of(context).size.width * 0.6
+            : double.infinity,
         margin: isAccessibilityOn
             ? EdgeInsets.only(right: 10, bottom: 10)
             : EdgeInsets.only(bottom: 10),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
+        decoration: BoxDecoration(
+          borderRadius: isAccessibilityOn
+              ? BorderRadius.all(Radius.circular(20))
+              : BorderRadius.horizontal(left: Radius.circular(20)),
           color: Color(0xFFF1EAE2),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            width: 150,
+            width: isAccessibilityOn ? 150 : 300,
             child: ClipRRect(
                 borderRadius:
                     const BorderRadius.horizontal(left: Radius.circular(20)),
@@ -51,7 +55,7 @@ class ProductCard extends ConsumerWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -126,9 +130,66 @@ class ProductCard extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        if (productCount > 0)
-                          DeleteButton(
-                              orderNotifier: orderNotifier, product: product),
+                        productCount > 0
+                            ? InactivityTimer(
+                                child: IconButton(
+                                    onPressed: productCount > 0
+                                        ? () {
+                                            if (isAccessibilityOn) {
+                                              showModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) => ExtraPopup(
+                                                      rows: order.rows
+                                                          .where((element) =>
+                                                              element
+                                                                  .productId ==
+                                                              product.productId)
+                                                          .toList())).then(
+                                                (value) {
+                                                  if (value == null) return;
+                                                  orderNotifier
+                                                      .updateVariant(value);
+                                                },
+                                              );
+                                              return;
+                                            }
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    DialogWrapper(
+                                                      child: ExtraPopup(
+                                                          rows: order.rows
+                                                              .where((element) =>
+                                                                  element
+                                                                      .productId ==
+                                                                  product
+                                                                      .productId)
+                                                              .toList()),
+                                                    )).then(
+                                              (value) {
+                                                if (value == null) return;
+                                                orderNotifier
+                                                    .updateVariant(value);
+                                              },
+                                            );
+                                          }
+                                        : null,
+                                    icon: FaIcon(FontAwesomeIcons.pen,
+                                        size: 25,
+                                        color: productCount > 0
+                                            ? const Color(0xFF907676)
+                                            : Colors.grey)),
+                              )
+                            : SizedBox(),
+                        productCount > 0
+                            ? SizedBox(
+                                width: 20,
+                              )
+                            : SizedBox(),
+                        productCount > 0
+                            ? DeleteButton(
+                                orderNotifier: orderNotifier, product: product)
+                            : SizedBox(),
                         AddButton(
                             productCount: productCount,
                             orderNotifier: orderNotifier,

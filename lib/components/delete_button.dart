@@ -5,6 +5,7 @@ import 'package:totem/components/delete_popup.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/my_colors.dart';
@@ -27,11 +28,8 @@ class DeleteButton extends ConsumerStatefulWidget {
 class _DeleteButtonState extends ConsumerState<DeleteButton> {
   @override
   Widget build(BuildContext context) {
-    // var orderRows = ref.watch(orderProvider).rows;
     bool doExtraExist = false;
-    // var itemQty = ref
-    //     .watch(orderProvider.notifier)
-    //     .getItemRowsCount(widget.product.productId);
+
     List<OrderRowItem>? orderItemsByProduct = ref
         .watch(orderProvider)
         .rows
@@ -42,6 +40,7 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
         doExtraExist = true;
       }
     }
+    final isAccessibilityOn = ref.watch(accessibilityProvider);
 
     return Transform.translate(
       offset: const Offset(5, 0),
@@ -50,18 +49,27 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             style: FilledButton.styleFrom(
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(5),
-                        topLeft: Radius.circular(20))),
+                        bottomLeft: Radius.circular(3),
+                        topLeft: Radius.circular(16))),
                 backgroundColor: const Color(0xAAC3ABA4),
-                padding: const EdgeInsets.all(10)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 55, vertical: 20)),
             onPressed: doExtraExist == true
                 ? () {
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) =>
-                          DeletePopup(product: widget.product),
-                    );
+                    if (isAccessibilityOn) {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) =>
+                            DeletePopup(product: widget.product),
+                      );
+                    } else {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) =>
+                            Dialog(child: DeletePopup(product: widget.product)),
+                      );
+                    }
                   }
                 : () {
                     widget.orderNotifier.removeItem(widget.product.productId);

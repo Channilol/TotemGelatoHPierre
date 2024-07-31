@@ -41,7 +41,7 @@ class OrderScreen extends ConsumerWidget {
                           bottomRight: Radius.circular(5),
                         )),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         AnimatedFlipCounter(
                           value: order.rows.length,
@@ -86,7 +86,7 @@ class OrderScreen extends ConsumerWidget {
                             bottomRight: Radius.circular(20),
                           )),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(language['orderScreen']['button_top_right_1'],
                               style: TextStyle(

@@ -24,7 +24,7 @@ class ProductList extends ConsumerWidget {
       children: [
         isAccessibilityOn
             ? Spacer(
-                flex: 2,
+                flex: 3,
               )
             : SizedBox(),
         Expanded(
@@ -66,13 +66,13 @@ class ProductList extends ConsumerWidget {
         ),
         isAccessibilityOn
             ? Container(
-                height: 75,
+                height: 90,
                 color: MyColors.colorContainer,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      height: 45,
+                      height: 65,
                       width: MediaQuery.of(context).size.width * 0.2,
                       decoration: const BoxDecoration(
                           color: Colors.white,
@@ -90,7 +90,7 @@ class ProductList extends ConsumerWidget {
                             value: order.rows.length,
                             suffix:
                                 " ${language['orderScreen']['button_top_left']}",
-                            textStyle: const TextStyle(fontSize: 12),
+                            textStyle: const TextStyle(fontSize: 20),
                           ),
                           AnimatedFlipCounter(
                             value: Utils.getTotalPrice(order.rows),
@@ -98,6 +98,7 @@ class ProductList extends ConsumerWidget {
                             fractionDigits: 2,
                             textStyle: TextStyle(
                                 color: MyColors.colorText,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           )
                         ],
@@ -112,7 +113,7 @@ class ProductList extends ConsumerWidget {
                                       const OrderRecapScreen()))
                           : null,
                       child: AnimatedContainer(
-                        height: 45,
+                        height: 65,
                         width: MediaQuery.of(context).size.width * 0.2,
                         duration: const Duration(milliseconds: 500),
                         decoration: BoxDecoration(
@@ -131,7 +132,7 @@ class ProductList extends ConsumerWidget {
                             Text(language['orderScreen']['button_top_right_1'],
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 10,
+                                    fontSize: 20,
                                     letterSpacing: 0)),
                             Text(
                               language['orderScreen']['button_top_right_2'],
@@ -139,7 +140,7 @@ class ProductList extends ConsumerWidget {
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 0,
-                                  fontSize: 12),
+                                  fontSize: 20),
                             )
                           ],
                         ),

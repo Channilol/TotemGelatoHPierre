@@ -124,41 +124,21 @@ class OrderRecapItem extends ConsumerWidget {
                                       backgroundColor: const Color(0xCCC3ABA4),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5)),
-                                  onPressed: () {
-                                    if (isAccessibilityOn) {
-                                      showModalBottomSheet(
+                                  onPressed: () => showDialog(
                                           context: context,
                                           builder: (context) => ExtraPopup(
-                                              rows: order.rows
-                                                  .where((element) =>
-                                                      element.productId ==
-                                                      product.productId)
-                                                  .toList())).then(
+                                              rows:
+                                                  ref.read(orderProvider).rows,
+                                              startIndex: order.rows.indexWhere((element) =>
+                                                  element.productId ==
+                                                  product.productId))).then(
                                         (value) {
                                           if (value == null) return;
                                           orderNotifier.updateVariant(value);
                                         },
-                                      );
-                                      return;
-                                    }
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => DialogWrapper(
-                                              child: ExtraPopup(
-                                                  rows: order.rows
-                                                      .where((element) =>
-                                                          element.productId ==
-                                                          product.productId)
-                                                      .toList()),
-                                            )).then(
-                                      (value) {
-                                        if (value == null) return;
-                                        orderNotifier.updateVariant(value);
-                                      },
-                                    );
-                                  },
-                                  child: FaIcon(FontAwesomeIcons.pen,
-                                      size: 15, color: MyColors.colorText)),
+                                      ),
+                                  child: const FaIcon(FontAwesomeIcons.pen,
+                                      size: 15, color: Color(0xFF907676))),
                               FilledButton(
                                   style: FilledButton.styleFrom(
                                       shape: const RoundedRectangleBorder(

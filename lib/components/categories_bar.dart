@@ -29,7 +29,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
           borderRadius: BorderRadius.only(topRight: Radius.circular(10)),
           color: Color(0xFFF1EAE2),
         ),
-        width: 90,
+        width: 150,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -42,9 +42,10 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFC3ABA4),
+                  fontSize: 20.0,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               Text(
                 language['orderScreen']['sidebar_title'][1],
                 style: TextStyle(
@@ -53,6 +54,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                     fontFamily: GoogleFonts.courgette().fontFamily,
                     color: const Color(0xFFC3ABA4)),
               ),
+              const SizedBox(height: 15),
               Column(
                 children: [
                   for (int i = 0; i < Utils.categories.length; i++)
@@ -79,8 +81,8 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                             ),
                             Text(
                               Utils.categories[i].name,
-                              style: TextStyle(
-                                  fontSize: 12,
+                              style: const TextStyle(
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: MyColors.colorText),
                             ),
@@ -101,18 +103,36 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                       .read(accessibilityProvider.notifier)
                       .changeAccessibility(isAccessibilityOn ? false : true);
                 },
-                child: Column(
-                  children: [
-                    FaIcon(FontAwesomeIcons.universalAccess,
-                        color: MyColors.colorText),
-                    Text(
-                      language['orderScreen']['accessibility_text'],
-                      style: TextStyle(color: MyColors.colorText, fontSize: 12),
-                    ),
-                  ],
+                child: Container(
+                  padding: EdgeInsets.all(6.0),
+                  decoration: BoxDecoration(
+                    color: isAccessibilityOn
+                        ? MyColors.colorText
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(9),
+                  ),
+                  child: Column(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.universalAccess,
+                        color: isAccessibilityOn
+                            ? Colors.white
+                            : Color(0xFF907676),
+                        size: 30.0,
+                      ),
+                      Text(
+                        language['orderScreen']['accessibility_text'],
+                        style: TextStyle(
+                            color: isAccessibilityOn
+                                ? Colors.white
+                                : Color(0xFF907676),
+                            fontSize: 20),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              isAccessibilityOn ? SizedBox() : const SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ));
