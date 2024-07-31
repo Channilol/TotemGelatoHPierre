@@ -159,11 +159,21 @@ class OrderRecapItem extends ConsumerWidget {
                                           horizontal: 15, vertical: 10)),
                                   onPressed: doExtraExist == true
                                       ? () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) =>
-                                                DeletePopup(product: product),
-                                          );
+                                          if (isAccessibilityOn) {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) =>
+                                                  DeletePopup(product: product),
+                                            );
+                                          } else {
+                                            showDialog(
+                                              barrierDismissible: false,
+                                              context: context,
+                                              builder: (context) => Dialog(
+                                                  child: DeletePopup(
+                                                      product: product)),
+                                            );
+                                          }
                                         }
                                       : () {
                                           orderNotifier
