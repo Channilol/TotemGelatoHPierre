@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,7 +10,7 @@ import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class CategoriesBar extends ConsumerStatefulWidget {
-  const CategoriesBar({super.key});
+  CategoriesBar({super.key});
 
   @override
   ConsumerState<CategoriesBar> createState() => _CategoriesBarState();
@@ -24,14 +23,14 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
     final language = Utils.languages[ref.watch(languageProvider)];
     final currentCategory = ref.watch(categoryProvider);
     return Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           boxShadow: [BoxShadow(color: Color(0x22000000), blurRadius: 100)],
           borderRadius: BorderRadius.only(topRight: Radius.circular(10)),
           color: Color(0xFFF1EAE2),
         ),
         width: 150,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: isAccessibilityOn
                 ? MainAxisAlignment.end
@@ -45,16 +44,16 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                   fontSize: 20.0,
                 ),
               ),
-              const SizedBox(height: 5),
+              SizedBox(height: 5),
               Text(
                 language['orderScreen']['sidebar_title'][1],
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     fontFamily: GoogleFonts.courgette().fontFamily,
-                    color: const Color(0xFFC3ABA4)),
+                    color: Color(0xFFC3ABA4)),
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15),
               Column(
                 children: [
                   for (int i = 0; i < Utils.categories.length; i++)
@@ -132,7 +131,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ));

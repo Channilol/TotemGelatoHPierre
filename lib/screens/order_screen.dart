@@ -69,7 +69,7 @@ class OrderScreen extends ConsumerWidget {
                         ? Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const OrderRecapScreen()))
+                                builder: (context) => OrderRecapScreen()))
                         : null,
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
@@ -105,7 +105,7 @@ class OrderScreen extends ConsumerWidget {
                   ),
           ),
           Semicircle(),
-          const Expanded(
+          Expanded(
             child: Row(
               children: [
                 CategoriesBar(),
