@@ -142,6 +142,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                       ))
                     : Container(),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: MyColors.colorText,
+                  ),
                   onPressed: () {
                     ref
                         .read(accessibilityProvider.notifier)

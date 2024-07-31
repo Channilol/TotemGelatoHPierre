@@ -13,11 +13,6 @@ import 'package:totem/services/utils.dart';
 
 late ThemeData theme;
 
-
-// "background": "#FFFFFF",
-// "container": "#FFF1EAE2",
-// "primary": "#FF907677",
-// "secondary": "#FFC3ABA4"
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
