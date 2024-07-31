@@ -8,6 +8,7 @@ import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/order_recap_item.dart';
+import 'package:totem/components/semicircle.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
@@ -17,7 +18,7 @@ import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class OrderRecapScreen extends ConsumerWidget {
-  const OrderRecapScreen({super.key});
+  OrderRecapScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,16 +35,16 @@ class OrderRecapScreen extends ConsumerWidget {
     return InactivityTimer(
       child: Scaffold(
         body: LayoutBuilder(
-          builder: (context, constraint) {
+          builder: (context, raint) {
             return Column(
               children: [
                 !accessibility
                     ? Header(
                         leading: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: FilledButton(
                             style: FilledButton.styleFrom(
-                                shape: const RoundedRectangleBorder(
+                                shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(5),
                                         bottomRight: Radius.circular(20),
@@ -70,10 +71,10 @@ class OrderRecapScreen extends ConsumerWidget {
                           ),
                         ),
                         trailing: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          padding: EdgeInsets.symmetric(horizontal: 5.0),
                           child: FilledButton(
                               style: FilledButton.styleFrom(
-                                shape: const RoundedRectangleBorder(
+                                shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(5),
                                         bottomRight: Radius.circular(20),
@@ -83,10 +84,10 @@ class OrderRecapScreen extends ConsumerWidget {
                               ),
                               onPressed: () {
                                 showDialog(
-                                    barrierDismissible: false,
-                                    context: context,
-                                    builder: (context) =>
-                                        const ClearOrderPopup()).then((value) {
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (context) => ClearOrderPopup())
+                                    .then((value) {
                                   if (value == null) return;
                                   ref
                                       .read(orderProvider.notifier)
@@ -98,7 +99,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  const FaIcon(
+                                  FaIcon(
                                     FontAwesomeIcons.xmark,
                                     color: Colors.white,
                                     size: 18,
@@ -119,24 +120,24 @@ class OrderRecapScreen extends ConsumerWidget {
                 //   crossAxisAlignment: CrossAxisAlignment.start,
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: [
-                //     const Spacer(),
+                //      Spacer(),
                 //     Transform.translate(
-                //       offset: const Offset(0, -10),
+                //       offset:  Offset(0, -10),
                 //       child: Column(children: [
                 //         Container(
                 //             width: 120,
                 //             height: 60,
-                //             decoration: const BoxDecoration(
+                //             decoration:  BoxDecoration(
                 //                 color: Color(0xFFF1EAE2),
                 //                 borderRadius: BorderRadius.vertical(
                 //                     bottom: Radius.circular(500)))),
                 //       ]),
                 //     ),
-                //     const Spacer()
+                //      Spacer()
                 //   ],
                 // ),
                 if (!accessibility) ...[
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   Text(
                     language['orderRecapScreen']['title'],
                     style: TextStyle(
@@ -153,13 +154,13 @@ class OrderRecapScreen extends ConsumerWidget {
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(10.0),
                       child: GridView.builder(
                           gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
+                              SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   mainAxisSpacing: 30,
                                   childAspectRatio: 1.5,
@@ -208,19 +209,19 @@ class OrderRecapScreen extends ConsumerWidget {
                       ),
                       FilledButton(
                           style: FilledButton.styleFrom(
-                              shape: const RoundedRectangleBorder(
+                              shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(10),
                                       bottomRight: Radius.circular(30),
                                       topLeft: Radius.circular(30),
                                       topRight: Radius.circular(10))),
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                   horizontal: 40, vertical: 25),
                               backgroundColor: MyColors.colorText),
                           onPressed: order.rows.isNotEmpty
                               ? () =>
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const PaymentScreen(),
+                                    builder: (context) => PaymentScreen(),
                                   ))
                               : null,
                           child: Text(language['orderRecapScreen']['payment'],
@@ -229,7 +230,7 @@ class OrderRecapScreen extends ConsumerWidget {
                       LanguagePopup(),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                 ] else ...[
                   Expanded(
                     flex: 2,
@@ -238,7 +239,7 @@ class OrderRecapScreen extends ConsumerWidget {
                   Text(
                     (language['orderRecapScreen']['description'] as String)
                         .replaceAll("{}", order.rows.length.toString()),
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 30,
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
@@ -255,7 +256,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     prefix: "€ ",
                     fractionDigits: 2,
                     value: Utils.getTotalPrice(order.rows),
-                    textStyle: const TextStyle(
+                    textStyle: TextStyle(
                         fontSize: 30,
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
@@ -297,19 +298,19 @@ class OrderRecapScreen extends ConsumerWidget {
                       ),
                       FilledButton(
                         style: FilledButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
+                            shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
                                     bottomRight: Radius.circular(30),
                                     topLeft: Radius.circular(30),
                                     topRight: Radius.circular(10))),
-                            padding: const EdgeInsets.symmetric(
+                            padding: EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 25),
                             backgroundColor: MyColors.colorText),
                         onPressed: order.rows.isNotEmpty
                             ? () =>
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const PaymentScreen(),
+                                  builder: (context) => PaymentScreen(),
                                 ))
                             : null,
                         child: Text(
@@ -320,7 +321,7 @@ class OrderRecapScreen extends ConsumerWidget {
                       LanguagePopup()
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   Container(
                     height: MediaQuery.of(context).size.height * 0.05,
                     color: MyColors.colorContainer,
@@ -328,10 +329,10 @@ class OrderRecapScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                          padding: EdgeInsets.symmetric(horizontal: 32.0),
                           child: FilledButton(
                             style: FilledButton.styleFrom(
-                                shape: const RoundedRectangleBorder(
+                                shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(5),
                                         bottomRight: Radius.circular(20),
@@ -358,10 +359,10 @@ class OrderRecapScreen extends ConsumerWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                          padding: EdgeInsets.symmetric(horizontal: 32.0),
                           child: FilledButton(
                             style: FilledButton.styleFrom(
-                              shape: const RoundedRectangleBorder(
+                              shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(5),
                                       bottomRight: Radius.circular(20),
@@ -371,10 +372,10 @@ class OrderRecapScreen extends ConsumerWidget {
                             ),
                             onPressed: () {
                               showDialog(
-                                  barrierDismissible: false,
-                                  context: context,
-                                  builder: (context) =>
-                                      const ClearOrderPopup()).then((value) {
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) => ClearOrderPopup())
+                                  .then((value) {
                                 if (value == null) return;
                                 ref
                                     .read(orderProvider.notifier)
@@ -385,7 +386,7 @@ class OrderRecapScreen extends ConsumerWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const FaIcon(
+                                FaIcon(
                                   FontAwesomeIcons.xmark,
                                   color: Colors.white,
                                   size: 18,
