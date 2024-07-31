@@ -123,7 +123,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                     language['orderScreen']['modal_button_add'],
                     style: TextStyle(
                         fontSize: ResponsiveText.large(context),
-                        color: Colors.white),
+                        color: MyColors.colorBackground),
                   )),
             ],
           )

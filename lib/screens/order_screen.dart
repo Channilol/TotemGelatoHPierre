@@ -35,7 +35,7 @@ class OrderScreen extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
                       decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: MyColors.colorBackground,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(20),
@@ -92,12 +92,12 @@ class OrderScreen extends ConsumerWidget {
                           children: [
                             Text(language['orderScreen']['button_top_right_1'],
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: MyColors.colorBackground,
                                     fontSize: ResponsiveText.medium(context))),
                             Text(
                               language['orderScreen']['button_top_right_2'],
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: MyColors.colorBackground,
                                   fontWeight: FontWeight.bold,
                                   fontSize: ResponsiveText.medium(context)),
                             )

@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/providers/accessibility_provider.dart';
+import 'package:totem/services/my_colors.dart';
 
 class Semicircle extends ConsumerWidget {
   const Semicircle({
@@ -25,8 +26,8 @@ class Semicircle extends ConsumerWidget {
             Container(
               width: 140,
               height: 140,
-              decoration: const BoxDecoration(
-                color: Color(0xFFF1EAE2),
+              decoration: BoxDecoration(
+                color: MyColors.colorContainer,
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(500),
                   top: Radius.circular(500),

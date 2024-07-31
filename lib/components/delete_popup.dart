@@ -57,7 +57,7 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
             height: maxHeight * 0.7,
             width: maxWidth * 0.7,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: MyColors.colorBackground,
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Card(

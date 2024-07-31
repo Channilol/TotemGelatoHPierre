@@ -116,7 +116,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                       FaIcon(
                         FontAwesomeIcons.universalAccess,
                         color: isAccessibilityOn
-                            ? Colors.white
+                            ? MyColors.colorBackground
                             : Color(0xFF907676),
                         size: 30.0,
                       ),
@@ -124,7 +124,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                         language['orderScreen']['accessibility_text'],
                         style: TextStyle(
                             color: isAccessibilityOn
-                                ? Colors.white
+                                ? MyColors.colorBackground
                                 : Color(0xFF907676),
                             fontSize: ResponsiveText.medium(context)),
                       ),

@@ -30,13 +30,13 @@ class AddButton extends ConsumerWidget {
           animationDuration: Duration(milliseconds: 200)),
       badgeStyle: badges.BadgeStyle(
         padding: EdgeInsets.all(14),
-        borderSide: BorderSide(color: Colors.white, width: 4),
+        borderSide: BorderSide(color: MyColors.colorBackground, width: 4),
         badgeColor: Color.fromARGB(255, 0, 178, 6),
       ),
       badgeContent: Text(
         productCount.toString(),
         style: TextStyle(
-          color: Colors.white,
+          color: MyColors.colorBackground,
           fontWeight: FontWeight.bold,
           fontSize: ResponsiveText.small(context),
         ),
@@ -64,12 +64,12 @@ class AddButton extends ConsumerWidget {
                           ? ResponsiveText.large(context)
                           : ResponsiveText.large(context),
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: MyColors.colorBackground),
                 ),
                 Text(
                   language['orderScreen']['Product_button_text_add'],
                   style: TextStyle(
-                    color: Colors.white,
+                    color: MyColors.colorBackground,
                     fontSize: isAccessibilityOn
                         ? ResponsiveText.large(context)
                         : ResponsiveText.large(context),

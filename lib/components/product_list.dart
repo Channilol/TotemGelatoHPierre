@@ -49,13 +49,13 @@ class ProductList extends ConsumerWidget {
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         height: 100.0, // Altezza della sfumatura
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
                               Color.fromARGB(0, 255, 255, 255),
-                              Colors.white, // Colore di sfondo
+                              MyColors.colorBackground, // Colore di sfondo
                             ],
                           ),
                         ),
@@ -74,8 +74,8 @@ class ProductList extends ConsumerWidget {
                     Container(
                       height: 65,
                       width: MediaQuery.of(context).size.width * 0.2,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
+                      decoration: BoxDecoration(
+                          color: MyColors.colorBackground,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(20),
@@ -130,13 +130,13 @@ class ProductList extends ConsumerWidget {
                           children: [
                             Text(language['orderScreen']['button_top_right_1'],
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: MyColors.colorBackground,
                                     fontSize: 20,
                                     letterSpacing: 0)),
                             Text(
                               language['orderScreen']['button_top_right_2'],
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: MyColors.colorBackground,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 0,
                                   fontSize: 20),
