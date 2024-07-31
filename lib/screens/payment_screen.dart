@@ -10,6 +10,7 @@ import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class PaymentScreen extends ConsumerStatefulWidget {
@@ -38,7 +39,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             Utils.languages[languageIndex]['paymentScreen']['title'],
             style: TextStyle(
                 fontFamily: GoogleFonts.courgette().fontFamily,
-                fontSize: 50,
+                fontSize: ResponsiveText.title(context),
                 color: const Color(0xFFC3ABA4),
                 fontWeight: FontWeight.bold),
           ),
@@ -47,7 +48,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             fractionDigits: 2,
             value: Utils.getTotalPrice(order.rows),
             textStyle: TextStyle(
-                fontSize: 40,
+                fontSize: ResponsiveText.title(context),
                 color: MyColors.colorText,
                 fontWeight: FontWeight.bold),
           ),
@@ -57,7 +58,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           Text(
             Utils.languages[languageIndex]['paymentScreen']['subtitle'],
             style: TextStyle(
-                fontSize: 40,
+                fontSize: ResponsiveText.huge(context),
                 color: MyColors.colorText,
                 fontWeight: FontWeight.bold),
           ),
