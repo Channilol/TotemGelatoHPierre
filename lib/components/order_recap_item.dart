@@ -183,7 +183,6 @@ class OrderRecapItem extends ConsumerWidget {
                                             );
                                           } else {
                                             showDialog(
-                                              barrierDismissible: false,
                                               context: context,
                                               builder: (context) => Dialog(
                                                   child: DeletePopup(
