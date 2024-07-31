@@ -64,12 +64,13 @@ class ResponsiveText {
     final size = MediaQuery.of(context).size.width;
     if (size < 600) {
       return 0;
-    } else if (size < 900) {
-      return 1;
-    } else if (size < 1200) {
-      return 2;
-    } else {
-      return 3;
     }
+    if (size < 900) {
+      return 1;
+    }
+    if (size < 1200) {
+      return 2;
+    }
+    return 3;
   }
 }
