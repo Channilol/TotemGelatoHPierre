@@ -66,7 +66,6 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
                     );
                   } else {
                     showDialog(
-                      barrierDismissible: true,
                       context: context,
                       builder: (context) =>
                           Dialog(child: DeletePopup(product: widget.product)),
