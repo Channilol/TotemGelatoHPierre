@@ -49,13 +49,13 @@ class ProductList extends ConsumerWidget {
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         height: 100.0, // Altezza della sfumatura
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Color.fromARGB(0, 255, 255, 255),
-                              Colors.white, // Colore di sfondo
+                              Colors.black,
+                              MyColors.colorBackground, // Colore di sfondo
                             ],
                           ),
                         ),

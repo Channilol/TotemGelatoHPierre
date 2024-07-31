@@ -92,12 +92,12 @@ class OrderScreen extends ConsumerWidget {
                           children: [
                             Text(language['orderScreen']['button_top_right_1'],
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: MyColors.colorBackground,
                                     fontSize: ResponsiveText.medium(context))),
                             Text(
                               language['orderScreen']['button_top_right_2'],
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: MyColors.colorBackground,
                                   fontWeight: FontWeight.bold,
                                   fontSize: ResponsiveText.medium(context)),
                             )

@@ -27,7 +27,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(color: Color(0x22000000), blurRadius: 100)],
           borderRadius: BorderRadius.only(topRight: Radius.circular(10)),
-          color: Color(0xFFF1EAE2),
+          color: MyColors.colorContainer,
         ),
         width: 150,
         child: Padding(
@@ -41,7 +41,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                 language['orderScreen']['sidebar_title'][0],
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFC3ABA4),
+                  color: MyColors.colorSecondary,
                   fontSize: 20.0,
                 ),
               ),
@@ -52,7 +52,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     fontFamily: GoogleFonts.courgette().fontFamily,
-                    color: Color(0xFFC3ABA4)),
+                    color: MyColors.colorSecondary),
               ),
               SizedBox(height: 15),
               Column(
@@ -70,7 +70,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                           borderRadius: BorderRadius.circular(20),
                           color: Utils.categories[i].categoryId ==
                                   Utils.categories[currentCategory].categoryId
-                              ? Color.fromARGB(255, 255, 255, 255)
+                              ? MyColors.colorBackground
                               : null,
                         ),
                         child: Column(
@@ -116,16 +116,16 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                       FaIcon(
                         FontAwesomeIcons.universalAccess,
                         color: isAccessibilityOn
-                            ? Colors.white
-                            : Color(0xFF907676),
+                            ? MyColors.colorBackground
+                            : MyColors.colorText,
                         size: 30.0,
                       ),
                       Text(
                         language['orderScreen']['accessibility_text'],
                         style: TextStyle(
                             color: isAccessibilityOn
-                                ? Colors.white
-                                : Color(0xFF907676),
+                                ? MyColors.colorBackground
+                                : MyColors.colorText,
                             fontSize: ResponsiveText.medium(context)),
                       ),
                     ],
