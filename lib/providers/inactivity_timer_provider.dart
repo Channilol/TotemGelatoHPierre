@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/components/back_popup.dart';
@@ -19,13 +20,12 @@ class InactivityTimerNotifier {
 
   InactivityTimerNotifier(
     this.ref, {
-    this.inactivityTimerDuration = const Duration(seconds: 1000000),
-    this.warningTimerDuration = const Duration(seconds: 600000),
+    this.inactivityTimerDuration = const Duration(seconds: 6),
+    this.warningTimerDuration = const Duration(seconds: 4),
   });
 
   void startInactivityTimer(BuildContext context) {
-    _inactivityTimer?.cancel();
-    _warningTimer?.cancel();
+    cancelTimer();
     _warningTimer = Timer(warningTimerDuration, () => _showWarning(context));
     _inactivityTimer = Timer(inactivityTimerDuration, () => _goBack(context));
   }
@@ -51,10 +51,6 @@ class InactivityTimerNotifier {
         resetInactivityTimer(context);
       },
     );
-  }
-
-  void dispose() {
-    _inactivityTimer?.cancel();
   }
 
   void cancelTimer() {

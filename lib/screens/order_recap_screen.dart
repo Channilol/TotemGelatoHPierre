@@ -67,7 +67,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
                                         fontSize:
-                                            ResponsiveText.medium(context)))
+                                            ResponsiveText.large(context)))
                               ],
                             ),
                           ),
@@ -112,7 +112,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                           fontFamily:
                                               GoogleFonts.nunito().fontFamily,
                                           fontSize:
-                                              ResponsiveText.medium(context)))
+                                              ResponsiveText.large(context)))
                                 ],
                               )),
                         ),
@@ -146,7 +146,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
                         fontSize: ResponsiveText.huge(context),
-                        color: MyColors.colorContainer,
+                        color: MyColors.colorSecondary,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -177,8 +177,8 @@ class OrderRecapScreen extends ConsumerWidget {
                     language['orderRecapScreen']['total'],
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
-                        fontSize: ResponsiveText.large(context),
-                        color: MyColors.colorContainer,
+                        fontSize: ResponsiveText.huge(context),
+                        color: MyColors.colorSecondary,
                         fontWeight: FontWeight.bold),
                   ),
                   AnimatedFlipCounter(
@@ -193,47 +193,64 @@ class OrderRecapScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              ref
-                                  .read(accessibilityProvider.notifier)
-                                  .changeAccessibility(!accessibility);
-                            },
-                            icon: Icon(FontAwesomeIcons.universalAccess),
-                            color: MyColors.colorText,
+                      ElevatedButton(
+                        onPressed: () {
+                          ref
+                              .read(accessibilityProvider.notifier)
+                              .changeAccessibility(!accessibility);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
                           ),
-                          Text(
-                            language['orderRecapScreen']['accessibility_text'],
-                            style: TextStyle(
-                                color: MyColors.colorText,
-                                fontSize: ResponsiveText.large(context)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(FontAwesomeIcons.universalAccess),
+                              SizedBox(
+                                width: 7.5,
+                              ),
+                              Text(
+                                language['orderRecapScreen']
+                                    ['accessibility_text'],
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       FilledButton(
-                          style: FilledButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(30),
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(10))),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 25),
-                              backgroundColor: MyColors.colorText),
-                          onPressed: order.rows.isNotEmpty
-                              ? () =>
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => PaymentScreen(),
-                                  ))
-                              : null,
-                          child: Text(language['orderRecapScreen']['payment'],
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: ResponsiveText.huge(context)))),
-                      LanguagePopup(),
+                        style: FilledButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(10))),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 25),
+                            backgroundColor: MyColors.colorText),
+                        onPressed: order.rows.isNotEmpty
+                            ? () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PaymentScreen(),
+                                ))
+                            : null,
+                        child: Text(
+                          language['orderRecapScreen']['payment'],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: ResponsiveText.huge(context),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                      ),
                     ],
                   ),
                   SizedBox(height: 20),
@@ -254,8 +271,8 @@ class OrderRecapScreen extends ConsumerWidget {
                     language['orderRecapScreen']['total'],
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
-                        fontSize: ResponsiveText.large(context),
-                        color: MyColors.colorContainer,
+                        fontSize: ResponsiveText.huge(context),
+                        color: MyColors.colorSecondary,
                         fontWeight: FontWeight.bold),
                   ),
                   AnimatedFlipCounter(
@@ -285,24 +302,35 @@ class OrderRecapScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              ref
-                                  .read(accessibilityProvider.notifier)
-                                  .changeAccessibility(!accessibility);
-                            },
-                            icon: Icon(FontAwesomeIcons.universalAccess),
-                            color: MyColors.colorText,
+                      ElevatedButton(
+                        onPressed: () {
+                          ref
+                              .read(accessibilityProvider.notifier)
+                              .changeAccessibility(!accessibility);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
                           ),
-                          Text(
-                            language['orderRecapScreen']['accessibility_text'],
-                            style: TextStyle(
-                                color: MyColors.colorText,
-                                fontSize: ResponsiveText.large(context)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(FontAwesomeIcons.universalAccess),
+                              SizedBox(
+                                width: 7.5,
+                              ),
+                              Text(
+                                language['orderRecapScreen']
+                                    ['accessibility_text'],
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       FilledButton(
                         style: FilledButton.styleFrom(
@@ -333,86 +361,98 @@ class OrderRecapScreen extends ConsumerWidget {
                   ),
                   SizedBox(height: 20),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     color: MyColors.colorContainer,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 32.0),
-                          child: FilledButton(
-                            style: FilledButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(5),
-                                        bottomRight: Radius.circular(20),
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(5))),
-                                backgroundColor: Colors.white),
-                            onPressed: () => Navigator.pop(context),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.arrow_back_ios_new_rounded,
-                                  color: MyColors.colorText,
-                                  size: 18,
-                                ),
-                                Text(language['orderRecapScreen']['back'],
-                                    style: TextStyle(
-                                        color: MyColors.colorText,
-                                        fontFamily:
-                                            GoogleFonts.nunito().fontFamily,
-                                        fontSize:
-                                            ResponsiveText.large(context)))
-                              ],
+                        Spacer(),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 20.0),
+                            child: FilledButton(
+                              style: FilledButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(5),
+                                          bottomRight: Radius.circular(20),
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(5))),
+                                  backgroundColor: Colors.white),
+                              onPressed: () => Navigator.pop(context),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    Icons.arrow_back_ios_new_rounded,
+                                    color: MyColors.colorText,
+                                    size: 18,
+                                  ),
+                                  Text(language['orderRecapScreen']['back'],
+                                      style: TextStyle(
+                                          color: MyColors.colorText,
+                                          fontFamily:
+                                              GoogleFonts.nunito().fontFamily,
+                                          fontSize:
+                                              ResponsiveText.large(context)))
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 32.0),
-                          child: FilledButton(
-                            style: FilledButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(5),
-                                      bottomRight: Radius.circular(20),
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(5))),
-                              backgroundColor: MyColors.colorText,
-                            ),
-                            onPressed: () {
-                              showDialog(
+                        Spacer(),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 20.0),
+                            child: FilledButton(
+                                style: FilledButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(5),
+                                          bottomRight: Radius.circular(20),
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(5))),
+                                  backgroundColor: MyColors.colorText,
+                                ),
+                                onPressed: () {
+                                  showDialog(
                                       barrierDismissible: false,
                                       context: context,
-                                      builder: (context) => ClearOrderPopup())
-                                  .then((value) {
-                                if (value == null) return;
-                                ref
-                                    .read(orderProvider.notifier)
-                                    .setOrder(OrderItem(rows: []));
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.xmark,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                Text(language['orderRecapScreen']['clear'],
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily:
-                                            GoogleFonts.nunito().fontFamily,
-                                        fontSize:
-                                            ResponsiveText.large(context)))
-                              ],
-                            ),
+                                      builder: (context) =>
+                                          ClearOrderPopup()).then((value) {
+                                    if (value == null) return;
+                                    ref
+                                        .read(orderProvider.notifier)
+                                        .setOrder(OrderItem(rows: []));
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.xmark,
+                                      color: Colors.white,
+                                      size: 18,
+                                    ),
+                                    Text(language['orderRecapScreen']['clear'],
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily:
+                                                GoogleFonts.nunito().fontFamily,
+                                            fontSize:
+                                                ResponsiveText.large(context)))
+                                  ],
+                                )),
                           ),
                         ),
+                        Spacer(),
                       ],
                     ),
                   ),
