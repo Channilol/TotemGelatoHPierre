@@ -14,7 +14,9 @@ class DialogWrapper extends StatelessWidget {
           topLeft: Radius.circular(50),
           topRight: Radius.circular(20),
         )),
-        insetPadding: const EdgeInsets.symmetric(vertical: 80, horizontal: 60),
+        insetPadding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height / 4,
+            horizontal: MediaQuery.of(context).size.width * .1),
         child: child);
   }
 }
