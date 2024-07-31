@@ -177,8 +177,9 @@ class OrderRecapItem extends ConsumerWidget {
                                       ? () {
                                           showDialog(
                                             context: context,
-                                            builder: (context) =>
-                                                DeletePopup(product: product),
+                                            builder: (context) => Dialog(
+                                                child: DeletePopup(
+                                                    product: product)),
                                           );
                                         }
                                       : () {

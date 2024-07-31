@@ -5,6 +5,7 @@ import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class ExtraPopup extends ConsumerStatefulWidget {
@@ -59,7 +60,10 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                Text("${currentProduct.name} ${currentItem + 1}"),
+                Text("${currentProduct.name} ${currentItem + 1}",
+                    style: TextStyle(
+                        color: MyColors.colorText,
+                        fontSize: ResponsiveText.huge(context))),
               ],
             ),
             IconButton(
@@ -98,7 +102,9 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                   onPressed: () => Navigator.pop(context),
                   child: Text(
                     language['orderScreen']['modal_button_remove'],
-                    style: TextStyle(fontSize: 12, color: MyColors.colorText),
+                    style: TextStyle(
+                        fontSize: ResponsiveText.large(context),
+                        color: MyColors.colorText),
                   )),
               const SizedBox(width: 20),
               FilledButton(
@@ -115,7 +121,9 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                   onPressed: () => Navigator.pop(context, rows),
                   child: Text(
                     language['orderScreen']['modal_button_add'],
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: ResponsiveText.large(context),
+                        color: Colors.white),
                   )),
             ],
           )
@@ -130,12 +138,16 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15),
       child: ListTile(
-          title: Text(Utils.extras[index].description),
-          leading: Text("+${extra.price} €"),
+          title: Text(
+            Utils.extras[index].description,
+            style: TextStyle(fontSize: ResponsiveText.large(context)),
+          ),
+          leading: Text("+${extra.price} €",
+              style: TextStyle(fontSize: ResponsiveText.large(context))),
           trailing: Switch(
               autofocus: true,
-              inactiveThumbColor: const Color(0xFFC3ABA4),
-              inactiveTrackColor: const Color(0xFFF1EAE2),
+              inactiveThumbColor: MyColors.colorSecondary,
+              inactiveTrackColor: MyColors.colorContainer,
               activeColor: MyColors.colorText,
               value: rows[currentItem]
                   .extras!

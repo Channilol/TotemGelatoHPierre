@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:totem/components/category_icon.dart';
 import 'package:totem/components/header.dart';
+import 'package:totem/components/lottie_animation.dart';
 import 'package:totem/providers/inactivity_timer_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/screens/order_screen.dart';
@@ -27,193 +27,177 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       language = ref.watch(languageProvider);
     }
 
-    return GestureDetector(
-      onTap: () {
-        ref.read(inactivityTimerProvider).resetInactivityTimer(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const OrderScreen())).then(
-          (value) {
-            ref.read(inactivityTimerProvider).cancelTimer();
+    return Scaffold(
+      body: LottieAnimation(
+        child: GestureDetector(
+          onTap: () {
+            ref.read(inactivityTimerProvider).resetInactivityTimer(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const OrderScreen())).then(
+              (value) {
+                ref.read(inactivityTimerProvider).cancelTimer();
+              },
+            );
           },
-        );
-      },
-      child: Scaffold(
-        body: FutureBuilder(
-            future: Future.delayed(const Duration(seconds: 5), () => true),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: Lottie.asset(
-                    "assets/images/gelato.json",
-                    fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.width,
-                    width: MediaQuery.of(context).size.width,
-                  ),
-                );
-              }
-              return Column(
+          child: Column(
+            children: [
+              const Header(),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Header(),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
+                  SizedBox(
+                    width: 140,
+                    child: CategoryIcon(
+                        label: Utils.categories[0].name,
+                        icon: SvgPicture.asset(Utils.categories[0].image!)),
+                  ),
+                  Transform.translate(
+                    offset: const Offset(0, -100),
+                    child: Column(children: [
+                      Container(
                         width: 140,
-                        child: CategoryIcon(
-                            label: Utils.categories[0].name,
-                            icon: SvgPicture.asset(Utils.categories[0].image!)),
+                        height: 140,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF1EAE2),
+                          borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(500),
+                            top: Radius.circular(500),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: SvgPicture.asset(
+                            "assets/images/logo.svg",
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                       ),
-                      Transform.translate(
-                        offset: const Offset(0, -100),
-                        child: Column(children: [
-                          Container(
-                            width: 140,
-                            height: 140,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFF1EAE2),
-                              borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(500),
-                                top: Radius.circular(500),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(24.0),
-                              child: SvgPicture.asset(
-                                "assets/images/logo.svg",
-                                width: 40,
-                                height: 40,
-                                fit: BoxFit.contain,
-                              ),
+                      const SizedBox(height: 10),
+                      CategoryIcon(
+                          label: Utils.categories[1].name,
+                          icon: SvgPicture.asset(Utils.categories[1].image!)),
+                    ]),
+                  ),
+                  SizedBox(
+                    width: 140,
+                    child: CategoryIcon(
+                        label: Utils.categories[2].name,
+                        icon: SvgPicture.asset(
+                          Utils.categories[2].image!,
+                        )),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            language['splashScreen']['title'][0].toString(),
+                            style: GoogleFonts.hankenGrotesk(
+                              color: MyColors.colorText,
+                              fontSize: ResponsiveText.title(context),
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          CategoryIcon(
-                              label: Utils.categories[1].name,
-                              icon:
-                                  SvgPicture.asset(Utils.categories[1].image!)),
-                        ]),
-                      ),
-                      SizedBox(
-                        width: 140,
-                        child: CategoryIcon(
-                            label: Utils.categories[2].name,
-                            icon: SvgPicture.asset(
-                              Utils.categories[2].image!,
-                            )),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Column(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                language['splashScreen']['title'][0].toString(),
+                                language['splashScreen']['title'][1],
                                 style: GoogleFonts.hankenGrotesk(
                                   color: MyColors.colorText,
+                                  height: 0,
                                   fontSize: ResponsiveText.title(context),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    language['splashScreen']['title'][1],
-                                    style: GoogleFonts.hankenGrotesk(
-                                      color: MyColors.colorText,
-                                      height: 0,
-                                      fontSize: ResponsiveText.title(context),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    language['splashScreen']['title'][2],
-                                    style: GoogleFonts.courgette(
-                                      color: MyColors.colorText,
-                                      height: 0,
-                                      fontSize: ResponsiveText.title(context),
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: MyColors.colorText,
-                                      decorationThickness: 1.0,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                language['splashScreen']['title'][2],
+                                style: GoogleFonts.courgette(
+                                  color: MyColors.colorText,
+                                  height: 0,
+                                  fontSize: ResponsiveText.title(context),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: MyColors.colorText,
+                                  decorationThickness: 1.0,
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Image.asset(
+                              'assets/images/splash_image.png',
+                              fit: BoxFit.cover,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Image.asset(
-                                  'assets/images/splash_image.png',
-                                  fit: BoxFit.cover,
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.15,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.15,
+                                    Text(
+                                      language['splashScreen']['callToAction']
+                                          [0],
+                                      style: GoogleFonts.hankenGrotesk(
+                                        color: MyColors.colorText,
+                                        height: 0,
+                                        fontSize: ResponsiveText.huge(context),
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          language['splashScreen']
-                                              ['callToAction'][0],
-                                          style: GoogleFonts.hankenGrotesk(
-                                            color: MyColors.colorText,
-                                            height: 0,
-                                            fontSize:
-                                                ResponsiveText.huge(context),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          language['splashScreen']
-                                              ['callToAction'][1],
-                                          style: GoogleFonts.courgette(
-                                            height: 0,
-                                            color: MyColors.colorText,
-                                            fontSize:
-                                                ResponsiveText.huge(context),
-                                            fontWeight: FontWeight.bold,
-                                            decoration:
-                                                TextDecoration.underline,
-                                            decorationColor: MyColors.colorText,
-                                            decorationThickness: 1.0,
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      language['splashScreen']['callToAction']
+                                          [1],
+                                      style: GoogleFonts.courgette(
+                                        height: 0,
+                                        color: MyColors.colorText,
+                                        fontSize: ResponsiveText.huge(context),
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: MyColors.colorText,
+                                        decorationThickness: 1.0,
+                                      ),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
-              );
-            }),
-      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),     
     );
   }
 }
