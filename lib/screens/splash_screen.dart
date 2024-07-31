@@ -26,6 +26,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (language.isEmpty) {
       language = ref.watch(languageProvider);
     }
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: LottieAnimation(
@@ -52,14 +54,21 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     width: 140,
                     child: CategoryIcon(
                         label: Utils.categories[0].name,
-                        icon: SvgPicture.asset(Utils.categories[0].image!)),
+                        icon: SvgPicture.asset(
+                          Utils.categories[0].image!,
+                          width: ResponsiveText.title(context),
+                        )),
                   ),
                   Transform.translate(
                     offset: const Offset(0, -100),
                     child: Column(children: [
                       Container(
-                        width: 140,
-                        height: 140,
+                        width: width > height
+                            ? MediaQuery.of(context).size.height * 0.2
+                            : MediaQuery.of(context).size.width * 0.2,
+                        height: width > height
+                            ? MediaQuery.of(context).size.height * 0.2
+                            : MediaQuery.of(context).size.width * 0.2,
                         decoration: BoxDecoration(
                           color: MyColors.colorContainer,
                           borderRadius: BorderRadius.vertical(
@@ -68,11 +77,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding:
+                              EdgeInsets.all(ResponsiveText.medium(context)),
                           child: SvgPicture.asset(
                             "assets/images/logo.svg",
-                            width: 40,
-                            height: 40,
+                            width: ResponsiveText.title(context),
                             fit: BoxFit.contain,
                           ),
                         ),
@@ -80,7 +89,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                       const SizedBox(height: 10),
                       CategoryIcon(
                           label: Utils.categories[1].name,
-                          icon: SvgPicture.asset(Utils.categories[1].image!)),
+                          icon: SvgPicture.asset(
+                            Utils.categories[1].image!,
+                            width: ResponsiveText.title(context),
+                          )),
                     ]),
                   ),
                   SizedBox(
@@ -89,6 +101,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         label: Utils.categories[2].name,
                         icon: SvgPicture.asset(
                           Utils.categories[2].image!,
+                          width: ResponsiveText.title(context),
                         )),
                   ),
                 ],
