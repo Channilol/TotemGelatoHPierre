@@ -138,7 +138,10 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15),
       child: ListTile(
-          title: Text(Utils.extras[index].description),
+          title: Text(
+            Utils.extras[index].description,
+            style: TextStyle(fontSize: ResponsiveText.large(context)),
+          ),
           leading: Text("+${extra.price} €",
               style: TextStyle(fontSize: ResponsiveText.large(context))),
           trailing: Switch(
