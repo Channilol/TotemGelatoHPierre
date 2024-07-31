@@ -69,7 +69,9 @@ class ProductCard extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontFamily: GoogleFonts.courgette().fontFamily,
-                              fontSize: ResponsiveText.huge(context),
+                              fontSize: isAccessibilityOn
+                                  ? ResponsiveText.huge(context)
+                                  : ResponsiveText.title(context),
                               fontWeight: FontWeight.bold,
                               color: MyColors.colorText),
                         ),
@@ -82,7 +84,9 @@ class ProductCard extends ConsumerWidget {
                     softWrap: true,
                     style: TextStyle(
                         color: MyColors.colorText,
-                        fontSize: ResponsiveText.large(context)),
+                        fontSize: isAccessibilityOn
+                            ? ResponsiveText.large(context)
+                            : ResponsiveText.huge(context) - 5),
                   ),
                   const Spacer(),
                   Padding(
@@ -131,7 +135,11 @@ class ProductCard extends ConsumerWidget {
                                       }
                                     : null,
                                 icon: FaIcon(FontAwesomeIcons.pen,
-                                    size: 25,
+                                    size: isAccessibilityOn
+                                        ? MediaQuery.of(context).size.width *
+                                            0.03
+                                        : MediaQuery.of(context).size.width *
+                                            0.04,
                                     color: productCount > 0
                                         ? const Color(0xFF907676)
                                         : Colors.grey))

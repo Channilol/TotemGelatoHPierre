@@ -54,7 +54,15 @@ class AddButton extends ConsumerWidget {
               padding: const EdgeInsets.all(15)),
           onPressed: () => orderNotifier.addItem(product.productId),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: isAccessibilityOn
+                ? EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                    vertical: MediaQuery.of(context).size.width * 0.01,
+                  )
+                : EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.04,
+                    vertical: MediaQuery.of(context).size.width * 0.02,
+                  ),
             child: Column(
               children: [
                 Text(
@@ -62,7 +70,7 @@ class AddButton extends ConsumerWidget {
                   style: TextStyle(
                       fontSize: isAccessibilityOn
                           ? ResponsiveText.large(context)
-                          : ResponsiveText.large(context),
+                          : ResponsiveText.huge(context),
                       fontWeight: FontWeight.bold,
                       color: MyColors.colorBackground),
                 ),
@@ -72,7 +80,7 @@ class AddButton extends ConsumerWidget {
                     color: MyColors.colorBackground,
                     fontSize: isAccessibilityOn
                         ? ResponsiveText.large(context)
-                        : ResponsiveText.large(context),
+                        : ResponsiveText.huge(context),
                   ),
                 )
               ],
