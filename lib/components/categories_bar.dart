@@ -34,105 +34,117 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: isAccessibilityOn
-                ? MainAxisAlignment.end
-                : MainAxisAlignment.start,
             children: [
-              Text(
-                language['orderScreen']['sidebar_title'][0],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: MyColors.colorSecondary,
-                  fontSize: ResponsiveText.huge(context) - 5,
-                ),
-              ),
-              SizedBox(height: 5),
-              Text(
-                language['orderScreen']['sidebar_title'][1],
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: ResponsiveText.huge(context),
-                    fontFamily: GoogleFonts.courgette().fontFamily,
-                    color: MyColors.colorSecondary),
-              ),
-              SizedBox(height: 15),
+              isAccessibilityOn
+                  ? Spacer(
+                      flex: 7,
+                    )
+                  : SizedBox(),
               Expanded(
-                child: ListView(
+                flex: isAccessibilityOn ? 3 : 1,
+                child: Column(
                   children: [
-                    for (int i = 0; i < Utils.categories.length; i++)
-                      GestureDetector(
-                        onTap: () => ref
-                            .read(categoryProvider.notifier)
-                            .changeCategory(i),
-                        child: Container(
-                          padding: isAccessibilityOn
-                              ? EdgeInsets.symmetric(vertical: 10)
-                              : EdgeInsets.symmetric(vertical: 50),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Utils.categories[i].categoryId ==
-                                    Utils.categories[currentCategory].categoryId
-                                ? MyColors.colorBackground
-                                : null,
-                          ),
-                          child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                Utils.categories[i].image!,
-                                fit: BoxFit.cover,
+                    Text(
+                      language['orderScreen']['sidebar_title'][0],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: MyColors.colorSecondary,
+                        fontSize: ResponsiveText.huge(context) - 5,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      language['orderScreen']['sidebar_title'][1],
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: ResponsiveText.huge(context),
+                          fontFamily: GoogleFonts.courgette().fontFamily,
+                          color: MyColors.colorSecondary),
+                    ),
+                    SizedBox(height: 15),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          for (int i = 0; i < Utils.categories.length; i++)
+                            GestureDetector(
+                              onTap: () => ref
+                                  .read(categoryProvider.notifier)
+                                  .changeCategory(i),
+                              child: Container(
+                                padding: isAccessibilityOn
+                                    ? EdgeInsets.symmetric(vertical: 10)
+                                    : EdgeInsets.symmetric(vertical: 50),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Utils.categories[i].categoryId ==
+                                          Utils.categories[currentCategory]
+                                              .categoryId
+                                      ? MyColors.colorBackground
+                                      : null,
+                                ),
+                                child: Column(
+                                  children: [
+                                    SvgPicture.asset(
+                                      Utils.categories[i].image!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Text(
+                                      Utils.categories[i].name,
+                                      style: TextStyle(
+                                          fontSize:
+                                              ResponsiveText.medium(context),
+                                          fontWeight: FontWeight.bold,
+                                          color: MyColors.colorText),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Text(
-                                Utils.categories[i].name,
-                                style: TextStyle(
-                                    fontSize: ResponsiveText.medium(context),
-                                    fontWeight: FontWeight.bold,
-                                    color: MyColors.colorText),
-                              ),
-                            ],
-                          ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    if (!isAccessibilityOn) SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () {
+                        ref
+                            .read(accessibilityProvider.notifier)
+                            .changeAccessibility(
+                                isAccessibilityOn ? false : true);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(6.0),
+                        decoration: BoxDecoration(
+                          color: isAccessibilityOn
+                              ? MyColors.colorText
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.universalAccess,
+                              color: isAccessibilityOn
+                                  ? MyColors.colorBackground
+                                  : MyColors.colorText,
+                              size: 30.0,
+                            ),
+                            Text(
+                              language['orderScreen']['accessibility_text'],
+                              style: TextStyle(
+                                  color: isAccessibilityOn
+                                      ? MyColors.colorBackground
+                                      : MyColors.colorText,
+                                  fontSize: ResponsiveText.medium(context)),
+                            ),
+                          ],
                         ),
                       ),
+                    ),
+                    SizedBox(height: 20),
                   ],
                 ),
-              ),
-              if (!isAccessibilityOn) SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  ref
-                      .read(accessibilityProvider.notifier)
-                      .changeAccessibility(isAccessibilityOn ? false : true);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    color: isAccessibilityOn
-                        ? MyColors.colorText
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(9),
-                  ),
-                  child: Column(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.universalAccess,
-                        color: isAccessibilityOn
-                            ? MyColors.colorBackground
-                            : MyColors.colorText,
-                        size: 30.0,
-                      ),
-                      Text(
-                        language['orderScreen']['accessibility_text'],
-                        style: TextStyle(
-                            color: isAccessibilityOn
-                                ? MyColors.colorBackground
-                                : MyColors.colorText,
-                            fontSize: ResponsiveText.medium(context)),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
+              )
             ],
           ),
         ));
