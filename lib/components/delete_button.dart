@@ -52,8 +52,14 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
                     topLeft: Radius.circular(16))),
             backgroundColor: const Color(0xAAC3ABA4),
             padding: isAccessibilityOn
-                ? EdgeInsets.symmetric(horizontal: 20, vertical: 20)
-                : EdgeInsets.symmetric(horizontal: 40, vertical: 20)),
+                ? EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                    vertical: MediaQuery.of(context).size.width * 0.02,
+                  )
+                : EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.04,
+                    vertical: MediaQuery.of(context).size.width * 0.03,
+                  )),
         onPressed: doExtraExist == true
             ? () {
                 if (isAccessibilityOn) {
@@ -79,7 +85,9 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             fontFamily: GoogleFonts.nunito().fontFamily,
             fontWeight: FontWeight.bold,
             color: MyColors.colorText,
-            fontSize: ResponsiveText.medium(context),
+            fontSize: isAccessibilityOn
+                ? ResponsiveText.large(context)
+                : ResponsiveText.huge(context),
           ),
         ),
       ),
