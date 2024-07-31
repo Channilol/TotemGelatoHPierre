@@ -17,7 +17,7 @@ import 'package:totem/services/utils.dart';
 
 class OrderRecapItem extends ConsumerWidget {
   final ProductItem product;
-  OrderRecapItem({super.key, required this.product});
+  const OrderRecapItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,7 +59,7 @@ class OrderRecapItem extends ConsumerWidget {
             height: raint.maxHeight,
             width: isAccessibilityOn ? 500 : raint.maxWidth,
             decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(blurRadius: 10, color: Color(0x33000000))
                 ],
                 borderRadius: BorderRadius.circular(20),
@@ -129,20 +129,39 @@ class OrderRecapItem extends ConsumerWidget {
                                       backgroundColor: Color(0xCCC3ABA4),
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5)),
-                                  onPressed: () => showDialog(
+                                  onPressed: () {
+                                    if (isAccessibilityOn) {
+                                      showModalBottomSheet(
                                           context: context,
                                           builder: (context) => ExtraPopup(
-                                              rows:
-                                                  ref.read(orderProvider).rows,
-                                              startIndex: order.rows.indexWhere(
-                                                  (element) =>
+                                              rows: order.rows
+                                                  .where((element) =>
                                                       element.productId ==
-                                                      product.productId))).then(
+                                                      product.productId)
+                                                  .toList())).then(
                                         (value) {
                                           if (value == null) return;
                                           orderNotifier.updateVariant(value);
                                         },
-                                      ),
+                                      );
+                                      return;
+                                    }
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => DialogWrapper(
+                                              child: ExtraPopup(
+                                                  rows: order.rows
+                                                      .where((element) =>
+                                                          element.productId ==
+                                                          product.productId)
+                                                      .toList()),
+                                            )).then(
+                                      (value) {
+                                        if (value == null) return;
+                                        orderNotifier.updateVariant(value);
+                                      },
+                                    );
+                                  },
                                   child:
                                       FaIcon(FontAwesomeIcons.pen, size: 15, color: Color(0xFF907676))),
                               FilledButton(
