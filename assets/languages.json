@@ -37,7 +37,8 @@
           "cancel": "Annulla",
           "confirm": "Conferma"
         },
-        "removeItemDialogTitle": "Quale gelato vuoi cancellare?"
+        "removeItemDialogTitle": "Quale gelato vuoi cancellare?",
+        "accessibility_text": "Accessibilità"
       },
       "paymentScreen": {
         "title": "Totale ordine",
@@ -76,6 +77,7 @@
           "add": "Ajouter",
           "cancel": "Annuler"
         },
+        "accessibility_text": "Accessibilité",
         "cancelDialog": {
           "title": "Êtes-vous sûr?",
           "description": "Êtes-vous sûr de vouloir annuler la commande?",
@@ -117,6 +119,7 @@
         "description": "You have chosen {} ice creams",
         "total": "Order Total",
         "payment": "PAY NOW",
+        "accessibility_text": "Accessibility",
         "card": {
           "add": "Add",
           "cancel": "Cancel"

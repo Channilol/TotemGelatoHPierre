@@ -11,7 +11,6 @@ class LanguagePopup extends ConsumerWidget {
     final languageNotifier = ref.read(languageProvider.notifier);
     final languageIndex = ref.watch(languageProvider);
     return DropdownButton<int>(
-      isExpanded: false,
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(5),
         bottomRight: Radius.circular(20),
@@ -21,7 +20,7 @@ class LanguagePopup extends ConsumerWidget {
       value: languageIndex,
       icon: const SizedBox(),
       elevation: 16,
-      style: const TextStyle(color: MyColors.colorText),
+      style: TextStyle(color: MyColors.colorText),
       underline: Container(
         height: 2,
       ),
@@ -34,7 +33,10 @@ class LanguagePopup extends ConsumerWidget {
           DropdownMenuItem<int>(
               alignment: Alignment.center,
               value: i,
-              child: Text(Utils.languages[i]['name']))
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(Utils.languages[i]['name']),
+              ))
       ],
     );
   }
