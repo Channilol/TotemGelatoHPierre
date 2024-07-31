@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:totem/services/my_colors.dart';
 
 class Header extends StatelessWidget {
   final Widget leading;
@@ -13,8 +14,8 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final maxWidth = (MediaQuery.of(context).size.width - 120) / 2;
     return Container(
-        decoration: const BoxDecoration(
-          color: Color(0xFFF1EAE2),
+        decoration: BoxDecoration(
+          color: MyColors.colorContainer,
         ),
         padding: const EdgeInsets.only(bottom: 5),
         //width: double.infinity,

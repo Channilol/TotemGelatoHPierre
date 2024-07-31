@@ -193,64 +193,66 @@ class OrderRecapScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            ref
-                                .read(accessibilityProvider.notifier)
-                                .changeAccessibility(!accessibility);
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FaIcon(FontAwesomeIcons.universalAccess),
-                                SizedBox(
-                                  width: 7.5,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MyColors.colorText,
+                        ),
+                        onPressed: () {
+                          ref
+                              .read(accessibilityProvider.notifier)
+                              .changeAccessibility(!accessibility);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(FontAwesomeIcons.universalAccess),
+                              SizedBox(
+                                width: 7.5,
+                              ),
+                              Text(
+                                language['orderRecapScreen']
+                                    ['accessibility_text'],
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: MyColors.colorBackground,
                                 ),
-                                Text(
-                                  language['orderRecapScreen']
-                                      ['accessibility_text'],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: MyColors.colorBackground,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: FilledButton(
-                          style: FilledButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(30),
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(10))),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 25),
-                              backgroundColor: MyColors.colorText),
-                          onPressed: order.rows.isNotEmpty
-                              ? () =>
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => PaymentScreen(),
-                                  ))
-                              : null,
-                          child: Text(
-                            language['orderRecapScreen']['payment'],
-                            style: TextStyle(
-                              color: MyColors.colorBackground,
-                              fontSize: ResponsiveText.huge(context),
-                            ),
+                      FilledButton(
+                        style: FilledButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(10))),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 25),
+                            backgroundColor: MyColors.colorText),
+                        onPressed: order.rows.isNotEmpty
+                            ? () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PaymentScreen(),
+                                ))
+                            : null,
+                        child: Text(
+                          language['orderRecapScreen']['payment'],
+                          style: TextStyle(
+                            color: MyColors.colorBackground,
+                            fontSize: ResponsiveText.huge(context),
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.15,
                       ),
                       Expanded(child: Spacer()),
                     ],
@@ -305,6 +307,9 @@ class OrderRecapScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MyColors.colorText,
+                        ),
                         onPressed: () {
                           ref
                               .read(accessibilityProvider.notifier)
