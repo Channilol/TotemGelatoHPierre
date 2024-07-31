@@ -54,7 +54,7 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
           double maxHeight = constraints.maxHeight;
           double maxWidth = constraints.maxWidth;
           return Container(
-            height: maxHeight * 0.7,
+            height: maxHeight * 0.4,
             width: maxWidth * 0.7,
             decoration: BoxDecoration(
               color: MyColors.colorBackground,

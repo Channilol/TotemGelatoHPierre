@@ -16,10 +16,12 @@ class DeleteButton extends ConsumerStatefulWidget {
     super.key,
     required this.orderNotifier,
     required this.product,
+    this.isRecap = false,
   });
 
   final OrderProvider orderNotifier;
   final ProductItem product;
+  final bool isRecap;
 
   @override
   ConsumerState<DeleteButton> createState() => _DeleteButtonState();
@@ -53,12 +55,16 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             backgroundColor: const Color(0xAAC3ABA4),
             padding: isAccessibilityOn
                 ? EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.02,
-                    vertical: MediaQuery.of(context).size.width * 0.02,
+                    horizontal: MediaQuery.of(context).size.width *
+                        (widget.isRecap ? 0.005 : 0.02),
+                    vertical: MediaQuery.of(context).size.width *
+                        (widget.isRecap ? 0.02 : 0.02),
                   )
                 : EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.04,
-                    vertical: MediaQuery.of(context).size.width * 0.03,
+                    horizontal: MediaQuery.of(context).size.width *
+                        (widget.isRecap ? 0.005 : 0.04),
+                    vertical: MediaQuery.of(context).size.width *
+                        (widget.isRecap ? 0.02 : 0.02),
                   )),
         onPressed: doExtraExist == true
             ? () {
@@ -86,8 +92,12 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             fontWeight: FontWeight.bold,
             color: MyColors.colorText,
             fontSize: isAccessibilityOn
-                ? ResponsiveText.large(context)
-                : ResponsiveText.huge(context),
+                ? widget.isRecap
+                    ? ResponsiveText.small(context)
+                    : ResponsiveText.medium(context)
+                : widget.isRecap
+                    ? ResponsiveText.medium(context)
+                    : ResponsiveText.large(context),
           ),
         ),
       ),
