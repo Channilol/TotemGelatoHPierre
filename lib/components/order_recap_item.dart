@@ -47,11 +47,11 @@ class OrderRecapItem extends ConsumerWidget {
         position: badges.BadgePosition.topEnd(end: 0, top: -15),
         badgeStyle: badges.BadgeStyle(
             badgeColor: Colors.green,
-            borderSide: BorderSide(color: Colors.white)),
+            borderSide: BorderSide(color: MyColors.colorBackground)),
         badgeContent: Text(
             orderNotifier.getItemCount(product.productId).toString(),
             style: TextStyle(
-                color: Colors.white,
+                color: MyColors.colorBackground,
                 fontWeight: FontWeight.bold,
                 fontSize: ResponsiveText.medium(context))),
         child: LayoutBuilder(builder: (context, raint) {
@@ -113,7 +113,7 @@ class OrderRecapItem extends ConsumerWidget {
                                   language['orderRecapScreen']['card']['add'],
                                   style: TextStyle(
                                       fontSize: ResponsiveText.large(context),
-                                      color: Colors.white),
+                                      color: MyColors.colorBackground),
                                 )),
                           ),
                           SizedBox(height: 10),

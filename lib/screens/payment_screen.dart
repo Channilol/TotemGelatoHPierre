@@ -162,9 +162,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                         Text(
                           Utils.languages[languageIndex]['paymentScreen']
                               ['button'],
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
-                            color: Colors.white,
+                            color: MyColors.colorBackground,
                           ),
                         ),
                       ],
@@ -205,7 +205,7 @@ class BackButton extends StatelessWidget {
                     bottomRight: Radius.circular(20),
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(5))),
-            backgroundColor: Colors.white),
+            backgroundColor: MyColors.colorBackground),
         onPressed: () => Navigator.pop(context),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

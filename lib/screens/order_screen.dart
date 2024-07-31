@@ -34,8 +34,8 @@ class OrderScreen extends ConsumerWidget {
                       margin: const EdgeInsets.all(10),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
+                      decoration: BoxDecoration(
+                          color: MyColors.colorBackground,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(20),

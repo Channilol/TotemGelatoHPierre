@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 //CLASSE UTIL DEI COLORI DI FRANCESCO CANNIZZO
 
 class MyColors {
-  static Color colorBackground = Colors.white;
+  static Color colorBackground = MyColors.colorBackground;
   static Color colorContainer = Color(0xFF000000);
   static Color colorText = Color(0xFF000000);
   static Color colorSecondary = Color(0xFF000000);
