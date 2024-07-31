@@ -38,7 +38,7 @@ class ProductCard extends ConsumerWidget {
           borderRadius: isAccessibilityOn
               ? BorderRadius.all(Radius.circular(20))
               : BorderRadius.horizontal(left: Radius.circular(20)),
-          color: Color(0xFFF1EAE2),
+          color: MyColors.colorContainer,
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
