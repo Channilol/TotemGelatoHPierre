@@ -126,7 +126,7 @@ class OrderRecapItem extends ConsumerWidget {
                                           borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(5),
                                               topLeft: Radius.circular(20))),
-                                      backgroundColor: MyColors.colorText,
+                                      backgroundColor: MyColors.colorSecondary,
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5)),
                                   onPressed: () {
