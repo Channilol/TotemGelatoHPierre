@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class LanguagePopup extends ConsumerWidget {
@@ -20,7 +21,8 @@ class LanguagePopup extends ConsumerWidget {
       value: languageIndex,
       icon: const SizedBox(),
       elevation: 16,
-      style: TextStyle(color: MyColors.colorText),
+      style: TextStyle(
+          color: MyColors.colorText, fontSize: ResponsiveText.medium(context)),
       underline: Container(
         height: 2,
       ),
