@@ -10,6 +10,8 @@ import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 
 class ProductCard extends ConsumerWidget {
   final ProductItem product;
@@ -65,10 +67,53 @@ class ProductCard extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontFamily: GoogleFonts.courgette().fontFamily,
-                              fontSize: 40,
+                              fontSize: ResponsiveText.huge(context),
                               fontWeight: FontWeight.bold,
-                              color: const Color(0xFF907676)),
+                              color: MyColors.colorText),
                         ),
+                      ),
+                      InactivityTimer(
+                        child: IconButton(
+                            onPressed: productCount > 0
+                                ? () {
+                                    if (isAccessibilityOn) {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) => ExtraPopup(
+                                              rows: order.rows
+                                                  .where((element) =>
+                                                      element.productId ==
+                                                      product.productId)
+                                                  .toList())).then(
+                                        (value) {
+                                          if (value == null) return;
+                                          orderNotifier.updateVariant(value);
+                                        },
+                                      );
+                                      return;
+                                    }
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => DialogWrapper(
+                                              child: ExtraPopup(
+                                                  rows: order.rows
+                                                      .where((element) =>
+                                                          element.productId ==
+                                                          product.productId)
+                                                      .toList()),
+                                            )).then(
+                                      (value) {
+                                        if (value == null) return;
+                                        orderNotifier.updateVariant(value);
+                                      },
+                                    );
+                                  }
+                                : null,
+                            icon: FaIcon(FontAwesomeIcons.pen,
+                                size: 15,
+                                color: productCount > 0
+                                    ? MyColors.colorText
+                                    : Colors.grey)),
                       ),
                     ],
                   ),
@@ -76,8 +121,7 @@ class ProductCard extends ConsumerWidget {
                   Text(
                     product.description,
                     softWrap: true,
-                    style: const TextStyle(
-                        color: Color(0xFF907676), fontSize: 25.0),
+                    style: TextStyle(color: MyColors.colorText),
                   ),
                   const Spacer(),
                   Padding(

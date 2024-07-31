@@ -11,6 +11,7 @@ import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class OrderRecapItem extends ConsumerWidget {
@@ -86,7 +87,7 @@ class OrderRecapItem extends ConsumerWidget {
                             style: TextStyle(
                                 fontFamily: GoogleFonts.courgette().fontFamily,
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFF907676)),
+                                color: MyColors.colorText),
                           ),
                           const Spacer(),
                           Align(
@@ -99,7 +100,7 @@ class OrderRecapItem extends ConsumerWidget {
                                             bottomRight: Radius.circular(20),
                                             topLeft: Radius.circular(20),
                                             topRight: Radius.circular(5))),
-                                    backgroundColor: const Color(0xFF907676),
+                                    backgroundColor: MyColors.colorText,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10)),
                                 onPressed: () =>
@@ -159,8 +160,8 @@ class OrderRecapItem extends ConsumerWidget {
                                           orderNotifier
                                               .removeItem(product.productId);
                                         },
-                                  child: const FaIcon(FontAwesomeIcons.trash,
-                                      size: 15, color: Color(0xFF907676))),
+                                  child: FaIcon(FontAwesomeIcons.trash,
+                                      size: 15, color: MyColors.colorText)),
                             ],
                           ),
                         ],

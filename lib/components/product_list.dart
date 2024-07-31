@@ -96,11 +96,10 @@ class ProductList extends ConsumerWidget {
                             value: Utils.getTotalPrice(order.rows),
                             prefix: "€ ",
                             fractionDigits: 2,
-                            textStyle: const TextStyle(
-                              color: Color(0xFF907676),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
+                            textStyle: TextStyle(
+                                color: MyColors.colorText,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           )
                         ],
                       ),

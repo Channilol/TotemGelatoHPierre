@@ -84,7 +84,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                               style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF907676)),
+                                  color: MyColors.colorText),
                             ),
                           ],
                         ),

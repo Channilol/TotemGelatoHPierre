@@ -8,6 +8,7 @@ import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class DeleteButton extends ConsumerStatefulWidget {
@@ -79,8 +80,8 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
                 style: TextStyle(
                     fontFamily: GoogleFonts.nunito().fontFamily,
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF907676),
-                    fontSize: 20))),
+                    color: MyColors.colorText,
+                    fontSize: 10))),
       ),
     );
   }

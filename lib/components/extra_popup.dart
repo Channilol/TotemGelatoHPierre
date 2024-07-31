@@ -4,6 +4,7 @@ import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/language_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class ExtraPopup extends ConsumerStatefulWidget {
@@ -44,8 +45,8 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                 onPressed: currentItem > 0
                     ? () => setState(() => currentItem--)
                     : null,
-                icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                    color: Color(0xFF907676))),
+                icon: Icon(Icons.arrow_back_ios_new_rounded,
+                    color: MyColors.colorText)),
             Column(
               children: [
                 if (currentProduct.image != null)
@@ -67,8 +68,8 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                 onPressed: currentItem < rows.length - 1
                     ? () => setState(() => currentItem++)
                     : null,
-                icon: const Icon(Icons.arrow_forward_ios_rounded,
-                    color: Color(0xFF907676))),
+                icon: Icon(Icons.arrow_forward_ios_rounded,
+                    color: MyColors.colorText)),
           ]),
           Expanded(
               child: currentProduct.extras == null
@@ -97,7 +98,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                   onPressed: () => Navigator.pop(context),
                   child: Text(
                     language['orderScreen']['modal_button_remove'],
-                    style: TextStyle(fontSize: 12, color: Color(0xFF907676)),
+                    style: TextStyle(fontSize: 12, color: MyColors.colorText),
                   )),
               const SizedBox(width: 20),
               FilledButton(
@@ -108,7 +109,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                               bottomRight: Radius.circular(20),
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(5))),
-                      backgroundColor: const Color(0xFF907676),
+                      backgroundColor: MyColors.colorText,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10)),
                   onPressed: () => Navigator.pop(context, rows),
@@ -135,7 +136,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
               autofocus: true,
               inactiveThumbColor: const Color(0xFFC3ABA4),
               inactiveTrackColor: const Color(0xFFF1EAE2),
-              activeColor: const Color(0xFF907676),
+              activeColor: MyColors.colorText,
               value: rows[currentItem]
                   .extras!
                   .any((element) => element.extraId == extra.extraId),
