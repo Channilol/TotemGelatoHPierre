@@ -87,10 +87,10 @@ class ProductCard extends ConsumerWidget {
                       color: MyColors.colorText,
                       fontSize: isAccessibilityOn
                           ? isRecap
-                              ? ResponsiveText.medium(context)
+                              ? ResponsiveText.medium(context) - 5
                               : ResponsiveText.large(context)
                           : isRecap
-                              ? ResponsiveText.large(context) - 5
+                              ? ResponsiveText.large(context) - 10
                               : ResponsiveText.huge(context) - 5,
                     ),
                   ),

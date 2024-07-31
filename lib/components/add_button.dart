@@ -59,15 +59,15 @@ class AddButton extends ConsumerWidget {
             padding: isAccessibilityOn
                 ? EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width *
-                        (isRecap ? 0.005 : 0.02),
+                        (isRecap ? 0.0005 : 0.015),
                     vertical: MediaQuery.of(context).size.width *
-                        (isRecap ? 0.0025 : 0.01),
+                        (isRecap ? 0.0025 : 0.005),
                   )
                 : EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width *
-                        (isRecap ? 0.01 : 0.04),
+                        (isRecap ? 0.003 : 0.035),
                     vertical: MediaQuery.of(context).size.width *
-                        (isRecap ? 0.005 : 0.02),
+                        (isRecap ? 0.005 : 0.015),
                   ),
             child: Column(
               children: [

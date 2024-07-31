@@ -70,15 +70,39 @@ class OrderRecapScreen extends ConsumerWidget {
                       color: MyColors.colorText,
                       fontWeight: FontWeight.bold),
                 ),
+                !accessibility
+                    ? SizedBox()
+                    : Text(
+                        language['orderRecapScreen']['total'],
+                        style: TextStyle(
+                            fontFamily: GoogleFonts.courgette().fontFamily,
+                            fontSize: ResponsiveText.title(context),
+                            color: MyColors.colorSecondary,
+                            fontWeight: FontWeight.bold),
+                      ),
+                !accessibility
+                    ? SizedBox()
+                    : AnimatedFlipCounter(
+                        prefix: "€ ",
+                        fractionDigits: 2,
+                        value: Utils.getTotalPrice(order.rows),
+                        textStyle: TextStyle(
+                            fontSize: ResponsiveText.title(context),
+                            color: MyColors.colorText,
+                            fontWeight: FontWeight.bold),
+                      ),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
                     child: GridView.builder(
+                      scrollDirection:
+                          accessibility ? Axis.horizontal : Axis.vertical,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 30,
-                          childAspectRatio: 1.5,
-                          crossAxisSpacing: 10),
+                        crossAxisCount: accessibility ? 1 : 2,
+                        mainAxisSpacing: accessibility ? 1 : 30,
+                        childAspectRatio: accessibility ? 0.65 : 1.5,
+                        crossAxisSpacing: accessibility ? 1 : 10,
+                      ),
                       itemCount: totalProducts.length,
                       itemBuilder: (context, index) => ProductCard(
                         product: totalProducts[index],
@@ -87,23 +111,27 @@ class OrderRecapScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-                Text(
-                  language['orderRecapScreen']['total'],
-                  style: TextStyle(
-                      fontFamily: GoogleFonts.courgette().fontFamily,
-                      fontSize: ResponsiveText.title(context),
-                      color: MyColors.colorSecondary,
-                      fontWeight: FontWeight.bold),
-                ),
-                AnimatedFlipCounter(
-                  prefix: "€ ",
-                  fractionDigits: 2,
-                  value: Utils.getTotalPrice(order.rows),
-                  textStyle: TextStyle(
-                      fontSize: ResponsiveText.title(context),
-                      color: MyColors.colorText,
-                      fontWeight: FontWeight.bold),
-                ),
+                accessibility
+                    ? SizedBox()
+                    : Text(
+                        language['orderRecapScreen']['total'],
+                        style: TextStyle(
+                            fontFamily: GoogleFonts.courgette().fontFamily,
+                            fontSize: ResponsiveText.title(context),
+                            color: MyColors.colorSecondary,
+                            fontWeight: FontWeight.bold),
+                      ),
+                accessibility
+                    ? SizedBox()
+                    : AnimatedFlipCounter(
+                        prefix: "€ ",
+                        fractionDigits: 2,
+                        value: Utils.getTotalPrice(order.rows),
+                        textStyle: TextStyle(
+                            fontSize: ResponsiveText.title(context),
+                            color: MyColors.colorText,
+                            fontWeight: FontWeight.bold),
+                      ),
                 accessibility
                     ? SizedBox(
                         height: 10,

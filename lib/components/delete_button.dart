@@ -94,10 +94,10 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             fontSize: isAccessibilityOn
                 ? widget.isRecap
                     ? ResponsiveText.small(context)
-                    : ResponsiveText.large(context)
+                    : ResponsiveText.medium(context)
                 : widget.isRecap
                     ? ResponsiveText.medium(context)
-                    : ResponsiveText.huge(context),
+                    : ResponsiveText.large(context),
           ),
         ),
       ),
