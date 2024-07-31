@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/extra_item.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
@@ -35,55 +34,53 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
       extrasString = extraString.substring(0, extraString.length - 2);
     }
 
-    return InactivityTimer(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.07,
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.07,
+      padding: EdgeInsets.symmetric(
+        horizontal: 30.0,
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      decoration: BoxDecoration(
+        color: MyColors.colorContainer,
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(16),
+          topLeft: Radius.circular(16),
         ),
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        decoration: BoxDecoration(
-          color: MyColors.colorContainer,
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(16),
-            topLeft: Radius.circular(16),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.product.name,
+                style: TextStyle(fontSize: ResponsiveText.huge(context)),
+              ),
+              Text(
+                'Extra: ${widget.orderRow.extras!.isEmpty ? 'No' : extrasString}',
+                style: TextStyle(fontSize: ResponsiveText.large(context)),
+              ),
+            ],
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.product.name,
-                  style: TextStyle(fontSize: ResponsiveText.huge(context)),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  ref
+                      .read(orderProvider.notifier)
+                      .removeOrder(widget.orderRow.rowId);
+                },
+                icon: Icon(
+                  FontAwesomeIcons.trash,
+                  color: MyColors.colorText,
                 ),
-                Text(
-                  'Extra: ${widget.orderRow.extras!.isEmpty ? 'No' : extrasString}',
-                  style: TextStyle(fontSize: ResponsiveText.large(context)),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    ref
-                        .read(orderProvider.notifier)
-                        .removeOrder(widget.orderRow.rowId);
-                  },
-                  icon: Icon(
-                    FontAwesomeIcons.trash,
-                    color: MyColors.colorText,
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
