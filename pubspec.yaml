@@ -44,6 +44,8 @@ dependencies:
   badges: ^3.1.2
   intl: any
   lottie: ^3.1.2
+  fullscreen: ^1.0.3
+  window_manager: ^0.3.9
 
 dev_dependencies:
   flutter_test:
