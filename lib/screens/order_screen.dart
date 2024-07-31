@@ -48,14 +48,14 @@ class OrderScreen extends ConsumerWidget {
                           suffix:
                               " ${language['orderScreen']['button_top_left']}",
                           textStyle: TextStyle(
-                              fontSize: ResponsiveText.small(context)),
+                              fontSize: ResponsiveText.medium(context)),
                         ),
                         AnimatedFlipCounter(
                           value: Utils.getTotalPrice(order.rows),
                           prefix: "€ ",
                           fractionDigits: 2,
                           textStyle: TextStyle(
-                              fontSize: ResponsiveText.tiny(context),
+                              fontSize: ResponsiveText.medium(context),
                               color: MyColors.colorText,
                               fontWeight: FontWeight.bold),
                         )
@@ -91,13 +91,13 @@ class OrderScreen extends ConsumerWidget {
                           Text(language['orderScreen']['button_top_right_1'],
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: ResponsiveText.small(context))),
+                                  fontSize: ResponsiveText.medium(context))),
                           Text(
                             language['orderScreen']['button_top_right_2'],
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: ResponsiveText.tiny(context)),
+                                fontSize: ResponsiveText.medium(context)),
                           )
                         ],
                       ),
