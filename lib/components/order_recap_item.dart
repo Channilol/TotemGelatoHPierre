@@ -162,8 +162,8 @@ class OrderRecapItem extends ConsumerWidget {
                                       },
                                     );
                                   },
-                                  child:
-                                      FaIcon(FontAwesomeIcons.pen, size: 15, color: Color(0xFF907676))),
+                                  child: FaIcon(FontAwesomeIcons.pen,
+                                      size: 15, color: Color(0xFF907676))),
                               FilledButton(
                                   style: FilledButton.styleFrom(
                                       shape: RoundedRectangleBorder(
@@ -177,8 +177,9 @@ class OrderRecapItem extends ConsumerWidget {
                                       ? () {
                                           showDialog(
                                             context: context,
-                                            builder: (context) =>
-                                                DeletePopup(product: product),
+                                            builder: (context) => Dialog(
+                                                child: DeletePopup(
+                                                    product: product)),
                                           );
                                         }
                                       : () {
