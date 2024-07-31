@@ -60,8 +60,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                       Container(
                         width: 140,
                         height: 140,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFF1EAE2),
+                        decoration: BoxDecoration(
+                          color: MyColors.colorContainer,
                           borderRadius: BorderRadius.vertical(
                             bottom: Radius.circular(500),
                             top: Radius.circular(500),
@@ -197,7 +197,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             ],
           ),
         ),
-      ),     
+      ),
     );
   }
 }

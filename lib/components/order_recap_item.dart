@@ -63,7 +63,7 @@ class OrderRecapItem extends ConsumerWidget {
                   BoxShadow(blurRadius: 10, color: Color(0x33000000))
                 ],
                 borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFF1EAE2)),
+                color: MyColors.colorContainer),
             child: Row(
               //direction: Axis.horizontal,
               children: [
@@ -126,7 +126,7 @@ class OrderRecapItem extends ConsumerWidget {
                                           borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(5),
                                               topLeft: Radius.circular(20))),
-                                      backgroundColor: Color(0xCCC3ABA4),
+                                      backgroundColor: MyColors.colorText,
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5)),
                                   onPressed: () {
@@ -163,14 +163,14 @@ class OrderRecapItem extends ConsumerWidget {
                                     );
                                   },
                                   child: FaIcon(FontAwesomeIcons.pen,
-                                      size: 15, color: Color(0xFF907676))),
+                                      size: 15, color: MyColors.colorText)),
                               FilledButton(
                                   style: FilledButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                               bottomRight: Radius.circular(20),
                                               topRight: Radius.circular(5))),
-                                      backgroundColor: Color(0x55C3ABA4),
+                                      backgroundColor: MyColors.colorSecondary,
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10)),
                                   onPressed: doExtraExist == true

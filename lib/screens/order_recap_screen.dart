@@ -194,6 +194,9 @@ class OrderRecapScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MyColors.colorText,
+                        ),
                         onPressed: () {
                           ref
                               .read(accessibilityProvider.notifier)
@@ -303,6 +306,9 @@ class OrderRecapScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MyColors.colorText,
+                        ),
                         onPressed: () {
                           ref
                               .read(accessibilityProvider.notifier)
