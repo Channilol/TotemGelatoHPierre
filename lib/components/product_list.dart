@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:totem/components/animated_filp_number.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/product_card.dart';
@@ -20,6 +21,9 @@ class ProductList extends ConsumerWidget {
     final order = ref.watch(orderProvider);
     final language = Utils.languages[ref.watch(languageProvider)];
     final isAccessibilityOn = ref.watch(accessibilityProvider);
+    final filteredProduct = Utils.products
+        .where((product) => product.categoryId == currentCategory.categoryId)
+        .toList();
     return Column(
       children: [
         isAccessibilityOn
@@ -30,18 +34,24 @@ class ProductList extends ConsumerWidget {
         Expanded(
           child: Stack(
             children: [
-              ListView(
-                scrollDirection:
-                    isAccessibilityOn ? Axis.horizontal : Axis.vertical,
-                children: [
-                  ...Utils.products
-                      .where((product) =>
-                          product.categoryId == currentCategory.categoryId)
-                      .map((product) => ProductCard(product: product)),
-                  const SizedBox(
-                    height: 50,
-                  )
-                ],
+              AnimationLimiter(
+                child: ListView(
+                  scrollDirection:
+                      isAccessibilityOn ? Axis.horizontal : Axis.vertical,
+                  children: [
+                    for (int i = 0; i < filteredProduct.length; i++)
+                      AnimationConfiguration.staggeredList(
+                          position: i,
+                          child: SlideAnimation(
+                              duration: const Duration(seconds: 1),
+                              verticalOffset: isAccessibilityOn ? 0 : 500,
+                              horizontalOffset: isAccessibilityOn ? 500 : 0,
+                              child: ProductCard(product: filteredProduct[i]))),
+                    const SizedBox(
+                      height: 50,
+                    )
+                  ],
+                ),
               ),
               isAccessibilityOn
                   ? SizedBox()
