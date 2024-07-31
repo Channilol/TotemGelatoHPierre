@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class LanguagePopup extends ConsumerWidget {
@@ -35,7 +36,10 @@ class LanguagePopup extends ConsumerWidget {
               value: i,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(Utils.languages[i]['name']),
+                child: Text(
+                  Utils.languages[i]['name'],
+                  style: TextStyle(fontSize: ResponsiveText.large(context)),
+                ),
               ))
       ],
     );

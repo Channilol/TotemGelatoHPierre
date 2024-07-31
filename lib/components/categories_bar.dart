@@ -7,6 +7,7 @@ import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/category_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class CategoriesBar extends ConsumerStatefulWidget {
@@ -81,7 +82,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                             Text(
                               Utils.categories[i].name,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: ResponsiveText.medium(context),
                                   fontWeight: FontWeight.bold,
                                   color: MyColors.colorText),
                             ),
@@ -125,7 +126,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                             color: isAccessibilityOn
                                 ? Colors.white
                                 : Color(0xFF907676),
-                            fontSize: 20),
+                            fontSize: ResponsiveText.medium(context)),
                       ),
                     ],
                   ),
