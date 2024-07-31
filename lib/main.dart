@@ -16,13 +16,13 @@ late ThemeData theme;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  /* SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky); */
   final stringa = await rootBundle.loadString("assets/appainter_theme.json");
   final jsonCode = jsonDecode(stringa);
   theme = ThemeDecoder.decodeThemeData(jsonCode) ?? ThemeData();
   // await FullScreen.enterFullScreen(FullScreenMode.EMERSIVE_STICKY);
-  await WindowManager.instance.setFullScreen(true);
-  await WindowManager.instance.setClosable(false);
+  /* await WindowManager.instance.setFullScreen(true);
+  await WindowManager.instance.setClosable(false); */
   await Utils.init();
   await MyColors.initColors();
   await ResponsiveText.init();
