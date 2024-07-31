@@ -8,6 +8,7 @@ import 'package:totem/providers/inactivity_timer_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/screens/order_screen.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -100,7 +101,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                           language['splashScreen']['title'][0].toString(),
                           style: GoogleFonts.hankenGrotesk(
                             color: MyColors.colorText,
-                            fontSize: 50.0,
+                            fontSize: ResponsiveText.title(context),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -112,7 +113,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                               style: GoogleFonts.hankenGrotesk(
                                 color: MyColors.colorText,
                                 height: 0,
-                                fontSize: 55.0,
+                                fontSize: ResponsiveText.title(context),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -121,7 +122,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                               style: GoogleFonts.courgette(
                                 color: MyColors.colorText,
                                 height: 0,
-                                fontSize: 55.0,
+                                fontSize: ResponsiveText.title(context),
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline,
                                 decorationColor: MyColors.colorText,
@@ -159,7 +160,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                     style: GoogleFonts.hankenGrotesk(
                                       color: MyColors.colorText,
                                       height: 0,
-                                      fontSize: 18.0,
+                                      fontSize: ResponsiveText.huge(context),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -168,7 +169,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                     style: GoogleFonts.courgette(
                                       height: 0,
                                       color: MyColors.colorText,
-                                      fontSize: 27.0,
+                                      fontSize: ResponsiveText.huge(context),
                                       fontWeight: FontWeight.bold,
                                       decoration: TextDecoration.underline,
                                       decorationColor: MyColors.colorText,
