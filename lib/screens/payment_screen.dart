@@ -26,6 +26,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
     final order = ref.watch(orderProvider);
     final isAccessibility = ref.watch(accessibilityProvider);
     final languageIndex = ref.watch(languageProvider);
+
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
@@ -72,8 +75,12 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 children: [
                   ClipRRect(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.width * 0.4,
+                      width: deviceWidth < deviceHeight
+                          ? deviceWidth * 0.4
+                          : deviceHeight * 0.4,
+                      height: deviceWidth < deviceHeight
+                          ? deviceWidth * 0.4
+                          : deviceHeight * 0.4,
                       decoration: BoxDecoration(
                         color: MyColors.colorContainer,
                         borderRadius: BorderRadius.circular(24.0),
@@ -90,8 +97,12 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 children: [
                   ClipRRect(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.width * 0.4,
+                      width: deviceWidth < deviceHeight
+                          ? deviceWidth * 0.4
+                          : deviceHeight * 0.4,
+                      height: deviceWidth < deviceHeight
+                          ? deviceWidth * 0.4
+                          : deviceHeight * 0.4,
                       decoration: BoxDecoration(
                         color: MyColors.colorContainer,
                         borderRadius: BorderRadius.circular(24.0),

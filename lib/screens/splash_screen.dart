@@ -26,6 +26,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (language.isEmpty) {
       language = ref.watch(languageProvider);
     }
+
     return GestureDetector(
       onTap: () {
         ref.read(inactivityTimerProvider).resetInactivityTimer(context);
