@@ -9,6 +9,7 @@ class ResponsiveText {
   static List<double> _medium = [];
   static List<double> _large = [];
   static List<double> _huge = [];
+  static List<double> _title = [];
 
   static Future<void> init() async {
     final data = await rootBundle.loadString("assets/theme.json");
@@ -28,6 +29,9 @@ class ResponsiveText {
         .map((e) => double.parse(e.toString()))
         .toList();
     _huge = (jsonData['huge'] as List<dynamic>)
+        .map((e) => double.parse(e.toString()))
+        .toList();
+    _title = (jsonData['title'] as List<dynamic>)
         .map((e) => double.parse(e.toString()))
         .toList();
   }
@@ -50,6 +54,10 @@ class ResponsiveText {
 
   static double huge(BuildContext context) {
     return _huge[_index(context)];
+  }
+
+  static double title(BuildContext context) {
+    return _title[_index(context)];
   }
 
   static int _index(BuildContext context) {

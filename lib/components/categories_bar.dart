@@ -81,7 +81,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                             ),
                             Text(
                               Utils.categories[i].name,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: MyColors.colorText),
