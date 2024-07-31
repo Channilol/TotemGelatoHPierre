@@ -7,6 +7,7 @@ import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class DeletePopupItem extends ConsumerStatefulWidget {
@@ -57,10 +58,12 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
               children: [
                 Text(
                   widget.product.name,
-                  style: TextStyle(fontSize: 20.0),
+                  style: TextStyle(fontSize: ResponsiveText.huge(context)),
                 ),
                 Text(
-                    'Extra: ${widget.orderRow.extras!.isEmpty ? 'No' : extrasString}'),
+                  'Extra: ${widget.orderRow.extras!.isEmpty ? 'No' : extrasString}',
+                  style: TextStyle(fontSize: ResponsiveText.large(context)),
+                ),
               ],
             ),
             Column(
