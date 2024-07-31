@@ -14,7 +14,8 @@ import 'package:totem/services/text.dart';
 
 class ProductCard extends ConsumerWidget {
   final ProductItem product;
-  const ProductCard({super.key, required this.product});
+  final bool isRecap;
+  const ProductCard({super.key, required this.product, this.isRecap = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,14 +29,14 @@ class ProductCard extends ConsumerWidget {
 
     return Container(
         height: cardHeight,
-        width: isAccessibilityOn
+        width: isAccessibilityOn || isRecap
             ? MediaQuery.of(context).size.width * 0.6
             : double.infinity,
         margin: isAccessibilityOn
             ? EdgeInsets.only(right: 10, bottom: 10)
             : EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          borderRadius: isAccessibilityOn
+          borderRadius: isAccessibilityOn || isRecap
               ? BorderRadius.all(Radius.circular(20))
               : BorderRadius.horizontal(left: Radius.circular(20)),
           color: MyColors.colorContainer,
@@ -69,7 +70,7 @@ class ProductCard extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontFamily: GoogleFonts.courgette().fontFamily,
-                              fontSize: isAccessibilityOn
+                              fontSize: isAccessibilityOn || isRecap
                                   ? ResponsiveText.huge(context)
                                   : ResponsiveText.title(context),
                               fontWeight: FontWeight.bold,
@@ -83,10 +84,15 @@ class ProductCard extends ConsumerWidget {
                     product.description,
                     softWrap: true,
                     style: TextStyle(
-                        color: MyColors.colorText,
-                        fontSize: isAccessibilityOn
-                            ? ResponsiveText.large(context)
-                            : ResponsiveText.huge(context) - 5),
+                      color: MyColors.colorText,
+                      fontSize: isAccessibilityOn
+                          ? isRecap
+                              ? ResponsiveText.medium(context)
+                              : ResponsiveText.large(context)
+                          : isRecap
+                              ? ResponsiveText.large(context) - 5
+                              : ResponsiveText.huge(context) - 5,
+                    ),
                   ),
                   const Spacer(),
                   Padding(
@@ -137,26 +143,31 @@ class ProductCard extends ConsumerWidget {
                                 icon: FaIcon(FontAwesomeIcons.pen,
                                     size: isAccessibilityOn
                                         ? MediaQuery.of(context).size.width *
-                                            0.03
+                                            (isRecap ? 0.02 : 0.03)
                                         : MediaQuery.of(context).size.width *
-                                            0.04,
+                                            (isRecap ? 0.025 : 0.04),
                                     color: productCount > 0
                                         ? const Color(0xFF907676)
                                         : Colors.grey))
                             : SizedBox(),
                         productCount > 0
                             ? SizedBox(
-                                width: 20,
+                                width: isRecap ? 0 : 20,
                               )
                             : SizedBox(),
                         productCount > 0
                             ? DeleteButton(
-                                orderNotifier: orderNotifier, product: product)
+                                orderNotifier: orderNotifier,
+                                product: product,
+                                isRecap: isRecap ? true : false,
+                              )
                             : SizedBox(),
                         AddButton(
-                            productCount: productCount,
-                            orderNotifier: orderNotifier,
-                            product: product),
+                          productCount: productCount,
+                          orderNotifier: orderNotifier,
+                          product: product,
+                          isRecap: isRecap ? true : false,
+                        ),
                       ],
                     ),
                   )

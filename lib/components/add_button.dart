@@ -15,11 +15,13 @@ class AddButton extends ConsumerWidget {
     required this.productCount,
     required this.orderNotifier,
     required this.product,
+    this.isRecap = false,
   });
 
   final int productCount;
   final OrderProvider orderNotifier;
   final ProductItem product;
+  final bool isRecap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,12 +58,16 @@ class AddButton extends ConsumerWidget {
           child: Container(
             padding: isAccessibilityOn
                 ? EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.02,
-                    vertical: MediaQuery.of(context).size.width * 0.01,
+                    horizontal: MediaQuery.of(context).size.width *
+                        (isRecap ? 0.005 : 0.02),
+                    vertical: MediaQuery.of(context).size.width *
+                        (isRecap ? 0.0025 : 0.01),
                   )
                 : EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.04,
-                    vertical: MediaQuery.of(context).size.width * 0.02,
+                    horizontal: MediaQuery.of(context).size.width *
+                        (isRecap ? 0.01 : 0.04),
+                    vertical: MediaQuery.of(context).size.width *
+                        (isRecap ? 0.005 : 0.02),
                   ),
             child: Column(
               children: [
@@ -69,8 +75,12 @@ class AddButton extends ConsumerWidget {
                   "€ ${product.price.toStringAsFixed(2)}",
                   style: TextStyle(
                       fontSize: isAccessibilityOn
-                          ? ResponsiveText.large(context)
-                          : ResponsiveText.huge(context),
+                          ? isRecap
+                              ? ResponsiveText.medium(context)
+                              : ResponsiveText.large(context)
+                          : isRecap
+                              ? ResponsiveText.large(context)
+                              : ResponsiveText.huge(context),
                       fontWeight: FontWeight.bold,
                       color: MyColors.colorBackground),
                 ),
@@ -79,8 +89,12 @@ class AddButton extends ConsumerWidget {
                   style: TextStyle(
                     color: MyColors.colorBackground,
                     fontSize: isAccessibilityOn
-                        ? ResponsiveText.large(context)
-                        : ResponsiveText.huge(context),
+                        ? isRecap
+                            ? ResponsiveText.medium(context)
+                            : ResponsiveText.large(context)
+                        : isRecap
+                            ? ResponsiveText.large(context)
+                            : ResponsiveText.huge(context),
                   ),
                 )
               ],
