@@ -186,7 +186,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                         ),
                                         Text(
                                           language['splashScreen']
-                                              ['callToAction'][0],
+                                              ['callToAction'][1],
                                           style: GoogleFonts.courgette(
                                             height: 0,
                                             color: MyColors.colorText,
@@ -212,8 +212,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   ),
                 ],
               );
-            }
-        ),
+            }),
       ),
     );
   }
