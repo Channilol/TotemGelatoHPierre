@@ -62,13 +62,16 @@ class ResponsiveText {
 
   static int _index(BuildContext context) {
     final size = MediaQuery.of(context).size.width;
-    if (size < 600) {
+    if (size < 576) {
+      // Mobile
       return 0;
     }
-    if (size < 900) {
+    if (size < 768) {
+      // Tablet
       return 1;
     }
-    if (size < 1200) {
+    if (size < 992) {
+      // Desktop
       return 2;
     }
     return 3;
