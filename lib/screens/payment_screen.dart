@@ -208,7 +208,7 @@ class BackButton extends StatelessWidget {
                 style: TextStyle(
                     color: MyColors.colorText,
                     fontFamily: GoogleFonts.nunito().fontFamily,
-                    fontSize: 14))
+                    fontSize: ResponsiveText.medium(context))),
           ],
         ),
       ),
