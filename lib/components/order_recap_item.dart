@@ -60,7 +60,10 @@ class OrderRecapItem extends ConsumerWidget {
             width: isAccessibilityOn ? 500 : raint.maxWidth,
             decoration: BoxDecoration(
                 boxShadow: [
-                  BoxShadow(blurRadius: 10, color: Color(0x33000000))
+                  BoxShadow(
+                    blurRadius: 10,
+                    color: Color(0x33000000),
+                  ),
                 ],
                 borderRadius: BorderRadius.circular(20),
                 color: Color(0xFFF1EAE2)),
