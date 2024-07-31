@@ -51,7 +51,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                         bottomRight: Radius.circular(20),
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(5))),
-                                backgroundColor: Colors.white),
+                                backgroundColor: MyColors.colorBackground),
                             onPressed: () => Navigator.pop(context),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,12 +103,12 @@ class OrderRecapScreen extends ConsumerWidget {
                                 children: [
                                   FaIcon(
                                     FontAwesomeIcons.xmark,
-                                    color: Colors.white,
+                                    color: MyColors.colorBackground,
                                     size: 18,
                                   ),
                                   Text(language['orderRecapScreen']['clear'],
                                       style: TextStyle(
-                                          color: Colors.white,
+                                          color: MyColors.colorBackground,
                                           fontFamily:
                                               GoogleFonts.nunito().fontFamily,
                                           fontSize:
@@ -214,9 +214,9 @@ class OrderRecapScreen extends ConsumerWidget {
                               Text(
                                 language['orderRecapScreen']
                                     ['accessibility_text'],
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.white,
+                                  color: MyColors.colorBackground,
                                 ),
                               ),
                             ],
@@ -243,7 +243,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         child: Text(
                           language['orderRecapScreen']['payment'],
                           style: TextStyle(
-                            color: Colors.white,
+                            color: MyColors.colorBackground,
                             fontSize: ResponsiveText.huge(context),
                           ),
                         ),
@@ -323,9 +323,9 @@ class OrderRecapScreen extends ConsumerWidget {
                               Text(
                                 language['orderRecapScreen']
                                     ['accessibility_text'],
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.white,
+                                  color: MyColors.colorBackground,
                                 ),
                               ),
                             ],
@@ -352,7 +352,7 @@ class OrderRecapScreen extends ConsumerWidget {
                         child: Text(
                           language['orderRecapScreen']['payment'],
                           style: TextStyle(
-                              color: Colors.white,
+                              color: MyColors.colorBackground,
                               fontSize: ResponsiveText.large(context)),
                         ),
                       ),
@@ -380,7 +380,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                           bottomRight: Radius.circular(20),
                                           topLeft: Radius.circular(20),
                                           topRight: Radius.circular(5))),
-                                  backgroundColor: Colors.white),
+                                  backgroundColor: MyColors.colorBackground),
                               onPressed: () => Navigator.pop(context),
                               child: Row(
                                 mainAxisAlignment:
@@ -438,12 +438,12 @@ class OrderRecapScreen extends ConsumerWidget {
                                   children: [
                                     FaIcon(
                                       FontAwesomeIcons.xmark,
-                                      color: Colors.white,
+                                      color: MyColors.colorBackground,
                                       size: 18,
                                     ),
                                     Text(language['orderRecapScreen']['clear'],
                                         style: TextStyle(
-                                            color: Colors.white,
+                                            color: MyColors.colorBackground,
                                             fontFamily:
                                                 GoogleFonts.nunito().fontFamily,
                                             fontSize:
