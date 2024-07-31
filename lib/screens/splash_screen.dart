@@ -41,11 +41,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             future: Future.delayed(const Duration(seconds: 5), () => true),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Lottie.asset(
-                  "assets/images/gelato.json",
-                  fit: BoxFit.cover,
-                  height: MediaQuery.of(context).size.width,
-                  width: MediaQuery.of(context).size.width,
+                return Center(
+                  child: Lottie.asset(
+                    "assets/images/gelato.json",
+                    fit: BoxFit.cover,
+                    height: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width,
+                  ),
                 );
               }
               return Column(
