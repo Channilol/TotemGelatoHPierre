@@ -9,12 +9,14 @@ class MyColors {
   static Color colorBackground = Colors.white;
   static Color colorContainer = Color(0xFF000000);
   static Color colorText = Color(0xFF000000);
+  static Color colorSecondary = Color(0xFF000000);
   static Future<void> initColors() async {
     final data = await rootBundle.loadString("assets/theme.json");
     final jsonData = json.decode(data) as Map<String, dynamic>;
     colorBackground = (jsonData['colors']['background'] as String).toColor()!;
     colorContainer = (jsonData['colors']['container'] as String).toColor()!;
     colorText = (jsonData['colors']['primary'] as String).toColor()!;
+    colorSecondary = (jsonData['colors']['secondary'] as String).toColor()!;
   }
 }
 
