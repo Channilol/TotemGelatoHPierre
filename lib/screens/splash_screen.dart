@@ -46,7 +46,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   width: 140,
                   child: CategoryIcon(
                       label: Utils.categories[0].name,
-                      icon: SvgPicture.asset(Utils.categories[1].image!)),
+                      icon: SvgPicture.asset(Utils.categories[0].image!)),
                 ),
                 Transform.translate(
                   offset: const Offset(0, -100),
