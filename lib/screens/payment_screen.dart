@@ -6,6 +6,7 @@ import 'package:totem/components/animated_filp_number.dart';
 import 'package:totem/components/header.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/semicircle.dart';
+import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
@@ -73,21 +74,29 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             children: [
               Column(
                 children: [
-                  ClipRRect(
-                    child: Container(
-                      width: deviceWidth < deviceHeight
-                          ? deviceWidth * 0.4
-                          : deviceHeight * 0.4,
-                      height: deviceWidth < deviceHeight
-                          ? deviceWidth * 0.4
-                          : deviceHeight * 0.4,
-                      decoration: BoxDecoration(
-                        color: MyColors.colorContainer,
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      child: Image.asset(
-                        'assets/images/pagamento_totem.png',
-                        fit: BoxFit.contain,
+                  GestureDetector(
+                    onTap: () {
+                      ref
+                          .read(orderProvider.notifier)
+                          .setOrder(OrderItem(rows: []));
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                    },
+                    child: ClipRRect(
+                      child: Container(
+                        width: deviceWidth < deviceHeight
+                            ? deviceWidth * 0.4
+                            : deviceHeight * 0.4,
+                        height: deviceWidth < deviceHeight
+                            ? deviceWidth * 0.4
+                            : deviceHeight * 0.4,
+                        decoration: BoxDecoration(
+                          color: MyColors.colorContainer,
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        child: Image.asset(
+                          'assets/images/pagamento_totem.png',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ),
@@ -95,21 +104,29 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
               ),
               Column(
                 children: [
-                  ClipRRect(
-                    child: Container(
-                      width: deviceWidth < deviceHeight
-                          ? deviceWidth * 0.4
-                          : deviceHeight * 0.4,
-                      height: deviceWidth < deviceHeight
-                          ? deviceWidth * 0.4
-                          : deviceHeight * 0.4,
-                      decoration: BoxDecoration(
-                        color: MyColors.colorContainer,
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      child: Image.asset(
-                        'assets/images/pagamento_cassa.png',
-                        fit: BoxFit.contain,
+                  GestureDetector(
+                    onTap: () {
+                      ref
+                          .read(orderProvider.notifier)
+                          .setOrder(OrderItem(rows: []));
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                    },
+                    child: ClipRRect(
+                      child: Container(
+                        width: deviceWidth < deviceHeight
+                            ? deviceWidth * 0.4
+                            : deviceHeight * 0.4,
+                        height: deviceWidth < deviceHeight
+                            ? deviceWidth * 0.4
+                            : deviceHeight * 0.4,
+                        decoration: BoxDecoration(
+                          color: MyColors.colorContainer,
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        child: Image.asset(
+                          'assets/images/pagamento_cassa.png',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ),
