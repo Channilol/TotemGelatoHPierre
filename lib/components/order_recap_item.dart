@@ -12,11 +12,12 @@ import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class OrderRecapItem extends ConsumerWidget {
   final ProductItem product;
-  const OrderRecapItem({super.key, required this.product});
+  OrderRecapItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,45 +41,45 @@ class OrderRecapItem extends ConsumerWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.0),
       child: badges.Badge(
-        badgeAnimation: const badges.BadgeAnimation.rotation(),
+        badgeAnimation: badges.BadgeAnimation.rotation(),
         position: badges.BadgePosition.topEnd(end: 0, top: -15),
-        badgeStyle: const badges.BadgeStyle(
+        badgeStyle: badges.BadgeStyle(
             badgeColor: Colors.green,
             borderSide: BorderSide(color: Colors.white)),
         badgeContent: Text(
             orderNotifier.getItemCount(product.productId).toString(),
-            style: const TextStyle(
+            style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 18)),
-        child: LayoutBuilder(builder: (context, constraint) {
+                fontSize: ResponsiveText.huge(context))),
+        child: LayoutBuilder(builder: (context, raint) {
           return Container(
-            height: constraint.maxHeight,
-            width: isAccessibilityOn ? 500 : constraint.maxWidth,
+            height: raint.maxHeight,
+            width: isAccessibilityOn ? 500 : raint.maxWidth,
             decoration: BoxDecoration(
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(blurRadius: 10, color: Color(0x33000000))
                 ],
                 borderRadius: BorderRadius.circular(20),
-                color: const Color(0xFFF1EAE2)),
+                color: Color(0xFFF1EAE2)),
             child: Row(
               //direction: Axis.horizontal,
               children: [
                 Expanded(
                     child: ClipRRect(
-                        borderRadius: const BorderRadius.horizontal(
-                            left: Radius.circular(20)),
+                        borderRadius:
+                            BorderRadius.horizontal(left: Radius.circular(20)),
                         child: Image.asset(
                           product.image!,
-                          height: constraint.maxHeight,
+                          height: raint.maxHeight,
                           fit: BoxFit.cover,
                         ))),
                 Expanded(
                     flex: 2,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -89,66 +90,69 @@ class OrderRecapItem extends ConsumerWidget {
                             style: TextStyle(
                                 fontFamily: GoogleFonts.courgette().fontFamily,
                                 fontWeight: FontWeight.bold,
-                                color: MyColors.colorText),
+                                color: MyColors.colorText,
+                                fontSize: ResponsiveText.huge(context)),
                           ),
-                          const Spacer(),
+                          Spacer(),
                           Align(
                             alignment: Alignment.centerRight,
                             child: FilledButton(
                                 style: FilledButton.styleFrom(
-                                    shape: const RoundedRectangleBorder(
+                                    shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(5),
                                             bottomRight: Radius.circular(20),
                                             topLeft: Radius.circular(20),
                                             topRight: Radius.circular(5))),
                                     backgroundColor: MyColors.colorText,
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10)),
                                 onPressed: () =>
                                     orderNotifier.addItem(product.productId),
                                 child: Text(
                                   language['orderRecapScreen']['card']['add'],
                                   style: TextStyle(
-                                      fontSize: 12, color: Colors.white),
+                                      fontSize: ResponsiveText.huge(context),
+                                      color: Colors.white),
                                 )),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               FilledButton(
                                   style: FilledButton.styleFrom(
-                                      shape: const RoundedRectangleBorder(
+                                      shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(5),
                                               topLeft: Radius.circular(20))),
-                                      backgroundColor: const Color(0xCCC3ABA4),
-                                      padding: const EdgeInsets.symmetric(
+                                      backgroundColor: Color(0xCCC3ABA4),
+                                      padding: EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5)),
                                   onPressed: () => showDialog(
                                           context: context,
                                           builder: (context) => ExtraPopup(
                                               rows:
                                                   ref.read(orderProvider).rows,
-                                              startIndex: order.rows.indexWhere((element) =>
-                                                  element.productId ==
-                                                  product.productId))).then(
+                                              startIndex: order.rows.indexWhere(
+                                                  (element) =>
+                                                      element.productId ==
+                                                      product.productId))).then(
                                         (value) {
                                           if (value == null) return;
                                           orderNotifier.updateVariant(value);
                                         },
                                       ),
-                                  child: const FaIcon(FontAwesomeIcons.pen,
-                                      size: 15, color: Color(0xFF907676))),
+                                  child:
+                                      FaIcon(FontAwesomeIcons.pen, size: 15, color: Color(0xFF907676))),
                               FilledButton(
                                   style: FilledButton.styleFrom(
-                                      shape: const RoundedRectangleBorder(
+                                      shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                               bottomRight: Radius.circular(20),
                                               topRight: Radius.circular(5))),
-                                      backgroundColor: const Color(0x55C3ABA4),
-                                      padding: const EdgeInsets.symmetric(
+                                      backgroundColor: Color(0x55C3ABA4),
+                                      padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10)),
                                   onPressed: doExtraExist == true
                                       ? () {

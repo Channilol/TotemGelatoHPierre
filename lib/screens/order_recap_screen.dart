@@ -15,6 +15,7 @@ import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
 import 'package:totem/screens/payment_screen.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class OrderRecapScreen extends ConsumerWidget {
@@ -65,7 +66,8 @@ class OrderRecapScreen extends ConsumerWidget {
                                         color: MyColors.colorText,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
-                                        fontSize: 14))
+                                        fontSize:
+                                            ResponsiveText.medium(context)))
                               ],
                             ),
                           ),
@@ -109,7 +111,8 @@ class OrderRecapScreen extends ConsumerWidget {
                                           color: Colors.white,
                                           fontFamily:
                                               GoogleFonts.nunito().fontFamily,
-                                          fontSize: 14))
+                                          fontSize:
+                                              ResponsiveText.medium(context)))
                                 ],
                               )),
                         ),
@@ -142,7 +145,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     language['orderRecapScreen']['title'],
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
-                        fontSize: 25,
+                        fontSize: ResponsiveText.huge(context),
                         color: MyColors.colorContainer,
                         fontWeight: FontWeight.bold),
                   ),
@@ -150,7 +153,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     (language['orderRecapScreen']['description'] as String)
                         .replaceAll("{}", order.rows.length.toString()),
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: ResponsiveText.huge(context),
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
@@ -174,7 +177,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     language['orderRecapScreen']['total'],
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
-                        fontSize: 25,
+                        fontSize: ResponsiveText.large(context),
                         color: MyColors.colorContainer,
                         fontWeight: FontWeight.bold),
                   ),
@@ -183,7 +186,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     fractionDigits: 2,
                     value: Utils.getTotalPrice(order.rows),
                     textStyle: TextStyle(
-                        fontSize: 30,
+                        fontSize: ResponsiveText.huge(context),
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
@@ -203,7 +206,9 @@ class OrderRecapScreen extends ConsumerWidget {
                           ),
                           Text(
                             language['orderRecapScreen']['accessibility_text'],
-                            style: TextStyle(color: MyColors.colorText),
+                            style: TextStyle(
+                                color: MyColors.colorText,
+                                fontSize: ResponsiveText.large(context)),
                           ),
                         ],
                       ),
@@ -226,7 +231,8 @@ class OrderRecapScreen extends ConsumerWidget {
                               : null,
                           child: Text(language['orderRecapScreen']['payment'],
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 30))),
+                                  color: Colors.white,
+                                  fontSize: ResponsiveText.huge(context)))),
                       LanguagePopup(),
                     ],
                   ),
@@ -240,7 +246,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     (language['orderRecapScreen']['description'] as String)
                         .replaceAll("{}", order.rows.length.toString()),
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: ResponsiveText.huge(context),
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
@@ -248,7 +254,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     language['orderRecapScreen']['total'],
                     style: TextStyle(
                         fontFamily: GoogleFonts.courgette().fontFamily,
-                        fontSize: 25,
+                        fontSize: ResponsiveText.large(context),
                         color: MyColors.colorContainer,
                         fontWeight: FontWeight.bold),
                   ),
@@ -257,7 +263,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     fractionDigits: 2,
                     value: Utils.getTotalPrice(order.rows),
                     textStyle: TextStyle(
-                        fontSize: 30,
+                        fontSize: ResponsiveText.huge(context),
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
@@ -292,7 +298,9 @@ class OrderRecapScreen extends ConsumerWidget {
                           ),
                           Text(
                             language['orderRecapScreen']['accessibility_text'],
-                            style: TextStyle(color: MyColors.colorText),
+                            style: TextStyle(
+                                color: MyColors.colorText,
+                                fontSize: ResponsiveText.large(context)),
                           ),
                         ],
                       ),
@@ -315,7 +323,9 @@ class OrderRecapScreen extends ConsumerWidget {
                             : null,
                         child: Text(
                           language['orderRecapScreen']['payment'],
-                          style: TextStyle(color: Colors.white, fontSize: 25),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: ResponsiveText.large(context)),
                         ),
                       ),
                       LanguagePopup()
@@ -353,7 +363,8 @@ class OrderRecapScreen extends ConsumerWidget {
                                         color: MyColors.colorText,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
-                                        fontSize: 25))
+                                        fontSize:
+                                            ResponsiveText.large(context)))
                               ],
                             ),
                           ),
@@ -396,7 +407,8 @@ class OrderRecapScreen extends ConsumerWidget {
                                         color: Colors.white,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
-                                        fontSize: 25))
+                                        fontSize:
+                                            ResponsiveText.large(context)))
                               ],
                             ),
                           ),
