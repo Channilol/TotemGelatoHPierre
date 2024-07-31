@@ -19,7 +19,6 @@ class OrderRecapItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isAccessibilityOn = ref.watch(accessibilityProvider);
     final orderNotifier = ref.read(orderProvider.notifier);
     final order = ref.watch(orderProvider);
     final language = Utils.languages[ref.watch(languageProvider)];
@@ -124,97 +123,51 @@ class OrderRecapItem extends ConsumerWidget {
                                       backgroundColor: const Color(0xCCC3ABA4),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5)),
-                                  onPressed: () {
-                                    if (isAccessibilityOn) {
-                                      showModalBottomSheet(
+                                  onPressed: () => showDialog(
                                           context: context,
                                           builder: (context) => ExtraPopup(
-                                              rows: order.rows
-                                                  .where((element) =>
-                                                      element.productId ==
-                                                      product.productId)
-                                                  .toList())).then(
+                                              rows:
+                                                  ref.read(orderProvider).rows,
+                                              startIndex: order.rows.indexWhere((element) =>
+                                                  element.productId ==
+                                                  product.productId))).then(
                                         (value) {
                                           if (value == null) return;
                                           orderNotifier.updateVariant(value);
                                         },
-                                      );
-                                      return;
-                                    }
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => DialogWrapper(
-                                              child: ExtraPopup(
-                                                  rows: order.rows
-                                                      .where((element) =>
-                                                          element.productId ==
-                                                          product.productId)
-                                                      .toList()),
-                                            )).then(
-                                      (value) {
-                                        if (value == null) return;
-                                        orderNotifier.updateVariant(value);
-                                      },
-                                    );
-                                    return;
-                                  }
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => DialogWrapper(
-                                            child: ExtraPopup(
-                                                rows: order.rows
-                                                    .where((element) =>
-                                                        element.productId ==
-                                                        product.productId)
-                                                    .toList()),
-                                          )).then(
-                                    (value) {
-                                      if (value == null) return;
-                                      orderNotifier.updateVariant(value);
-                                    },
-                                  );
-                                },
-                                child: const FaIcon(FontAwesomeIcons.pen,
-                                    size: 15, color: Color(0xFF907676))),
-                            FilledButton(
-                                style: FilledButton.styleFrom(
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(20),
-                                            topRight: Radius.circular(5))),
-                                    backgroundColor: const Color(0x55C3ABA4),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 10)),
-                                onPressed: doExtraExist == true
-                                    ? () {
-                                        if (isAccessibilityOn) {
-                                          showModalBottomSheet(
+                                      ),
+                                  child: const FaIcon(FontAwesomeIcons.pen,
+                                      size: 15, color: Color(0xFF907676))),
+                              FilledButton(
+                                  style: FilledButton.styleFrom(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              bottomRight: Radius.circular(20),
+                                              topRight: Radius.circular(5))),
+                                      backgroundColor: const Color(0x55C3ABA4),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 10)),
+                                  onPressed: doExtraExist == true
+                                      ? () {
+                                          showDialog(
                                             context: context,
                                             builder: (context) =>
                                                 DeletePopup(product: product),
                                           );
-                                        } else {
-                                          showDialog(
-                                            barrierDismissible: false,
-                                            context: context,
-                                            builder: (context) => Dialog(
-                                                child: DeletePopup(
-                                                    product: product)),
-                                          );
                                         }
-                                      }
-                                    : () {
-                                        orderNotifier
-                                            .removeItem(product.productId);
-                                      },
-                                child: const FaIcon(FontAwesomeIcons.trash,
-                                    size: 15, color: Color(0xFF907676))),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ))
-            ],
+                                      : () {
+                                          orderNotifier
+                                              .removeItem(product.productId);
+                                        },
+                                  child: const FaIcon(FontAwesomeIcons.trash,
+                                      size: 15, color: Color(0xFF907676))),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ))
+              ],
+            ),
           ),
         );
       }),
