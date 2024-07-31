@@ -26,8 +26,9 @@ class Header extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: maxWidth, child: leading),
-                SizedBox(width: maxWidth, child: trailing),
+                Expanded(child: SizedBox(width: maxWidth, child: leading)),
+                Expanded(child: SizedBox()),
+                Expanded(child: SizedBox(width: maxWidth, child: trailing)),
               ],
             ),
           ],
