@@ -43,7 +43,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             style: TextStyle(
                 fontFamily: GoogleFonts.courgette().fontFamily,
                 fontSize: ResponsiveText.title(context),
-                color: const Color(0xFFC3ABA4),
+                color: MyColors.colorSecondary,
                 fontWeight: FontWeight.bold),
           ),
           AnimatedFlipCounter(
@@ -177,11 +177,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
               ],
             ),
           ),
-          isAccessibility
-              ? Container()
-              : SizedBox(
-                  height: 15,
-                ),
+          if (!isAccessibility) SizedBox(height: 15),
         ],
       ),
     );

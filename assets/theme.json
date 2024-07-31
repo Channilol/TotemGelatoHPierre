@@ -1,9 +1,9 @@
 {
   "colors": {
     "background": "#FFFFFF",
-    "container": "FFF1EAE2",
-    "primary": "#FF907677",
-    "secondary": "#FFC3ABA4"
+    "container": "#FFFFFF",
+    "primary": "#FFFFFF",
+    "secondary": "#FFFFFF"
   },
   "texts": {
     "size": {

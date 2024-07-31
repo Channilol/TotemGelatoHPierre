@@ -19,7 +19,7 @@ import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class OrderRecapScreen extends ConsumerWidget {
-  OrderRecapScreen({super.key});
+  const OrderRecapScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
