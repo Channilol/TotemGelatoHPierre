@@ -8,7 +8,6 @@ import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/order_recap_item.dart';
-import 'package:totem/components/semicircle.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
@@ -55,7 +54,7 @@ class OrderRecapScreen extends ConsumerWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.arrow_back_ios_new_rounded,
                                   color: MyColors.colorText,
                                   size: 18,
@@ -149,7 +148,7 @@ class OrderRecapScreen extends ConsumerWidget {
                   Text(
                     (language['orderRecapScreen']['description'] as String)
                         .replaceAll("{}", order.rows.length.toString()),
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 30,
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
@@ -182,7 +181,7 @@ class OrderRecapScreen extends ConsumerWidget {
                     prefix: "€ ",
                     fractionDigits: 2,
                     value: Utils.getTotalPrice(order.rows),
-                    textStyle: const TextStyle(
+                    textStyle: TextStyle(
                         fontSize: 30,
                         color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
@@ -343,7 +342,7 @@ class OrderRecapScreen extends ConsumerWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.arrow_back_ios_new_rounded,
                                   color: MyColors.colorText,
                                   size: 18,

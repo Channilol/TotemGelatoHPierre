@@ -46,9 +46,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             prefix: "€ ",
             fractionDigits: 2,
             value: Utils.getTotalPrice(order.rows),
-            textStyle: const TextStyle(
+            textStyle: TextStyle(
                 fontSize: 40,
-                color: Color(0xFF907676),
+                color: MyColors.colorText,
                 fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -56,9 +56,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           ),
           Text(
             Utils.languages[languageIndex]['paymentScreen']['subtitle'],
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: 40,
-                color: Color(0xFF907676),
+                color: MyColors.colorText,
                 fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -120,9 +120,15 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   : Colors.transparent,
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                isAccessibility ? BackButton() : Container(),
+                isAccessibility
+                    ? Expanded(
+                        child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: BackButton(),
+                      ))
+                    : Container(),
                 ElevatedButton(
                   onPressed: () {
                     ref
@@ -153,7 +159,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                     ),
                   ),
                 ),
-                isAccessibility ? LanguagePopup() : Container(),
+                isAccessibility
+                    ? Expanded(child: Center(child: LanguagePopup()))
+                    : Container(),
               ],
             ),
           ),
@@ -190,14 +198,14 @@ class BackButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Icon(
+            Icon(
               Icons.arrow_back_ios_new_rounded,
-              color: Color(0xFF907676),
+              color: MyColors.colorText,
               size: 18,
             ),
             Text("BACK",
                 style: TextStyle(
-                    color: const Color(0xFF907676),
+                    color: MyColors.colorText,
                     fontFamily: GoogleFonts.nunito().fontFamily,
                     fontSize: 14))
           ],

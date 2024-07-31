@@ -49,41 +49,38 @@ class _DeletePopupState extends ConsumerState<DeletePopup> {
     });
 
     return InactivityTimer(
-      child: Dialog(
-        backgroundColor: Colors.transparent,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            double maxHeight = constraints.maxHeight;
-            double maxWidth = constraints.maxWidth;
-            return Container(
-              height: maxHeight * 0.7,
-              width: maxWidth * 0.7,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      language['orderRecapScreen']['removeItemDialogTitle'],
-                      style: TextStyle(
-                        color: MyColors.colorText,
-                        fontSize: 25.0,
-                      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          double maxHeight = constraints.maxHeight;
+          double maxWidth = constraints.maxWidth;
+          return Container(
+            height: maxHeight * 0.7,
+            width: maxWidth * 0.7,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    language['orderRecapScreen']['removeItemDialogTitle'],
+                    style: TextStyle(
+                      color: MyColors.colorText,
+                      fontSize: 25.0,
                     ),
-                    Expanded(
-                      child: ListView(
-                        children: extrasCard,
-                      ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      children: extrasCard,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

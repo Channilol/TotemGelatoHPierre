@@ -46,7 +46,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   width: 140,
                   child: CategoryIcon(
                       label: Utils.categories[0].name,
-                      icon: SvgPicture.asset(Utils.categories[1].image!)),
+                      icon: SvgPicture.asset(Utils.categories[0].image!)),
                 ),
                 Transform.translate(
                   offset: const Offset(0, -100),
@@ -90,54 +90,59 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    language['splashScreen']['title'][0].toString(),
-                    style: GoogleFonts.hankenGrotesk(
-                      color: MyColors.colorText,
-                      fontSize: 26.0,
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          language['splashScreen']['title'][0].toString(),
+                          style: GoogleFonts.hankenGrotesk(
+                            color: MyColors.colorText,
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              language['splashScreen']['title'][1],
+                              style: GoogleFonts.hankenGrotesk(
+                                color: MyColors.colorText,
+                                height: 0,
+                                fontSize: 55.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              language['splashScreen']['title'][2],
+                              style: GoogleFonts.courgette(
+                                color: MyColors.colorText,
+                                height: 0,
+                                fontSize: 55.0,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline,
+                                decorationColor: MyColors.colorText,
+                                decorationThickness: 1.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        language['splashScreen']['title'][1],
-                        style: GoogleFonts.hankenGrotesk(
-                          color: MyColors.colorText,
-                          height: 0,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        language['splashScreen']['title'][2],
-                        style: GoogleFonts.courgette(
-                          color: MyColors.colorText,
-                          height: 0,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
-                          decorationColor: MyColors.colorText,
-                          decorationThickness: 1.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Expanded(
+                    flex: 3,
                     child: Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Image.asset(
                             'assets/images/splash_image.png',
+                            fit: BoxFit.cover,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
