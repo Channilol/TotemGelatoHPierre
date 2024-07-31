@@ -43,6 +43,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   badges: ^3.1.2
   intl: any
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ flutter:
     - assets/data/
     - assets/languages.json
     - assets/theme.json
+    - assets/images/gelato.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
