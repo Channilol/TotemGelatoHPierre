@@ -104,7 +104,7 @@ class OrderRecapScreen extends ConsumerWidget {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: accessibility ? 1 : 2,
                         mainAxisSpacing: accessibility ? 1 : 30,
-                        childAspectRatio: accessibility ? 0.65 : 1.5,
+                        childAspectRatio: accessibility ? 0.6 : 1.5,
                         crossAxisSpacing: accessibility ? 1 : 10,
                       ),
                       itemCount: totalProducts.length,
@@ -143,29 +143,45 @@ class OrderRecapScreen extends ConsumerWidget {
                     : SizedBox(
                         height: 30,
                       ),
-                FilledButton(
-                  style: FilledButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(30),
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(10))),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-                      backgroundColor: MyColors.colorText),
-                  onPressed: order.rows.isNotEmpty
-                      ? () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PaymentScreen(),
-                          ))
-                      : null,
-                  child: Text(
-                    language['orderRecapScreen']['payment'],
-                    style: TextStyle(
-                      color: MyColors.colorBackground,
-                      fontSize: ResponsiveText.title(context),
+                Row(
+                  children: [
+                    Spacer(),
+                    SizedBox(
+                      width: accessibility ? 20 : 0,
                     ),
-                  ),
+                    Expanded(
+                      flex: 2,
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(10))),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 25),
+                            backgroundColor: MyColors.colorText),
+                        onPressed: order.rows.isNotEmpty
+                            ? () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PaymentScreen(),
+                                ))
+                            : null,
+                        child: Text(
+                          language['orderRecapScreen']['payment'],
+                          style: TextStyle(
+                            color: MyColors.colorBackground,
+                            fontSize: ResponsiveText.title(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: accessibility ? 20 : 0,
+                    ),
+                    accessibility ? Expanded(child: LanguagePopup()) : Spacer(),
+                  ],
                 ),
                 Padding(
                   padding:
