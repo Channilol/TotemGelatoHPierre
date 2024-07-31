@@ -42,7 +42,7 @@ class ClearOrderPopup extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 10)),
                 onPressed: () => Navigator.pop(context, true),
-                child: const Text("SI",
+                child: Text("SI",
                     style: TextStyle(color: MyColors.colorBackground))),
           ]),
     );
