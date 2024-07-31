@@ -109,8 +109,7 @@ class ProductList extends ConsumerWidget {
                           ? Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const OrderRecapScreen()))
+                                  builder: (context) => OrderRecapScreen()))
                           : null,
                       child: AnimatedContainer(
                         height: 65,
