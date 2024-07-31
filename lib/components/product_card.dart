@@ -42,18 +42,21 @@ class ProductCard extends ConsumerWidget {
           color: Color(0xFFF1EAE2),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            width: isAccessibilityOn ? 150 : 300,
-            child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.horizontal(left: Radius.circular(20)),
-                child: Image.asset(
-                  product.image!,
-                  height: cardHeight,
-                  fit: BoxFit.cover,
-                )),
+          Expanded(
+            flex: 2,
+            child: SizedBox(
+              child: ClipRRect(
+                  borderRadius:
+                      const BorderRadius.horizontal(left: Radius.circular(20)),
+                  child: Image.asset(
+                    product.image!,
+                    height: cardHeight,
+                    fit: BoxFit.cover,
+                  )),
+            ),
           ),
           Expanded(
+            flex: 5,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -72,56 +75,15 @@ class ProductCard extends ConsumerWidget {
                               color: MyColors.colorText),
                         ),
                       ),
-                      InactivityTimer(
-                        child: IconButton(
-                            onPressed: productCount > 0
-                                ? () {
-                                    if (isAccessibilityOn) {
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (context) => ExtraPopup(
-                                              rows: order.rows
-                                                  .where((element) =>
-                                                      element.productId ==
-                                                      product.productId)
-                                                  .toList())).then(
-                                        (value) {
-                                          if (value == null) return;
-                                          orderNotifier.updateVariant(value);
-                                        },
-                                      );
-                                      return;
-                                    }
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => DialogWrapper(
-                                              child: ExtraPopup(
-                                                  rows: order.rows
-                                                      .where((element) =>
-                                                          element.productId ==
-                                                          product.productId)
-                                                      .toList()),
-                                            )).then(
-                                      (value) {
-                                        if (value == null) return;
-                                        orderNotifier.updateVariant(value);
-                                      },
-                                    );
-                                  }
-                                : null,
-                            icon: FaIcon(FontAwesomeIcons.pen,
-                                size: 15,
-                                color: productCount > 0
-                                    ? MyColors.colorText
-                                    : Colors.grey)),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Text(
                     product.description,
                     softWrap: true,
-                    style: TextStyle(color: MyColors.colorText),
+                    style: TextStyle(
+                        color: MyColors.colorText,
+                        fontSize: ResponsiveText.large(context)),
                   ),
                   const Spacer(),
                   Padding(

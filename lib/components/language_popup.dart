@@ -37,7 +37,10 @@ class LanguagePopup extends ConsumerWidget {
               value: i,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(Utils.languages[i]['name']),
+                child: Text(
+                  Utils.languages[i]['name'],
+                  style: TextStyle(fontSize: ResponsiveText.large(context)),
+                ),
               ))
       ],
     );
