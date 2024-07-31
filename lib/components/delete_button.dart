@@ -48,10 +48,11 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
             style: FilledButton.styleFrom(
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(5),
-                        topLeft: Radius.circular(20))),
+                        bottomLeft: Radius.circular(3),
+                        topLeft: Radius.circular(16))),
                 backgroundColor: const Color(0xAAC3ABA4),
-                padding: const EdgeInsets.all(10)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 55, vertical: 20)),
             onPressed: doExtraExist == true
                 ? () {
                     if (isAccessibilityOn) {
@@ -79,7 +80,7 @@ class _DeleteButtonState extends ConsumerState<DeleteButton> {
                     fontFamily: GoogleFonts.nunito().fontFamily,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF907676),
-                    fontSize: 10))),
+                    fontSize: 20))),
       ),
     );
   }

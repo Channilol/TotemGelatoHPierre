@@ -147,10 +147,10 @@ class OrderRecapItem extends ConsumerWidget {
                                                         product.productId)
                                                     .toList()),
                                           )).then(
-                                      (value) {
-                                        if (value == null) return;
-                                        orderNotifier.updateVariant(value);
-                                      },
+                                    (value) {
+                                      if (value == null) return;
+                                      orderNotifier.updateVariant(value);
+                                    },
                                   );
                                 },
                                 child: const FaIcon(FontAwesomeIcons.pen,
@@ -176,8 +176,9 @@ class OrderRecapItem extends ConsumerWidget {
                                           showDialog(
                                             barrierDismissible: false,
                                             context: context,
-                                            builder: (context) =>
-                                                DeletePopup(product: product),
+                                            builder: (context) => Dialog(
+                                                child: DeletePopup(
+                                                    product: product)),
                                           );
                                         }
                                       }
