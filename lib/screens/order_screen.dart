@@ -109,10 +109,10 @@ class OrderScreen extends ConsumerWidget {
             Semicircle(),
             Expanded(
               child: Row(
-                children: [
-                  CategoriesBar(),
+                children: const [
+                  Expanded(child: CategoriesBar()),
                   SizedBox(width: 10),
-                  Expanded(child: ProductList()),
+                  Expanded(flex: 5, child: ProductList()),
                 ],
               ),
             ),
