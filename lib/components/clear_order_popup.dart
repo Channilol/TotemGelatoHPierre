@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/components/inactivity_timer.dart';
+import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/my_colors.dart';
+import 'package:totem/services/utils.dart';
 
-class ClearOrderPopup extends StatelessWidget {
+class ClearOrderPopup extends ConsumerWidget {
   const ClearOrderPopup({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final language = Utils.languages[ref.watch(languageProvider)];
     return InactivityTimer(
       child: AlertDialog(
           shape: const RoundedRectangleBorder(
@@ -15,7 +19,8 @@ class ClearOrderPopup extends StatelessWidget {
                   bottomRight: Radius.circular(40),
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(20))),
-          title: const Text("Sicuro di voler cancellare l'ordine?"),
+          title:
+              Text(language['orderRecapScreen']['cancelDialog']['description']),
           actions: [
             FilledButton(
                 style: FilledButton.styleFrom(
@@ -29,7 +34,8 @@ class ClearOrderPopup extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 10)),
                 onPressed: () => Navigator.pop(context),
-                child: const Text("ANNULLA")),
+                child: Text(
+                    language['orderRecapScreen']['cancelDialog']['cancel'])),
             FilledButton(
                 style: FilledButton.styleFrom(
                     shape: const RoundedRectangleBorder(
@@ -42,7 +48,8 @@ class ClearOrderPopup extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 10)),
                 onPressed: () => Navigator.pop(context, true),
-                child: Text("SI",
+                child: Text(
+                    language['orderRecapScreen']['cancelDialog']['confirm'],
                     style: TextStyle(color: MyColors.colorBackground))),
           ]),
     );
