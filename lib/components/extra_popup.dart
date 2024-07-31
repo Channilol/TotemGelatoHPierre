@@ -63,7 +63,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                 Text("${currentProduct.name} ${currentItem + 1}",
                     style: TextStyle(
                         color: MyColors.colorText,
-                        fontSize: ResponsiveText.large(context))),
+                        fontSize: ResponsiveText.huge(context))),
               ],
             ),
             IconButton(
@@ -140,7 +140,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
       child: ListTile(
           title: Text(Utils.extras[index].description),
           leading: Text("+${extra.price} €",
-              style: TextStyle(fontSize: ResponsiveText.medium(context))),
+              style: TextStyle(fontSize: ResponsiveText.large(context))),
           trailing: Switch(
               autofocus: true,
               inactiveThumbColor: MyColors.colorSecondary,
