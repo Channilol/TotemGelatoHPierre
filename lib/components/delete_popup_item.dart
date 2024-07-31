@@ -76,6 +76,7 @@ class _DeletePopupItemState extends ConsumerState<DeletePopupItem> {
                 icon: Icon(
                   FontAwesomeIcons.trash,
                   color: MyColors.colorText,
+                  size: ResponsiveText.huge(context),
                 ),
               )
             ],

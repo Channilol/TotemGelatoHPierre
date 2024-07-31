@@ -15,11 +15,10 @@ late ThemeData theme;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   final stringa = await rootBundle.loadString("assets/appainter_theme.json");
   final jsonCode = jsonDecode(stringa);
   theme = ThemeDecoder.decodeThemeData(jsonCode) ?? ThemeData();
-
+  
   await Utils.init();
   await MyColors.initColors();
   await ResponsiveText.init();

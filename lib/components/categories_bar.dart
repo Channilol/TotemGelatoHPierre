@@ -11,7 +11,7 @@ import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
 class CategoriesBar extends ConsumerStatefulWidget {
-  CategoriesBar({super.key});
+  const CategoriesBar({super.key});
 
   @override
   ConsumerState<CategoriesBar> createState() => _CategoriesBarState();
@@ -25,11 +25,12 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
     final currentCategory = ref.watch(categoryProvider);
     return Container(
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Color(0x22000000), blurRadius: 100)],
+          boxShadow: const [
+            BoxShadow(color: Color(0x22000000), blurRadius: 100)
+          ],
           borderRadius: BorderRadius.only(topRight: Radius.circular(10)),
           color: MyColors.colorContainer,
         ),
-        width: 150,
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
@@ -42,7 +43,7 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: MyColors.colorSecondary,
-                  fontSize: 20.0,
+                  fontSize: ResponsiveText.huge(context) - 5,
                 ),
               ),
               SizedBox(height: 5),
@@ -50,53 +51,52 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                 language['orderScreen']['sidebar_title'][1],
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                    fontSize: ResponsiveText.huge(context),
                     fontFamily: GoogleFonts.courgette().fontFamily,
                     color: MyColors.colorSecondary),
               ),
               SizedBox(height: 15),
-              Column(
-                children: [
-                  for (int i = 0; i < Utils.categories.length; i++)
-                    GestureDetector(
-                      onTap: () =>
-                          ref.read(categoryProvider.notifier).changeCategory(i),
-                      child: Container(
-                        padding: isAccessibilityOn
-                            ? EdgeInsets.symmetric(vertical: 10)
-                            : EdgeInsets.symmetric(vertical: 50),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Utils.categories[i].categoryId ==
-                                  Utils.categories[currentCategory].categoryId
-                              ? MyColors.colorBackground
-                              : null,
-                        ),
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              Utils.categories[i].image!,
-                              fit: BoxFit.cover,
-                            ),
-                            Text(
-                              Utils.categories[i].name,
-                              style: TextStyle(
-                                  fontSize: ResponsiveText.medium(context),
-                                  fontWeight: FontWeight.bold,
-                                  color: MyColors.colorText),
-                            ),
-                          ],
+              Expanded(
+                child: ListView(
+                  children: [
+                    for (int i = 0; i < Utils.categories.length; i++)
+                      GestureDetector(
+                        onTap: () => ref
+                            .read(categoryProvider.notifier)
+                            .changeCategory(i),
+                        child: Container(
+                          padding: isAccessibilityOn
+                              ? EdgeInsets.symmetric(vertical: 10)
+                              : EdgeInsets.symmetric(vertical: 50),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Utils.categories[i].categoryId ==
+                                    Utils.categories[currentCategory].categoryId
+                                ? MyColors.colorBackground
+                                : null,
+                          ),
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                Utils.categories[i].image!,
+                                fit: BoxFit.cover,
+                              ),
+                              Text(
+                                Utils.categories[i].name,
+                                style: TextStyle(
+                                    fontSize: ResponsiveText.medium(context),
+                                    fontWeight: FontWeight.bold,
+                                    color: MyColors.colorText),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
-              isAccessibilityOn
-                  ? SizedBox(
-                      height: 20,
-                    )
-                  : Spacer(),
+              if (!isAccessibilityOn) SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   ref
