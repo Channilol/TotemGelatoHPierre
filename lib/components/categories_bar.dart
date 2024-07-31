@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/category_provider.dart';
 import 'package:totem/providers/language_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class CategoriesBar extends ConsumerStatefulWidget {
@@ -78,10 +79,10 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                             ),
                             Text(
                               Utils.categories[i].name,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF907676)),
+                                  color: MyColors.colorText),
                             ),
                           ],
                         ),
@@ -102,11 +103,11 @@ class _CategoriesBarState extends ConsumerState<CategoriesBar> {
                 },
                 child: Column(
                   children: [
-                    const FaIcon(FontAwesomeIcons.universalAccess,
-                        color: Color(0xFF907676)),
+                    FaIcon(FontAwesomeIcons.universalAccess,
+                        color: MyColors.colorText),
                     Text(
                       language['orderScreen']['accessibility_text'],
-                      style: TextStyle(color: Color(0xFF907676), fontSize: 12),
+                      style: TextStyle(color: MyColors.colorText, fontSize: 12),
                     ),
                   ],
                 ),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/models/product_item.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/utils.dart';
 
 class AddButton extends ConsumerWidget {
@@ -43,7 +44,7 @@ class AddButton extends ConsumerWidget {
                       bottomRight: Radius.circular(20),
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(5))),
-              backgroundColor: const Color(0xFF907676),
+              backgroundColor: MyColors.colorText,
               padding: const EdgeInsets.all(15)),
           onPressed: () => orderNotifier.addItem(product.productId),
           child: Column(

@@ -8,7 +8,6 @@ import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/language_popup.dart';
 import 'package:totem/components/order_recap_item.dart';
-import 'package:totem/components/semicircle.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
@@ -55,14 +54,14 @@ class OrderRecapScreen extends ConsumerWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.arrow_back_ios_new_rounded,
-                                  color: Color(0xFF907676),
+                                  color: MyColors.colorText,
                                   size: 18,
                                 ),
                                 Text(language['orderRecapScreen']['back'],
                                     style: TextStyle(
-                                        color: const Color(0xFF907676),
+                                        color: MyColors.colorText,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
                                         fontSize: 14))
@@ -80,7 +79,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                         bottomRight: Radius.circular(20),
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(5))),
-                                backgroundColor: const Color(0xFF907676),
+                                backgroundColor: MyColors.colorText,
                               ),
                               onPressed: () {
                                 showDialog(
@@ -148,9 +147,9 @@ class OrderRecapScreen extends ConsumerWidget {
                   Text(
                     (language['orderRecapScreen']['description'] as String)
                         .replaceAll("{}", order.rows.length.toString()),
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 30,
-                        color: Color(0xFF907676),
+                        color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
@@ -181,9 +180,9 @@ class OrderRecapScreen extends ConsumerWidget {
                     prefix: "€ ",
                     fractionDigits: 2,
                     value: Utils.getTotalPrice(order.rows),
-                    textStyle: const TextStyle(
+                    textStyle: TextStyle(
                         fontSize: 30,
-                        color: Color(0xFF907676),
+                        color: MyColors.colorText,
                         fontWeight: FontWeight.bold),
                   ),
                   Row(
@@ -216,7 +215,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                       topRight: Radius.circular(10))),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 40, vertical: 25),
-                              backgroundColor: const Color(0xFF907676)),
+                              backgroundColor: MyColors.colorText),
                           onPressed: order.rows.isNotEmpty
                               ? () =>
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -277,7 +276,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                     topRight: Radius.circular(10))),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 25),
-                            backgroundColor: const Color(0xFF907676)),
+                            backgroundColor: MyColors.colorText),
                         onPressed: order.rows.isNotEmpty
                             ? () =>
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -314,14 +313,14 @@ class OrderRecapScreen extends ConsumerWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.arrow_back_ios_new_rounded,
-                                  color: Color(0xFF907676),
+                                  color: MyColors.colorText,
                                   size: 18,
                                 ),
                                 Text(language['orderRecapScreen']['back'],
                                     style: TextStyle(
-                                        color: const Color(0xFF907676),
+                                        color: MyColors.colorText,
                                         fontFamily:
                                             GoogleFonts.nunito().fontFamily,
                                         fontSize: 14))
@@ -339,7 +338,7 @@ class OrderRecapScreen extends ConsumerWidget {
                                       bottomRight: Radius.circular(20),
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(5))),
-                              backgroundColor: const Color(0xFF907676),
+                              backgroundColor: MyColors.colorText,
                             ),
                             onPressed: () {
                               showDialog(
