@@ -20,6 +20,7 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
+
   @override
   Widget build(BuildContext context) {
     var language = Utils.languages[ref.read(languageProvider)];
