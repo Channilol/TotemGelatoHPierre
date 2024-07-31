@@ -55,15 +55,15 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                     borderRadius: BorderRadius.circular(1000),
                     child: Image.asset(
                       currentProduct.image!,
-                      width: 50,
-                      height: 50,
+                      width: ResponsiveText.title(context),
+                      height: ResponsiveText.title(context),
                       fit: BoxFit.cover,
                     ),
                   ),
                 Text("${currentProduct.name} ${currentItem + 1}",
                     style: TextStyle(
                         color: MyColors.colorText,
-                        fontSize: ResponsiveText.huge(context))),
+                        fontSize: ResponsiveText.huge(context) + 10)),
               ],
             ),
             IconButton(
@@ -136,15 +136,12 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
     final extra = Utils.extras
         .firstWhere((e) => product.extras![index].extraId == e.extraId);
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 15),
-      child: ListTile(
-          title: Text(
-            Utils.extras[index].description,
-            style: TextStyle(fontSize: ResponsiveText.large(context)),
-          ),
-          leading: Text("+${extra.price} €",
-              style: TextStyle(fontSize: ResponsiveText.large(context))),
-          trailing: Switch(
+      margin: EdgeInsets.symmetric(
+          vertical: 15, horizontal: ResponsiveText.huge(context)),
+      child: Row(children: [
+        Transform.scale(
+          scale: 2,
+          child: Switch(
               autofocus: true,
               inactiveThumbColor: MyColors.colorSecondary,
               inactiveTrackColor: MyColors.colorContainer,
@@ -167,7 +164,14 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                         .remove(OrderExtraItem(extraId: extra.extraId, qty: 1));
                   }
                 });
-              })),
+              }),
+        ),
+        const SizedBox(width: 50),
+        Text(
+          "+${extra.price} € ${Utils.extras[index].description}",
+          style: TextStyle(fontSize: ResponsiveText.huge(context)),
+        ),
+      ]),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -13,6 +15,8 @@ class LottieAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = min(
+        MediaQuery.of(context).size.width, MediaQuery.of(context).size.height);
     return FutureBuilder(
         future: Future.delayed(duration, () => true),
         builder: (context, snapshot) {
@@ -21,8 +25,8 @@ class LottieAnimation extends StatelessWidget {
                 child: Lottie.asset(
               animationPath,
               fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.width,
-              width: MediaQuery.of(context).size.width,
+              height: size,
+              width: size,
             ));
           }
           return child;
