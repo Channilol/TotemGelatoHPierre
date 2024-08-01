@@ -88,31 +88,31 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
               // Logica per gestire la password
               if (_passwordController.text == '1234') {
                 setState(() => _isCorrect = true);
-                _controller.start();
+                });
               } else {}
             },
             child: Text("Ok"),
           ),
           if (_isCorrect) ...[
             SizedBox(
-              height: 20,
+              height = 20,
             ),
             Countdown(
-                interval: const Duration(milliseconds: 10),
+                interval = const Duration(milliseconds: 10),
                 //controller: _controller,
-                seconds: 10,
-                build: (context, double seconds) => Text(
+                seconds = 10,
+                build = (context, double seconds) => Text(
                       "L'applicazione si chiuderà in ${seconds.toStringAsFixed(0)} secondi",
                       style:
                           TextStyle(fontSize: ResponsiveText.medium(context)),
                     ),
-                onFinished: Utils.kill),
+                onFinished = Utils.kill),
             if (_isCorrect)
               ElevatedButton(
-                onPressed: () {
+                onPressed = () {
                   Navigator.pop(context);
                 },
-                child: Text('annulla'))
+                child = Text('annulla'))
           ]
         ],
       ),
