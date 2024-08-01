@@ -34,7 +34,7 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
   }
 
   Timer? timer;
-  int timerCount = 10;
+  int timerCount = 9;
   bool killTimerCount = false;
 
   void printTimer(int target) async {
@@ -43,22 +43,24 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
         timerCount = target;
       });
       for (var i = target; i >= 0; i--) {
-        if (killTimerCount) return;
-        if (mounted)
-          await Future.delayed(Duration(seconds: 1), () {
-            print(i);
-            setState(() {
-              timerCount = i;
+        if (!killTimerCount) {
+          if (mounted)
+            await Future.delayed(Duration(seconds: 1), () {
+              print(i);
+              setState(() {
+                timerCount = i;
+              });
             });
-          });
+        }
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return DialogWrapper(
+    return Dialog(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "Inserisci la tua password",
@@ -66,6 +68,7 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
           ),
           SizedBox(height: 16.0),
           TextFormField(
+            keyboardType: TextInputType.number,
             controller: _passwordController,
             obscureText: _obscurePassword,
             decoration: InputDecoration(
@@ -87,8 +90,8 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
           ElevatedButton(
             onPressed: () {
               // Logica per gestire la password
-              if (_passwordController.text == 'Ciao') {
-                printTimer(10);
+              if (_passwordController.text == '1234') {
+                printTimer(9);
                 setState(() {
                   timer = Timer(Duration(seconds: 10), () {
                     exit(0);
@@ -112,6 +115,9 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
             Text(
               "L'applicazione si chiuderà in $timerCount secondi",
               style: TextStyle(fontSize: ResponsiveText.medium(context)),
+            ),
+            SizedBox(
+              height: 20,
             ),
             ElevatedButton(
                 onPressed: () {
