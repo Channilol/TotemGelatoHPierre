@@ -46,8 +46,11 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                 onPressed: currentItem > 0
                     ? () => setState(() => currentItem--)
                     : null,
-                icon: Icon(Icons.arrow_back_ios_new_rounded,
-                    color: MyColors.colorText)),
+                icon: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: MyColors.colorText,
+                  size: ResponsiveText.huge(context),
+                )),
             Column(
               children: [
                 if (currentProduct.image != null)
@@ -72,8 +75,11 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                 onPressed: currentItem < rows.length - 1
                     ? () => setState(() => currentItem++)
                     : null,
-                icon: Icon(Icons.arrow_forward_ios_rounded,
-                    color: MyColors.colorText)),
+                icon: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: MyColors.colorText,
+                  size: ResponsiveText.huge(context),
+                )),
           ]),
           Expanded(
               child: currentProduct.extras == null
@@ -100,11 +106,14 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10)),
                   onPressed: () => Navigator.pop(context),
-                  child: Text(
-                    language['orderScreen']['modal_button_remove'],
-                    style: TextStyle(
-                        fontSize: ResponsiveText.large(context),
-                        color: MyColors.colorText),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
+                    child: Text(
+                      language['orderScreen']['modal_button_remove'],
+                      style: TextStyle(
+                          fontSize: ResponsiveText.huge(context),
+                          color: MyColors.colorText),
+                    ),
                   )),
               const SizedBox(width: 20),
               FilledButton(
@@ -119,11 +128,14 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10)),
                   onPressed: () => Navigator.pop(context, rows),
-                  child: Text(
-                    language['orderScreen']['modal_button_add'],
-                    style: TextStyle(
-                        fontSize: ResponsiveText.large(context),
-                        color: MyColors.colorBackground),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
+                    child: Text(
+                      language['orderScreen']['modal_button_add'],
+                      style: TextStyle(
+                          fontSize: ResponsiveText.huge(context),
+                          color: MyColors.colorBackground),
+                    ),
                   )),
             ],
           )
