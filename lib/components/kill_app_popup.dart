@@ -1,11 +1,9 @@
-import 'dart:async';
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:timer_count_down/timer_controller.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 import 'package:totem/components/dialog_wrapper.dart';
 import 'package:totem/services/text.dart';
+import 'package:totem/services/utils.dart';
 
 class KillAppPopup extends StatelessWidget {
   const KillAppPopup({super.key});
@@ -23,37 +21,41 @@ class PasswordContainerScreen extends StatefulWidget {
 }
 
 class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
+  final CountdownController _controller = CountdownController();
   final _passwordController = TextEditingController();
+  bool _isCorrect = false;
   bool _obscurePassword = true;
 
   @override
   void dispose() {
+    _controller.restart();
+    _controller.pause();
     _passwordController.dispose();
 
     super.dispose();
   }
 
-  Timer? timer;
-  int timerCount = 10;
-  bool killTimerCount = false;
+  // Timer? timer;
+  // int timerCount = 10;
+  // bool killTimerCount = false;
 
-  void printTimer(int target) async {
-    if (timer == null) {
-      setState(() {
-        timerCount = target;
-      });
-      for (var i = target; i >= 0; i--) {
-        if (killTimerCount) return;
-        if (mounted)
-          await Future.delayed(Duration(seconds: 1), () {
-            print(i);
-            setState(() {
-              timerCount = i;
-            });
-          });
-      }
-    }
-  }
+  // void printTimer(int target) async {
+  //   if (timer == null) {
+  //     setState(() {
+  //       timerCount = target;
+  //     });
+  //     for (var i = target; i >= 0; i--) {
+  //       if (killTimerCount) return;
+  //       if (mounted)
+  //         await Future.delayed(Duration(seconds: 1), () {
+  //           print(i);
+  //           setState(() {
+  //             timerCount = i;
+  //           });
+  //         });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,15 +74,11 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
               labelText: "Password",
               border: OutlineInputBorder(),
               suffixIcon: IconButton(
-                icon: Icon(
-                  _obscurePassword ? Icons.visibility : Icons.visibility_off,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscurePassword = !_obscurePassword;
-                  });
-                },
-              ),
+                  icon: Icon(
+                    _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () =>
+                      setState(() => _obscurePassword = !_obscurePassword)),
             ),
           ),
           SizedBox(height: 16.0),
@@ -88,38 +86,28 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
             onPressed: () {
               // Logica per gestire la password
               if (_passwordController.text == 'Ciao') {
-                printTimer(10);
-                setState(() {
-                  timer = Timer(Duration(seconds: 10), () {
-                    exit(0);
-                  });
-                });
-
-                /* Future.delayed(
-                      Duration(seconds: 10),
-                      Platform.isAndroid || Platform.isIOS
-                          ? SystemNavigator.pop
-                          : exit(0)) */
-                ;
+                setState(() => _isCorrect = true);
+                _controller.start();
               } else {}
             },
             child: Text("Ok"),
           ),
-          if (timer != null) ...[
+          if (_isCorrect) ...[
             SizedBox(
               height: 20,
             ),
-            Text(
-              "L'applicazione si chiuderà in $timerCount secondi",
-              style: TextStyle(fontSize: ResponsiveText.medium(context)),
-            ),
+            Countdown(
+                interval: const Duration(milliseconds: 10),
+                //controller: _controller,
+                seconds: 10,
+                build: (context, double seconds) => Text(
+                      "L'applicazione si chiuderà in ${seconds.toStringAsFixed(0)} secondi",
+                      style:
+                          TextStyle(fontSize: ResponsiveText.medium(context)),
+                    ),
+                onFinished: Utils.kill),
             ElevatedButton(
                 onPressed: () {
-                  timer!.cancel();
-                  setState(() {
-                    timer = null;
-                    killTimerCount = true;
-                  });
                   Navigator.pop(context);
                 },
                 child: Text('annulla'))
