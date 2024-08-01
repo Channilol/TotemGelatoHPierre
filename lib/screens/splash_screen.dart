@@ -62,6 +62,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
     return Scaffold(
       body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: _redirect,
         child: Column(
           children: [
