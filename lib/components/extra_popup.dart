@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/models/order_item.dart';
 import 'package:totem/models/product_item.dart';
+import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/text.dart';
@@ -35,14 +36,15 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
     final language = Utils.languages[ref.watch(languageProvider)];
     final currentProduct = Utils.products.firstWhere(
         (element) => element.productId == rows[currentItem].productId);
+    final isAccessibilityOn = ref.watch(accessibilityProvider);
     return InactivityTimer(
       child: LayoutBuilder(builder: (context, constraints) {
         double maxHeight = constraints.maxHeight;
         double maxWidth = constraints.maxWidth;
 
         return Container(
-          height: maxHeight * 0.4,
-          width: maxWidth * 0.6,
+          height: maxHeight * (isAccessibilityOn ? 0.6 : 0.4),
+          width: maxWidth * (isAccessibilityOn ? 1 : 0.6),
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
