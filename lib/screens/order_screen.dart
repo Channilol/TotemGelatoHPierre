@@ -108,6 +108,7 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
                       onTap: () {
                         if (_touchCount == 5) {
                           showDialog(
+                              barrierDismissible: false,
                               context: context,
                               builder: (context) =>
                                   DialogWrapper(child: const KillAppPopup()));

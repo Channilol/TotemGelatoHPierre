@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timer_count_down/timer_controller.dart';
@@ -5,6 +6,7 @@ import 'package:timer_count_down/timer_count_down.dart';
 import 'package:totem/components/keyboard_delete.dart';
 import 'package:totem/components/keyboard_key.dart';
 import 'package:totem/providers/password_provider.dart';
+import 'package:totem/services/my_colors.dart';
 import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
@@ -66,16 +68,41 @@ class _PasswordContainerScreenState
   @override
   Widget build(BuildContext context) {
     var passString = ref.watch(passwordProvider);
+    String _obscuredPassword = "";
+    for (var i = 0; i < passString.length; i++) {
+      _obscuredPassword += "•";
+    }
 
     return Dialog(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "Inserisci la tua password",
-            style: TextStyle(fontSize: 18),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  ref.read(passwordProvider.notifier).resetPassword();
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  CupertinoIcons.clear,
+                  size: ResponsiveText.huge(context),
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 16.0),
+          Spacer(),
+          !_isCorrect
+              ? Text(
+                  "Inserisci la tua password",
+                  style: TextStyle(
+                    fontSize: ResponsiveText.huge(context),
+                    color: MyColors.colorText,
+                  ),
+                )
+              : SizedBox(),
+          SizedBox(height: _isCorrect ? 0 : 16.0),
           // TextFormField(
           //   keyboardType: TextInputType.number,
           //   controller: _passwordController,
@@ -91,78 +118,114 @@ class _PasswordContainerScreenState
           //             setState(() => _obscurePassword = !_obscurePassword)),
           //   ),
           // ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                _isKeyboardOn = true;
-              });
-            },
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Text('${passString}'),
-            ),
-          ),
+          !_isCorrect
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isKeyboardOn = true;
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Text(
+                      '${_obscuredPassword}',
+                      style: TextStyle(
+                        fontSize: ResponsiveText.title(context),
+                        color: MyColors.colorText,
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox(),
           _isKeyboardOn ? SizedBox(height: 16.0) : SizedBox(),
           _isKeyboardOn
               ? Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        KeyboardKey(keyNum: 1),
-                        KeyboardKey(keyNum: 2),
-                        KeyboardKey(keyNum: 3),
+                        Expanded(child: KeyboardKey(keyNum: 1)),
+                        Expanded(child: KeyboardKey(keyNum: 2)),
+                        Expanded(child: KeyboardKey(keyNum: 3)),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        KeyboardKey(keyNum: 4),
-                        KeyboardKey(keyNum: 5),
-                        KeyboardKey(keyNum: 6),
-                      ],
+                    SizedBox(
+                      height: 16,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        KeyboardKey(keyNum: 7),
-                        KeyboardKey(keyNum: 8),
-                        KeyboardKey(keyNum: 9),
+                        Expanded(child: KeyboardKey(keyNum: 4)),
+                        Expanded(child: KeyboardKey(keyNum: 5)),
+                        Expanded(child: KeyboardKey(keyNum: 6)),
                       ],
                     ),
+                    SizedBox(
+                      height: 16,
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        KeyboardDelete(),
+                        Expanded(child: KeyboardKey(keyNum: 7)),
+                        Expanded(child: KeyboardKey(keyNum: 8)),
+                        Expanded(child: KeyboardKey(keyNum: 9)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Spacer(),
+                        Expanded(child: KeyboardKey(keyNum: 0)),
+                        Expanded(child: KeyboardDelete()),
                       ],
                     )
                   ],
                 )
               : SizedBox(),
           SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () {
-              // Logica per gestire la password
-              if (passString == '1234') {
-                setState(() {
-                  _wrongPassword = false;
-                  _isCorrect = true;
-                  _isKeyboardOn = false;
-                });
-              } else {
-                setState(() {
-                  _wrongPassword = true;
-                });
-              }
-            },
-            child: Text("Ok"),
+          !_isCorrect
+              ? ElevatedButton(
+                  onPressed: () {
+                    // Logica per gestire la password
+                    if (passString == '1234') {
+                      setState(() {
+                        _wrongPassword = false;
+                        _isCorrect = true;
+                        _isKeyboardOn = false;
+                      });
+                    } else {
+                      setState(() {
+                        _wrongPassword = true;
+                      });
+                    }
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      "Ok",
+                      style: TextStyle(
+                        fontSize: ResponsiveText.huge(context),
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox(),
+          SizedBox(
+            height: _wrongPassword ? 35 : 0,
           ),
-          _wrongPassword ? Text('PASSWORD SBAGLIATA') : SizedBox(),
+          _wrongPassword
+              ? Text(
+                  'PASSWORD ERRATA!',
+                  style: TextStyle(
+                    fontSize: ResponsiveText.huge(context),
+                    color: MyColors.colorText,
+                  ),
+                )
+              : SizedBox(),
           if (_isCorrect) ...[
             SizedBox(
               height: 20,
@@ -173,17 +236,26 @@ class _PasswordContainerScreenState
                 seconds: 10,
                 build: (context, double seconds) => Text(
                       "L'applicazione si chiuderà in ${seconds.toStringAsFixed(0)} secondi",
-                      style:
-                          TextStyle(fontSize: ResponsiveText.medium(context)),
+                      style: TextStyle(fontSize: ResponsiveText.huge(context)),
                     ),
                 onFinished: Utils.kill),
             ElevatedButton(
               onPressed: () {
+                ref.read(passwordProvider.notifier).resetPassword();
                 Navigator.pop(context);
               },
-              child: Text('annulla'),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Annulla',
+                  style: TextStyle(
+                    fontSize: ResponsiveText.huge(context),
+                  ),
+                ),
+              ),
             ),
           ],
+          Spacer(),
         ],
       ),
     );
