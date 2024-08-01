@@ -20,8 +20,8 @@ class InactivityTimerNotifier {
 
   InactivityTimerNotifier(
     this.ref, {
-    this.inactivityTimerDuration = const Duration(seconds: 60),
-    this.warningTimerDuration = const Duration(seconds: 55),
+    this.inactivityTimerDuration = const Duration(seconds: 15),
+    this.warningTimerDuration = const Duration(seconds: 10),
   });
 
   void startInactivityTimer(BuildContext context) {
