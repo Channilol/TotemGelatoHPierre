@@ -60,7 +60,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         )),
                   ),
                   Transform.translate(
-                    offset: const Offset(0, -100),
+                    offset: Offset(0, -height * 0.08),
                     child: Column(children: [
                       Container(
                         width: width > height

@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
         ),
         padding: const EdgeInsets.only(bottom: 5),
         //width: double.infinity,
-        height: 90,
+        height: MediaQuery.of(context).size.height * 0.07,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
