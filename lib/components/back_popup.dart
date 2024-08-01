@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:totem/services/text.dart';
 
 class BackPopup extends StatelessWidget {
   const BackPopup({super.key});
@@ -12,8 +13,10 @@ class BackPopup extends StatelessWidget {
               bottomRight: Radius.circular(40),
               topLeft: Radius.circular(40),
               topRight: Radius.circular(20))),
-      title: const Text('Vuoi rimanere qui?'),
-      content: const Text('Hai ancora tempo per ordinare'),
+      title: Text('Vuoi rimanere qui?',
+          style: TextStyle(fontSize: ResponsiveText.large(context))),
+      content: Text('Hai ancora tempo per ordinare',
+          style: TextStyle(fontSize: ResponsiveText.large(context))),
       actions: [
         FilledButton(
           style: FilledButton.styleFrom(
@@ -27,7 +30,11 @@ class BackPopup extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 15, vertical: 10)),
           onPressed: () => Navigator.pop(context, true),
-          child: const Text('Si ti prego'),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
+            child: Text('Si ti prego',
+                style: TextStyle(fontSize: ResponsiveText.medium(context))),
+          ),
         ),
       ],
     );
