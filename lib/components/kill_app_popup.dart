@@ -86,7 +86,7 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
           ElevatedButton(
             onPressed: () {
               // Logica per gestire la password
-              if (_passwordController.text == 'Ciao') {
+              if (_passwordController.text == '1234') {
                 setState(() => _isCorrect = true);
                 _controller.start();
               } else {}
@@ -107,7 +107,8 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
                           TextStyle(fontSize: ResponsiveText.medium(context)),
                     ),
                 onFinished: Utils.kill),
-            ElevatedButton(
+            if (_isCorrect)
+              ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
