@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-import 'package:totem/components/dialog_wrapper.dart';
 import 'package:totem/services/text.dart';
 import 'package:totem/services/utils.dart';
 
@@ -59,8 +58,9 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DialogWrapper(
+    return Dialog(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "Inserisci la tua password",
@@ -68,6 +68,7 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
           ),
           SizedBox(height: 16.0),
           TextFormField(
+            keyboardType: TextInputType.number,
             controller: _passwordController,
             obscureText: _obscurePassword,
             decoration: InputDecoration(
