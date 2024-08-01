@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:totem/components/animated_filp_number.dart';
 import 'package:totem/components/back_button.dart';
 import 'package:totem/components/clear_button.dart';
-import 'package:totem/components/clear_order_popup.dart';
 import 'package:totem/components/header.dart';
 import 'package:totem/components/inactivity_timer.dart';
 import 'package:totem/components/language_popup.dart';
-import 'package:totem/components/order_recap_item.dart';
 import 'package:totem/components/product_card.dart';
 import 'package:totem/components/semicircle.dart';
-import 'package:totem/models/order_item.dart';
 import 'package:totem/providers/accessibility_provider.dart';
 import 'package:totem/providers/language_provider.dart';
 import 'package:totem/providers/order_provider.dart';
@@ -98,19 +96,33 @@ class OrderRecapScreen extends ConsumerWidget {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 35, vertical: 15),
-                    child: GridView.builder(
-                      scrollDirection:
-                          accessibility ? Axis.horizontal : Axis.vertical,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: accessibility ? 1 : 2,
-                        mainAxisSpacing: accessibility ? 1 : 30,
-                        childAspectRatio: accessibility ? 0.6 : 1.5,
-                        crossAxisSpacing: accessibility ? 1 : 10,
-                      ),
-                      itemCount: totalProducts.length,
-                      itemBuilder: (context, index) => ProductCard(
-                        product: totalProducts[index],
-                        isRecap: true,
+                    child: AnimationLimiter(
+                      child: GridView.builder(
+                        scrollDirection:
+                            accessibility ? Axis.horizontal : Axis.vertical,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: accessibility ? 1 : 2,
+                          mainAxisSpacing: accessibility ? 1 : 30,
+                          childAspectRatio: accessibility ? 0.6 : 1.5,
+                          crossAxisSpacing: accessibility ? 1 : 10,
+                        ),
+                        itemCount: totalProducts.length,
+                        itemBuilder: (context, index) =>
+                            AnimationConfiguration.staggeredGrid(
+                          position: index,
+                          columnCount: accessibility ? 1 : 2,
+                          child: SlideAnimation(
+                            horizontalOffset: MediaQuery.of(context).size.width,
+                            duration: const Duration(milliseconds: 700),
+                            child: FadeInAnimation(
+                              duration: const Duration(milliseconds: 700),
+                              child: ProductCard(
+                                product: totalProducts[index],
+                                isRecap: true,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
