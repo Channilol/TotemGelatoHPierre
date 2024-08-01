@@ -47,6 +47,7 @@ dependencies:
   fullscreen: ^1.0.3
   window_manager: ^0.3.9
   flutter_staggered_animations: ^1.1.1
+  timer_count_down: ^2.2.2
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
