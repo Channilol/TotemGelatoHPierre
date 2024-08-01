@@ -88,10 +88,10 @@ class ProductCard extends ConsumerWidget {
                       fontSize: isAccessibilityOn
                           ? isRecap
                               ? ResponsiveText.medium(context) - 5
-                              : ResponsiveText.large(context)
+                              : ResponsiveText.large(context) - 5
                           : isRecap
-                              ? ResponsiveText.large(context) - 10
-                              : ResponsiveText.huge(context) - 5,
+                              ? ResponsiveText.large(context) - 9
+                              : ResponsiveText.huge(context) - 4,
                     ),
                   ),
                   const Spacer(),
@@ -124,7 +124,7 @@ class ProductCard extends ConsumerWidget {
                                         }
                                         showDialog(
                                             context: context,
-                                            builder: (context) => DialogWrapper(
+                                            builder: (context) => Dialog(
                                                   child: ExtraPopup(
                                                       rows: order.rows
                                                           .where((element) =>

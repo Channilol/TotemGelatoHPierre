@@ -1,0 +1,27 @@
+[
+  {
+    "extraId": "E01",
+    "description": "Panna",
+    "price": 1
+  },
+  {
+    "extraId": "E02",
+    "description": "Noccioline",
+    "price": 0.5
+  },
+  {
+    "extraId": "E03",
+    "description": "Biscotto",
+    "price": 0.2
+  },
+  {
+    "extraId": "E04",
+    "description": "Cialda",
+    "price": 0.5
+  },
+  {
+    "extraId": "E05",
+    "description": "Cone",
+    "price": 1.5
+  }
+]
