@@ -44,7 +44,7 @@ class _ExtraPopupState extends ConsumerState<ExtraPopup> {
 
         return Container(
           height: maxHeight * (isAccessibilityOn ? 0.6 : 0.4),
-          width: maxWidth * (isAccessibilityOn ? 1 : 0.6),
+          width: maxWidth * (isAccessibilityOn ? 1 : 0.7),
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
