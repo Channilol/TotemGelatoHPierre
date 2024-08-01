@@ -45,7 +45,7 @@ class TotemApp extends ConsumerWidget {
           : null,
       title: 'Totem app',
       theme: theme,
-      home: const AnimationScreen(),
+      home: AnimationScreen(),
     );
   }
 }

@@ -140,10 +140,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_touchCount == 5) {
-                      setState(() => _touchCount++);
-                      return;
-                    }
-                    if (_touchCount == 6) {
                       showDialog(
                           context: context,
                           builder: (context) =>

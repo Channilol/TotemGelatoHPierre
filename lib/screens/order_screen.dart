@@ -163,7 +163,6 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
                 children: [
                   Expanded(child: CategoriesBar()),
                   SizedBox(width: 10),
-                  Text("$_touchCount"),
                   Expanded(flex: 5, child: ProductList()),
                 ],
               ),
