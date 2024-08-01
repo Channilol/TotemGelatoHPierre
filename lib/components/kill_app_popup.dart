@@ -59,8 +59,9 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DialogWrapper(
+    return Dialog(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "Inserisci la tua password",
@@ -68,6 +69,7 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
           ),
           SizedBox(height: 16.0),
           TextFormField(
+            keyboardType: TextInputType.number,
             controller: _passwordController,
             obscureText: _obscurePassword,
             decoration: InputDecoration(
@@ -85,9 +87,9 @@ class _PasswordContainerScreenState extends State<PasswordContainerScreen> {
           ElevatedButton(
             onPressed: () {
               // Logica per gestire la password
-              if (_passwordController.text == 'Ciao') {
+              if (_passwordController.text == '1234') {
                 setState(() => _isCorrect = true);
-                _controller.start();
+                });
               } else {}
             },
             child: Text("Ok"),
