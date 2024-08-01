@@ -62,6 +62,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
     return Scaffold(
       body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: _redirect,
         child: Column(
           children: [
@@ -90,7 +91,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                       )),
                 ),
                 Transform.translate(
-                    offset: Offset(0, -height * 0.08),
+                  offset: Offset(0, -height * 0.08),
                   child: Column(children: [
                     Container(
                       width: width > height
@@ -141,6 +142,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   onTap: () {
                     if (_touchCount == 5) {
                       showDialog(
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) =>
                               DialogWrapper(child: const KillAppPopup()));

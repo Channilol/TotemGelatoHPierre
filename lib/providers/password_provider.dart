@@ -5,7 +5,16 @@ class PasswordProvider extends StateNotifier<String> {
 
   void changePassword(String newParam) => state += newParam;
 
-  void deletePassword() => state = state.substring(0, state.length - 1);
+  void deletePassword() {
+    if (state != "") {
+      state = state.substring(0, state.length - 1);
+    }
+    return;
+  }
+
+  void resetPassword() {
+    state = "";
+  }
 }
 
 final passwordProvider = StateNotifierProvider<PasswordProvider, String>((ref) {
