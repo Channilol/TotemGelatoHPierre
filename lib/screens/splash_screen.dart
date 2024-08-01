@@ -37,7 +37,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   void initState() {
     _timer = Timer(const Duration(seconds: 3), () {
       setState(() => _touchCount = 0);
-      debugPrint("Tempo scaduto");
     });
     super.initState();
   }
@@ -141,10 +140,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_touchCount == 5) {
-                      setState(() => _touchCount++);
-                      return;
-                    }
-                    if (_touchCount == 6) {
                       showDialog(
                           context: context,
                           builder: (context) =>

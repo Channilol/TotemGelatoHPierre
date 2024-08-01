@@ -124,7 +124,7 @@ class ProductCard extends ConsumerWidget {
                                         }
                                         showDialog(
                                             context: context,
-                                            builder: (context) => DialogWrapper(
+                                            builder: (context) => Dialog(
                                                   child: ExtraPopup(
                                                       rows: order.rows
                                                           .where((element) =>

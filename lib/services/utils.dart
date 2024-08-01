@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:totem/models/category_item.dart';
@@ -113,5 +114,13 @@ class Utils {
           .toList();
     }
     return filteredProducts;
+  }
+
+  static kill() {
+    if (Platform.isAndroid || Platform.isIOS) {
+      SystemNavigator.pop(animated: true);
+      return;
+    }
+    exit(1);
   }
 }
