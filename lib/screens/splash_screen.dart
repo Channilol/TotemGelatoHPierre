@@ -37,7 +37,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   void initState() {
     _timer = Timer(const Duration(seconds: 3), () {
       setState(() => _touchCount = 0);
-      debugPrint("Tempo scaduto");
     });
     super.initState();
   }

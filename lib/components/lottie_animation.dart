@@ -9,7 +9,7 @@ class LottieAnimation extends StatelessWidget {
   final String animationPath;
   const LottieAnimation(
       {super.key,
-      required this.child,
+      this.child = const SizedBox(),
       this.duration = const Duration(seconds: 5),
       this.animationPath = "assets/images/gelato.json"});
 
